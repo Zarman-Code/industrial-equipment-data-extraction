@@ -1,14 +1,14 @@
 # i-Sense Field Mapping
 
-This document describes the workflow and fields required to create an asset in the i-Sense platform.
+This document describes the fields, available values, and workflow required to create an asset in the i-Sense platform.
 
-The objective is to identify the information required by i-Sense and establish how this information can be obtained and transformed from the source equipment PDFs.
+The objective is to identify the target i-Sense data model and establish the mapping between information extracted from technical equipment PDFs and the fields required to create an i-Sense asset.
 
 ---
 
 ## 1. Asset Creation Workflow
 
-The asset creation process currently follows these steps:
+The current asset creation workflow is:
 
 ```text
 Assets
@@ -17,7 +17,7 @@ Assets
 Create a new asset
   │
   ▼
-Choose the asset type
+Choose asset type
   │
   ├── Industrial
   │
@@ -33,237 +33,675 @@ Asset Diagram
 Save
 ```
 
-For this project, the **Industrial** asset type is the primary workflow to investigate.
+The current project focuses on the **Industrial** asset workflow.
 
 ---
 
-## 2. Asset Information Form
+## 2. Industrial Asset Fields
 
-The Industrial asset creation form contains the following fields:
+The Industrial asset creation form currently contains the following fields:
 
-| Field                  | Required | Type         | PDF Source       | Transformation / Notes                             |
-| ---------------------- | :------: | ------------ | ---------------- | -------------------------------------------------- |
-| Family                 |    Yes   | Dropdown     | To be determined | Must identify the corresponding family             |
-| Asset Name             |    Yes   | Text         | To be determined | May correspond to equipment designation/name       |
-| Ref                    |    Yes   | Text         | To be determined | Equipment reference may be available in the PDF    |
-| Entity                 |    Yes   | Dropdown     | To be determined | Requires mapping to an i-Sense entity              |
-| Class                  |    Yes   | Dropdown     | To be determined | Requires mapping to an i-Sense class               |
-| Structure              |    Yes   | Dropdown     | To be determined | Requires mapping to an i-Sense structure           |
-| Group                  |    Yes   | Dropdown     | To be determined | Requires mapping to an i-Sense group               |
-| Power                  |    Yes   | Numeric/Text | To be determined | Unit and expected format need to be investigated   |
-| Outlier                |    Yes   | Numeric      | To be determined | Outlier threshold; source needs to be investigated |
-| Measurement point type |    Yes   | Selection    | To be determined | Manual or Online                                   |
-| Asset Picture          |    No*   | Image upload | To be determined | May require an image from the source documentation |
+| Field                  | Required | Input Type    | Available Values / Format |
+|------------------------|:--------:|---------------|---------------------------|
+| Family                 | Yes      | Dropdown      | See Family values         |
+| Asset Name             | Yes      | Text          | Free text                 |
+| Ref                    | Yes      | Text          | Free text                 |
+| Entity                 | Yes      | Dropdown      | Demo Interns              |
+| Class                  | Yes      | Dropdown      | AA, A, B, C, AA-Site      |
+| Structure              | Yes      | Dropdown      | Rigid, Flexible           |
+| Group                  | Yes      | Dropdown      | See Group values          |
+| Power                  | Yes      | Input         | Numeric                   |
+| Outlier                | Yes      | Numeric input | Numeric                   |
+| Measurement Point Type | Yes      | Selection     | Manual, Online            |
+| Asset Picture          | No       | File upload   | Image                     |
+| Asset Diagram          | Yes      | Diagram/upload| Image/diagram             |
 
----
-
-## 3. Asset Type
-
-When selecting **Create a new asset**, i-Sense first asks the user to choose an asset type:
-
-* Industrial
-* Generic
-
-The current project focuses on **Industrial assets**.
-
-The Generic asset workflow should be investigated later if the source documents contain assets that cannot be represented using the Industrial workflow.
 
 ---
 
-## 4. Asset Picture
+# 3. Family
 
-The asset creation form provides an **Asset Picture** section.
+The Family field is represented by:
 
-The interface provides options for:
+```html
+<select name="family_id">
+```
 
-* 3D
-* Asset Picture
-* Image upload
+The platform uses numeric IDs internally.
 
-The project should determine whether equipment images are available in the source PDFs and whether they should be extracted and uploaded to i-Sense.
+### Relevant family values
 
-This feature is considered secondary to the extraction of structured equipment information.
+| ID | Family                  |
+| -: | ----------------------- |
+|  1 | Default                 |
+| 15 | Groupe Turboalternateur |
+| 17 | Motopompe (new)         |
+| 25 | Turboalternateur Old    |
+| 26 | Turbosoufflante Old     |
+| 27 | Motoventilateur (new)   |
+| 28 | Agitator (new)          |
+| 31 | Broyeurs                |
+| 32 | Tube sécheur            |
+| 33 | Granulateur             |
+| 34 | Concasseur              |
+| 35 | Convoyeur               |
+| 36 | Compresseur             |
+| 37 | Groupe Turbosoufflante  |
+| 38 | Pompe à vide            |
+| 40 | Banc D'Essai            |
 
----
+The platform also contains numerous test/development families. These should **not automatically be considered valid production families**.
 
-## 5. Asset Diagram
-
-After entering the asset information, i-Sense provides an **Asset Diagram** step.
-
-The interface currently allows the user to:
-
-* create a new diagram;
-* upload a diagram;
-* save the asset without necessarily creating a diagram, depending on the platform workflow.
-
-The relationship between equipment information in the PDF and the Asset Diagram should be investigated separately.
-
-At this stage, diagram generation is **outside the primary scope** of the PDF-to-i-Sense data-entry pipeline.
-
----
-
-## 6. PDF → i-Sense Mapping
-
-The final mapping will connect three representations of the same equipment:
+Examples include:
 
 ```text
-Source PDF
-    │
-    ▼
-Extracted Equipment Data
-    │
-    ▼
-Normalized Internal Schema
-    │
-    ▼
-i-Sense Fields
+sub asset 1
+test elch
+sub asset 2
+Test MMS
+TEST FAMILY
+Turbosouflante test
+Family test
+Test Family AAQ
+Asset familly 23-07
+TEST ASSET FAM
+aaaaaaa
+hhhhhh
+...
+```
+
+### Automation consideration
+
+The PDF extraction pipeline should not blindly select a Family based only on string similarity.
+
+Instead:
+
+```text
+PDF equipment information
+        │
+        ▼
+Equipment classification
+        │
+        ▼
+Allowed family mapping
+        │
+        ▼
+i-Sense family_id
 ```
 
 For example:
 
 ```text
-PDF
-│
-├── Equipment designation
-├── Reference
-├── Manufacturer
-├── Power
-└── Location
-        │
-        ▼
-Internal equipment schema
-        │
-        ▼
-i-Sense
-│
-├── Asset Name
-├── Ref
-├── Power
-├── Entity
-├── Structure
-└── Group
+"Motopompe"
+     ↓
+"Motopompe (new)"
+     ↓
+family_id = 17
 ```
 
-The exact mapping will be determined after examining the contents of the source PDFs and the available values in the i-Sense dropdown fields.
+The family mapping should eventually be stored in a dedicated configuration file rather than hard-coded throughout the application.
 
 ---
 
-## 7. Fields Requiring Further Investigation
+# 4. Entity
 
-The following fields require additional exploration:
+The Entity field is represented by:
 
-### Family
+```html
+<select name="entity_id">
+```
 
-Determine:
+The currently available entity is:
 
-* available family values;
-* whether the family can be inferred from the PDF;
-* whether it is fixed for a particular equipment category.
+|  ID | Entity       |
+| --: | ------------ |
+| 123 | Demo Interns |
 
-### Entity
+At the current stage, there is only one available option.
 
-Determine:
+### Automation consideration
 
-* available entities;
-* whether an entity corresponds to a physical site, organization, or another concept;
-* whether the value can be extracted from the PDF.
+The current i-Sense environment provides a single Entity:
 
-### Class
+- **ID:** `123`
+- **Name:** `Demo Interns`
 
-Determine:
+This appears to be the entity associated with the internship/demo environment. 
+It should not be treated as information extracted from the equipment PDF.
 
-* available classes;
-* whether the class corresponds to the equipment type;
-* whether automatic mapping is possible.
+If the project confirms that all assets created by this application must belong
+to this entity, the Entity can be treated as a project-level configuration
+parameter.
 
-### Structure
+For example:
 
-Determine:
-
-* available structures;
-* relationship with the equipment location or hierarchy.
-
-### Group
-
-Determine:
-
-* available groups;
-* whether the group can be inferred from the source document.
-
-### Power
-
-Determine:
-
-* expected unit;
-* accepted format;
-* whether decimal values are accepted;
-* whether the PDF provides the same unit.
-
-### Outlier
-
-Determine:
-
-* what the threshold represents;
-* its unit;
-* how the value should be calculated or obtained;
-* whether it is available in the source documentation.
-
-### Measurement Point Type
-
-The current interface provides two options:
-
-* Manual
-* Online
-
-The appropriate value should be determined from the equipment and its monitoring configuration.
+```python
+ISENSE_ENTITY_ID = 123
 
 ---
 
-## 8. Information Still Needed
+# 5. Class
 
-Before implementing the automated data-entry process, the following information should be documented:
+The Class field is represented by:
 
-* [ ] Available Family values
-* [ ] Available Entity values
-* [ ] Available Class values
-* [ ] Available Structure values
-* [ ] Available Group values
-* [ ] Power unit and format
-* [ ] Meaning and unit of Outlier
-* [ ] Conditions for selecting Manual vs Online
-* [ ] Whether Asset Picture is required
-* [ ] Whether Asset Diagram is required
-* [ ] Whether existing assets can be edited automatically
-* [ ] Whether assets can be imported in bulk
-* [ ] Whether i-Sense provides an API
-* [ ] Whether the platform provides an export/import mechanism
+```html
+<select name="class_id">
+```
+
+Available values:
+
+| ID | Class   |
+| -: | ------- |
+|  5 | AA-Site |
+|  1 | AA      |
+|  2 | A       |
+|  3 | B       |
+|  4 | C       |
+
+### Automation consideration
+
+The Class value should only be assigned automatically if the required information can be determined from the PDF.
+
+The PDF should first be analyzed to determine whether it contains:
+
+- an explicit Class value;
+- information that can be used to derive the Class;
+- or no information related to Class.
+
+If the Class cannot be determined from the PDF, the application should not guess a value. Instead, the field should be flagged for manual completion or the asset creation should be prevented until a valid value is provided.
 
 ---
 
-## 9. Automation Target
+# 6. Structure
 
-The final automation should aim to transform:
+The Structure field is represented by:
+
+```html
+<select name="structure">
+```
+
+Available values:
+
+| ID | Structure |
+| -: | --------- |
+|  1 | Rigid     |
+|  2 | Flexible  |
+
+This appears to describe a structural/mechanical characteristic rather than an equipment category.
+
+### Automation consideration
+
+The source PDF should be checked to determine whether the equipment documentation explicitly contains this information.
+
+If it does not, this value should probably come from predefined business rules or user configuration rather than being guessed by the extraction model.
+
+---
+
+# 7. Group
+
+The Group field is represented by:
+
+```html
+<select name="group_id">
+```
+
+Available values:
+
+| ID | Group           |
+| -: | --------------- |
+|  1 | Groupe I F P3   |
+|  2 | Broyeurs        |
+|  3 | Groupe I F P2   |
+|  4 | Groupe I F P1   |
+|  5 | Groupe I R P1   |
+|  6 | Groupe I R P2   |
+|  7 | Groupe I R P3   |
+|  8 | Groupe II F P1  |
+|  9 | Groupe II F P2  |
+| 10 | Groupe II F P3  |
+| 11 | Groupe II R P1  |
+| 12 | Groupe II R P2  |
+| 13 | Groupe II R P3  |
+| 14 | Groupe III F P1 |
+| 15 | Groupe III F P2 |
+| 16 | Groupe III F P3 |
+| 17 | Groupe III R P1 |
+| 18 | Groupe III R P2 |
+| 19 | Groupe III R P3 |
+| 20 | Groupe IV F P1  |
+| 21 | Groupe IV F P2  |
+| 22 | Groupe IV F P3  |
+| 24 | Groupe IV R P2  |
+| 25 | Groupe IV R P3  |
+| 26 | GTA             |
+| 27 | SALLE GROUP     |
+| 28 | arwa group      |
+
+### Automation consideration
+
+The Group is likely to be determined from equipment/site organization rather than directly from a generic equipment description.
+
+This field therefore requires investigation of the source PDFs and existing i-Sense assets before defining an automatic mapping.
+
+---
+
+# 8. Asset Name
+
+The Asset Name field is mandatory and accepts free text.
+
+The field is represented in the interface as:
+
+```html
+<input name="name" type="text">
+```
+
+The value should likely be extracted from the equipment designation/name in the source PDF.
+
+Normalization may be required to handle:
+
+* capitalization;
+* extra spaces;
+* abbreviations;
+* punctuation;
+* inconsistent naming conventions.
+
+---
+
+# 9. Reference
+
+The Ref field is mandatory and accepts free text.
+
+The field is represented as:
+
+```html
+<input name="ref" type="text">
+```
+
+Possible representations in the PDF may include:
+
+* equipment reference;
+* equipment tag;
+* asset number;
+* identification number;
+* technical reference.
+
+### Automation consideration
+
+If a clear equipment reference is present in the PDF, it can be extracted and entered directly into the Ref field.
+
+For example:
 
 ```text
-Technical PDF
-      │
-      ▼
-Equipment Information Extraction
-      │
-      ▼
-Data Normalization
-      │
-      ▼
-Data Validation
-      │
-      ▼
-i-Sense Field Mapping
-      │
-      ▼
-Create Industrial Asset
-      │
-      ▼
-Verify Created Asset
+PDF:
+    Equipment reference = PMP-101
+
+        ↓
+
+Extracted value:
+    PMP-101
+
+        ↓
+
+i-Sense:
+    Ref = PMP-101
 ```
 
-The automation should not directly submit unvalidated information. Extracted values should first be checked against the expected i-Sense fields and allowed values.
+The application should not invent or generate a reference if no valid reference can be identified in the PDF.
+
+If multiple possible identifiers are found, the application should flag the field for validation rather than automatically choosing one without an established rule.
+
+---
+
+# 10. Power
+
+The Power field is mandatory and accepts free text.
+
+The field is represented as:
+
+```html
+<input name="powerRange" type="text">
+```
+
+Although the field is related to power, the HTML indicates that i-Sense accepts the value as text, rather than explicitly requiring a numeric input.
+
+Automation consideration
+
+The source PDF should be analyzed to determine:
+
+* whether power is provided;
+* how it is represented;
+* which unit is used;
+* whether multiple power values are provided;
+* whether a conversion is necessary.
+
+Example normalization:
+
+```text
+PDF:
+    Power = 15 kW
+
+        ↓
+
+Normalized value:
+    15
+
+        ↓
+
+i-Sense:
+    Power = 15
+```
+
+If the PDF contains:
+
+```text
+15000 W
+```
+
+the extraction layer may need to convert:
+
+```text
+15000 W → 15 kW
+```
+
+---
+
+# 11. Outlier
+
+The Outlier field is mandatory and accepts a numeric value.
+
+The field is represented as:
+
+```html
+<input name="outlier_detection" type="number">
+```
+
+The interface placeholder describes the value as:
+
+```
+Enter outlier threshold...
+```
+
+This indicates that the field represents an outlier detection threshold, but the meaning and appropriate value have not yet been established.
+
+### Automation consideration
+
+Since the PDFs are the only source of equipment information, the PDF should be analyzed to determine whether it contains a value corresponding to this threshold.
+
+At this stage, we do not assume that the threshold can be extracted from the PDF.
+
+Possible situations are:
+
+```text
+PDF contains an explicit threshold
+        ↓
+Extract and validate the value
+```
+
+or:
+
+```text
+PDF does not contain a threshold
+        ↓
+Cannot determine automatically
+        ↓
+Manual input / project-defined value
+```
+
+The application should not invent an outlier threshold.
+
+Before automating this field, the project should establish:
+
+* what the threshold represents;
+* its unit, if applicable;
+* whether it is equipment-specific;
+* whether it is explicitly documented in the source PDFs;
+* whether a project-defined default exists.
+
+Until this is established, the Outlier field should be treated as undetermined rather than automatically populated.
+
+---
+
+# 12. Measurement Point Type
+
+The Measurement Point Type field is mandatory.
+
+The interface currently provides two options:
+
+```text
+Manual
+Online
+```
+
+The HTML indicates that:
+
+``` text
+Manual → selected by default
+Online → currently disabled
+```
+
+The relevant form values are:
+
+```text
+Manual → is_manual = 1
+Online → is_manual = 0
+```
+
+### Automation consideration
+
+At the current stage, Manual is the only enabled option in the observed i-Sense environment.
+
+Therefore, the automation should treat this as a platform/environment setting rather than attempt to classify the equipment automatically.
+
+---
+
+# 13. Asset Picture
+
+The interface provides an Asset Picture section with:
+
+* 3D
+* Asset Picture
+* image upload
+
+### Automation consideration
+
+If an equipment image is available in the PDF, image extraction could potentially be added to the pipeline:
+
+```text
+PDF
+ │
+ ├── Extract text
+ │
+ └── Extract equipment image
+             │
+             ▼
+        i-Sense Asset
+```
+
+Image extraction is currently considered secondary to structured data extraction.
+
+---
+
+# 14. Asset Diagram
+
+Asset Diagram is mandatory for the assets being created.
+
+After the main asset information is entered, i-Sense provides an Asset Diagram step.
+
+The interface allows:
+
+* creating a new diagram;
+* uploading a diagram;
+* saving the asset.
+
+### Automation consideration
+
+The PDFs should first be examined to determine whether relevant diagrams are available.
+
+If suitable diagrams exist, they could potentially be extracted and associated with the asset.
+
+---
+
+# 15. Source-to-Target Architecture
+
+The project should maintain an intermediate representation between the PDF and i-Sense.
+
+```text
+                 SOURCE
+                   │
+                   ▼
+            Technical PDF
+                   │
+                   ▼
+          PDF Information
+             Extraction
+                   │
+                   ▼
+        ┌─────────────────────┐
+        │ Internal Equipment  │
+        │       Schema        │
+        └──────────┬──────────┘
+                   │
+                   ▼
+          Normalization
+                   │
+                   ▼
+             Validation
+                   │
+                   ▼
+        i-Sense-specific fields
+                   │
+                   ▼
+          User Confirmation
+                   │
+                   ▼
+              i-Sense
+```
+
+The Internal Equipment Schema is important because it represents what was actually extracted from the PDF.
+
+For example:
+
+```JSON
+{
+    "asset_name": "...",
+    "reference": "...",
+    "power": "...",
+    "manufacturer": "...",
+    "model": "..."
+}
+```
+
+Then the i-Sense integration can transform this information into the format required by the platform.
+
+This prevents the PDF extraction code from being tightly coupled to the i-Sense interface.
+
+---
+
+# 17. Next Investigation Steps
+
+The following information should be collected before implementing the automated data-entry process:
+
+### i-Sense exploration
+
+- [x] Identify Industrial asset type
+- [x] Identify mandatory asset fields
+- [x] Identify Family values and IDs
+- [x] Identify Entity values and IDs
+- [x] Identify Class values and IDs
+- [x] Identify Structure values and IDs
+- [x] Identify Group values and IDs
+- [x] Identify Measurement Point Type options
+- [x] Determine that Online is currently disabled
+
+### PDF analysis
+
+- [ ] Identify equipment name/designation
+- [ ] Identify equipment reference/tag
+- [ ] Identify equipment type/category
+- [ ] Identify power and unit
+- [ ] Identify classification information
+- [ ] Identify structure-related information
+- [ ] Identify group/site information
+- [ ] Identify outlier-related information
+- [ ] Identify monitoring information
+- [ ] Identify equipment images
+- [ ] Identify equipment diagrams
+
+### Mapping and validation
+
+- [ ] Compare PDF fields with i-Sense fields
+- [ ] Define normalization rules
+- [ ] Define valid mappings
+- [ ] Identify fields requiring manual validation
+- [ ] Define missing-value handling
+- [ ] Define project-level configuration
+
+### i-Sense integration
+
+- [ ] Explore existing asset editing
+- [ ] Investigate Export Data
+- [ ] Investigate import capabilities
+- [ ] Investigate API availability
+- [ ] Confirm the correct demo/test environment
+- [ ] Test asset creation manually before automation
+* [ ] Compare i-Sense fields with the two source PDFs
+
+---
+
+# 18. Important Automation Principle
+
+The application should distinguish between information **extracted from the
+source PDFs** and values that are **required by the i-Sense platform but may
+not be available in the PDFs**.
+
+The PDFs are the only source of equipment information for this project.
+
+Therefore, every i-Sense field should be classified into one of three cases:
+
+### 1. Information available in the PDF
+
+```text
+PDF
+ │
+ ▼
+Extract
+ │
+ ▼
+Normalize
+ │
+ ▼
+i-Sense field
+```
+
+### 2. Information derivable from the PDF
+
+```text
+PDF information
+       │
+       ▼
+Classification / mapping rule
+       │
+       ▼
+i-Sense value
+```
+
+This should only be done when an explicit and validated rule exists.
+
+### 3. Information not available in the PDF
+
+```text
+PDF
+ │
+ └── Information unavailable
+             │
+             ▼
+       Manual input
+       or confirmed
+       configuration
+```
+
+The system should never invent a value simply because an i-Sense field is
+mandatory.
+
+Unknown or ambiguous values should be flagged for validation before the asset
+is submitted to i-Sense.
