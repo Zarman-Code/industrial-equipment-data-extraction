@@ -1,0 +1,764 @@
+{
+  "3": {
+    "page": 3,
+    "native_text": {
+      "text": "INTESCA \n \nOPERATING & MAINTENANCE INSTRUCTION INDEX \n \nSECTION \n1) \nSERVICE CONTACT DETAILS \n1.01 \nContact details \n1.02 \nWarning & material safety data sheets \n1.03 \nSafety precautions \n1.04 \nPackage warranty and support information \n1.05 \nPlant history log \n1.06 \nOil consumption log \n1.07 \nUtilities consumption schedule \n1.08 \nCause & effect chart \n \n \n \n2)  \nDESCRIPTIONS \n2.01 \nControl Philosophy \n \n \n \n3) \nTECHNICAL DATA \n3.01 \nTechnical schedule \n3.02 \nCompressor data sheet \n3.03 \nCompressor motor data sheet \n3.04 \nOil pump data sheet \n3.05 \nOil pump motor data sheet \n3.06 \nOil cooler data sheet  \n3.07 \nOil separator data sheet \n3.08 \nLiquid receiver data sheet \n3.09 \nPurger data sheet \n3.10 \nEconomiser data sheet \n3.11 \nCondenser data sheet \n3.12 \nCondenser fan data sheet \n3.13 \nCondenser fan motor data sheet \n3.14 \nCondenser vibration switch data sheet \n3.15 \nFinal stage oil separator data sheet \n3.16 \nControl valve data sheets \n3.17 \nControl and instrumentation schedules \n3.18 \nIO list \n3.19 \nTrip alarm setting schedules \n",
+      "page": 3,
+      "method": "native_text",
+      "quality": {
+        "characters": 963,
+        "alnum_ratio": 0.8130841121495327,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 3,
+      "method": "table",
+      "success": false,
+      "tables": [],
+      "message": "0 tableau(x) détecté(s)"
+    },
+    "ocr": "INTESCA\n\nOPERATING & MAINTENANCE INSTRUCTION INDEX\n\nSECTION\n\n1)\n\n2)\n\n3)\n\nSERVICE CONTACT DETAILS\n\n1.01 Contact details\n\n1.02 Warning & material safety data sheets\n1.03 Safety precautions\n\n1.04 Package warranty and support information\n1.05 Plant history log\n\n1.06 Oil consumption log\n\n1.07 Utilities consumption schedule\n\n1.08 Cause & effect chart\nDESCRIPTIONS\n\n2.01 Control Philosophy\n\nTECHNICAL DATA\n\n3.01 Technical schedule\n\n3.02 Compressor data sheet\n\n3.03 Compressor motor data sheet\n\n3.04 Oil pump data sheet\n\n3.05 Oil pump motor data sheet\n\n3.06 Oil cooler data sheet\n\n3.07 Oil separator data sheet\n\n3.08 Liquid receiver data sheet\n\n3.09  Purger data sheet\n\n3.10 Economiser data sheet\n\n3.11 Condenser data sheet\n\n3.12 Condenser fan data sheet\n\n3.13 Condenser fan motor data sheet\n\n3.14 Condenser vibration switch data sheet\n3.15 Final stage oil separator data sheet\n3.16 Control valve data sheets\n\n3.17 Control and instrumentation schedules\n3.18 IO list\n\n3.19 Trip alarm setting schedules\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "reference": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "INTESCA",
+          "confidence": 1.0,
+          "page": null
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        }
+      }
+    }
+  },
+  "9": {
+    "page": 9,
+    "native_text": {
+      "text": "",
+      "page": 9,
+      "method": "native_text",
+      "quality": {
+        "characters": 0,
+        "alnum_ratio": 0.0,
+        "sufficient": false
+      },
+      "needs_ocr": true
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 9,
+      "method": "table",
+      "success": false,
+      "tables": [],
+      "message": "0 tableau(x) détecté(s)"
+    },
+    "ocr": "|\n\\\n\\\n4\n\\\nN\n\\\n\\\n\\\nN\n\\\nN\n\\\n\\\n\\\n\\\nb\n\nj\nf\nj\n,\n\nPF A Fe,\n\n| SECTION 1.01\n\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "reference": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        }
+      }
+    }
+  },
+  "18": {
+    "page": 18,
+    "native_text": {
+      "text": " \nAustcold Refrigeration Pty.Ltd \n \nPage 1 of 2 \n \nSTANDARD  SAFETY  PRECAUTIONS \n \n \nDocument No.  MMI-03 \nOctober 2012 \nBy :  KK \nRev.  01 \n \nApp,d :  MH \n \n \n1 SAFETY INSTRUCTIONS \n \n1.1 \n A refrigeration compressor package, when operating, contains refrigerant gas and \nlubricant at both high pressures and high temperatures.  Refrigerant gas is also \npresent at low temperatures and pressures.  Depending upon the application, liquid \nrefrigerant may also be present.  Package contents will also be at elevated \npressures when the package is idle.  It is imperative, therefore, that the operators \nbe properly trained and thoroughly familiar with the operation of the plant, the \nhazards involved, and the correct countermeasures in the event of plant failure. \n \n1.2 \nGiven the above, and that the twin screw compressor is also driven at high speed, \nirrespective of other site safety requirements, as a minimum bare skin, eye and \nhearing protection should be applied prior to performing any operator or \nmaintenance activities. \n \n1.3 \nRefrigerants generally are classified as hazardous according to NOHSC criteria.  \nWhen dealing with refrigerants, safe storage, handling and disposal precautions \nmust be exercised in accordance with the requirements of the applicable Statutory \nAuthorities, the prevailing site safety rules & regulations and the MSDS (material \nsafety data sheet) provided in section 1.02 of this manual for the package \nrefrigerant. \n \n1.4 \nLubrication oils generally are classified as non-hazardous according to NOHSC \ncriteria.  Again, when dealing with lubrication oils, safe storage, handling and \ndisposal precautions must be exercised in accordance with the requirements of the \napplicable Statutory Authorities, the prevailing site safety rules & regulations and \nthe MSDS (material safety data sheet) provided in section 1.02 of this manual for \nthe package lubricant. \n \n1.5 \nWhen the refrigeration compressor is drained for maintenance, consideration and \ncaution need to be exercised as to the progressive release of refrigerant gas from \nthe lubricant retained within the package. \n \n1.6 \nTo minimise the risk of personal injury, always drain the oil inventory (after \ndepressurising) and perform a nitrogen purge before opening the system. \n \n1.7 \nIt is recommended that pipeline spades be fitted to positively isolate the idle \ncompressor when performing maintenance. \n \n1.8 \nIt is recommended that appropriate tags be fitted to the respective controls or \ncomponents when the package or parts thereof are isolated for service or \nmaintenance procedures to prevent injury from accidental starting or pressurized \nfluid escape through open piping. \n \n",
+      "page": 18,
+      "method": "native_text",
+      "quality": {
+        "characters": 2595,
+        "alnum_ratio": 0.828131021194605,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 18,
+      "method": "table",
+      "success": false,
+      "tables": [],
+      "message": "0 tableau(x) détecté(s)"
+    },
+    "ocr": "Austcold Refrigeration Pty.Ltd Page | of 2\n\nSTANDARD SAFETY PRECAUTIONS\n\n1 SAFETY INSTRUCTIONS\n\n1.1 A refrigeration compressor package, when operating, contains refrigerant gas and\nlubricant at both high pressures and high temperatures. Refrigerant gas is also\npresent at low temperatures and pressures. Depending upon the application, liquid\nrefrigerant may also be present. Package contents will also be at elevated\npressures when the package is idle. It is imperative, therefore, that the operators\nbe properly trained and thoroughly familiar with the operation of the plant, the\nhazards involved, and the correct countermeasures in the event of plant failure.\n\n1.2. Given the above, and that the twin screw compressor is also driven at high speed,\nirrespective of other site safety requirements, as a minimum bare skin, eye and\nhearing protection should be applied prior to performing any operator or\nmaintenance activities.\n\n1.3 Refrigerants generally are classified as hazardous according to NOHSC criteria.\nWhen dealing with refrigerants, safe storage, handling and disposal precautions\nmust be exercised in accordance with the requirements of the applicable Statutory\nAuthorities, the prevailing site safety rules & regulations and the MSDS (material\nsafety data sheet) provided in section 1.02 of this manual for the package\nrefrigerant.\n\n1.4 Lubrication oils generally are classified as non-hazardous according to NOHSC\ncriteria. Again, when dealing with lubrication oils, safe storage, handling and\ndisposal precautions must be exercised in accordance with the requirements of the\napplicable Statutory Authorities, the prevailing site safety rules & regulations and\nthe MSDS (material safety data sheet) provided in section 1.02 of this manual for\nthe package lubricant.\n\n1.5 When the refrigeration compressor is drained for maintenance, consideration and\ncaution need to be exercised as to the progressive release of refrigerant gas from\nthe lubricant retained within the package.\n\n1.6 To minimise the risk of personal injury, always drain the oil inventory (after\ndepressurising) and perform a nitrogen purge before opening the system.\n\n1.7. _It is recommended that pipeline spades be fitted to positively isolate the idle\ncompressor when performing maintenance.\n\n1.8 It is recommended that appropriate tags be fitted to the respective controls or\ncomponents when the package or parts thereof are isolated for service or\nmaintenance procedures to prevent injury from accidental starting or pressurized\nfluid escape through open piping.\n\nDocument No. MMI-03 October 2012 By: KK\nRev. 01 App,d: MH\n\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": "refrigeration compressor package",
+          "confidence": 1.0,
+          "page": null
+        },
+        "reference": {
+          "value": "MMI-03",
+          "confidence": 1.0,
+          "page": null
+        },
+        "power": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "Austcold Refrigeration Pty.Ltd",
+          "confidence": 1.0,
+          "page": null
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        }
+      }
+    }
+  },
+  "28": {
+    "page": 28,
+    "native_text": {
+      "text": "PAGE\n1\nPROJET :\nINTESCA INDUSTRIAL\nFORMULAIR\nACR OMM - 001\nVERSION\nUNITÉS GROUPE RELIQUÉFACTION AMMONIAC\nPROJET\nDATE\nAUSTCOLD REFRIGERATION Pty. Ltd.\nUnit 23, 38-46 South Street, Rydalmere Nsw 2116.  Tél : +61 2 8844 9100  Fax + 61 2 8844 9101\nAUSTCOLD  REFRIGERATION  PTY. LTD.\nTOUS LES TRAVAUX ENTREPRIS SUR LE GROUPE DOIVENT ÊTRE CONSIGNÉS DANS LES FEUILLES DE CONTRÔLE POUR \nPERMETTRE LE SUIVI DES ANOMALIES ET DES TENDANCES HISTORIQUES DU SYSTÈME\nJOURNAL DE L'HISTORIQUE DE L'USINE\nTITRE :\n1\nA5114\nDESCRIPTION DES TRAVAUX ET DES ACTIVITÉS ENTREPRIS\nSIGNÉ\nNOM\nCOMPLEXE JORF LASFAR-MAROC\n",
+      "page": 28,
+      "method": "native_text",
+      "quality": {
+        "characters": 585,
+        "alnum_ratio": 0.811965811965812,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 28,
+      "method": "table",
+      "success": true,
+      "tables": [
+        "                     AUSTCOLD REFRIGERATION PTY. LTD.  \\\n0         TITRE :\\nJOURNAL DE L'HISTORIQUE DE L'USINE   \n1                                                 NaN   \n2   INTESCA INDUSTRIAL\\nPROJET :\\nCOMPLEXE JORF LA...   \n3                                                 NaN   \n4                                                 NaN   \n5   TOUS LES TRAVAUX ENTREPRIS SUR LE GROUPE DOIVE...   \n6                                                DATE   \n7                                                       \n8                                                       \n9                                                       \n10                                                      \n11                                                      \n12                                                      \n13                                                      \n14                                                      \n15                                                      \n16                                                      \n17                                                      \n18                                                      \n19                                                      \n20                                                      \n21                                                      \n22                                                      \n23                                                      \n24                                                      \n25                                                      \n26                                                      \n27                                                      \n28                                                      \n29                                                      \n30                                                      \n31                                                      \n32                                                      \n33                                                      \n34                                                      \n35                                                      \n36                                                      \n37                                                      \n38                                                      \n39                                                      \n40                                                      \n\n                                                  NaN  NaN  \\\n0                                                 NaN  NaN   \n1                                                 NaN  NaN   \n2                                                 NaN  NaN   \n3                                                 NaN  NaN   \n4                                                 NaN  NaN   \n5                                                 NaN  NaN   \n6   DESCRIPTION DES TRAVAUX ET DES ACTIVITÉS ENTRE...  NOM   \n7                                                            \n8                                                            \n9                                                            \n10                                                           \n11                                                           \n12                                                           \n13                                                           \n14                                                           \n15                                                           \n16                                                           \n17                                                           \n18                                                           \n19                                                           \n20                                                           \n21                                                           \n22                                                           \n23                                                           \n24                                                           \n25                                                           \n26                                                           \n27                                                           \n28                                                           \n29                                                           \n30                                                           \n31                                                           \n32                                                           \n33                                                           \n34                                                           \n35                                                           \n36                                                           \n37                                                           \n38                                                           \n39                                                           \n40                                                           \n\n                        NaN    NaN   NaN  \n0                       NaN    NaN  PAGE  \n1                       NaN    NaN     1  \n2   FORMULAIREACR OMM - 001    NaN   NaN  \n3                 VERSION 1    NaN   NaN  \n4              PROJET A5114    NaN   NaN  \n5                       NaN    NaN   NaN  \n6                       NaN  SIGNÉ   NaN  \n7                       NaN          NaN  \n8                       NaN          NaN  \n9                       NaN          NaN  \n10                      NaN          NaN  \n11                      NaN          NaN  \n12                      NaN          NaN  \n13                      NaN          NaN  \n14                      NaN          NaN  \n15                      NaN          NaN  \n16                      NaN          NaN  \n17                      NaN          NaN  \n18                      NaN          NaN  \n19                      NaN          NaN  \n20                      NaN          NaN  \n21                      NaN          NaN  \n22                      NaN          NaN  \n23                      NaN          NaN  \n24                      NaN          NaN  \n25                      NaN          NaN  \n26                      NaN          NaN  \n27                      NaN          NaN  \n28                      NaN          NaN  \n29                      NaN          NaN  \n30                      NaN          NaN  \n31                      NaN          NaN  \n32                      NaN          NaN  \n33                      NaN          NaN  \n34                      NaN          NaN  \n35                      NaN          NaN  \n36                      NaN          NaN  \n37                      NaN          NaN  \n38                      NaN          NaN  \n39                      NaN          NaN  \n40                      NaN          NaN  "
+      ],
+      "message": "1 tableau(x) détecté(s)"
+    },
+    "ocr": "AUSTCOLD REFRIGERATION PTY. LTD.\n\nJOURNAL DE L'HISTORIQUE DE L'USINE\n\nPROJET: INTESCA INDUSTRIAL FORMULAIF ACR OMM- 001\nCOMPLEXE JORF LASFAR-MAROC\n\nVERSION 1\nUNITES GROUPE RELIQUEFACTION AMMONIAC PROJET S114\n\nTOUS LES TRAVAUX ENTREPRIS SUR LE GROUPE DOIVENT ETRE CONSIGNES DANS LES FEUILLES DE CONTROLE POUR\nPERMETTRE LE SUIVI DES ANOMALIES ET DES TENDANCES HISTORIQUES DU SYSTEME\n\nDATE DESCRIPTION DES TRAVAUX ET DES ACTIVITES ENTREPRIS SIGNE\n\nAUSTCOLD REFRIGERATION Pty. Ltd. Unit 23, 38-46 South Street, Rydalmere Nsw 2116. Tél: +61 2 8844 9100 Fax + 61 2 8844 9101\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.9,
+          "page": null
+        },
+        "asset_name": {
+          "value": "UNITÉS GROUPE RELIQUÉFACTION AMMONIAC",
+          "confidence": 0.9,
+          "page": 1
+        },
+        "reference": {
+          "value": "ACR OMM - 001",
+          "confidence": 0.9,
+          "page": 1
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.9,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.9,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "AUSTCOLD REFRIGERATION Pty. Ltd.",
+          "confidence": 0.9,
+          "page": 1
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 0.9,
+          "page": null
+        }
+      }
+    }
+  },
+  "38": {
+    "page": 38,
+    "native_text": {
+      "text": "",
+      "page": 38,
+      "method": "native_text",
+      "quality": {
+        "characters": 0,
+        "alnum_ratio": 0.0,
+        "sufficient": false
+      },
+      "needs_ocr": true
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 38,
+      "method": "table",
+      "success": false,
+      "tables": [],
+      "message": "0 tableau(x) détecté(s)"
+    },
+    "ocr": "AustCold Refrigeration Pty. Ltd.\nA member of the Howden group of companies.\nUnit 23, 38-46 South St..Rydalmere, 2166, NSW, AUSTRALIA\nPhone : (+61 2 ) 8844 9100 Fax : (+61 2) 8844 9101\ne-mail : service@austcold.com.au\n\nAMMONIA STORAGE AND DISTRIBUTION PROJECT\n\nINTECSA INDUSTRIAL\n\n255-V-100A/B/C/D REFRIGERATION UNITS\nPurchase Order No. JA255-INT-ME-C-002\n\nAUSTCOLD REFRIGERATION Pty. Ltd.\n\nUTILITIES CONSUMPTION SCHEDULE\nAustcold document No. A5114 - TDS - 01\n\nPage 2 of 2\n\nElectric Power\n\nCondenser fan motor\n\n~ 255-PLC-V100A\n\nAmbient\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": "255-V-100A/B/C/D REFRIGERATION UNITS",
+          "confidence": 1.0,
+          "page": null
+        },
+        "reference": {
+          "value": "JA255-INT-ME-C-002",
+          "confidence": 1.0,
+          "page": null
+        },
+        "power": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "AustCold Refrigeration Pty. Ltd.",
+          "confidence": 1.0,
+          "page": null
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 1.0,
+          "page": null
+        }
+      }
+    }
+  },
+  "43": {
+    "page": 43,
+    "native_text": {
+      "text": " \nAUSTCOLD REFRIGERATION Pty. Ltd. \n(A member of the Howden group of companies) \nUnit 23, 38-46 South Street, Rydalmere, NSW 2116, Australia \nTel: +61-2-8844 9100 \nFax: +61-2-8844 9101 \n \n                \n \n \n \n \n \n \n \n \nDOCUMENT No. \nV-JA255-INT-ME-C-002-087 \nDESCRIPTION: \nCAUSE & EFFECT DIAGRAM \nA5114-TDS-30 \nÉDITION / ISSUE \n05 \nCLIENTE / CLIENT: MAROC PHOSPHORE \nPLANTA/PLANT: COMPLEXE JORF LASFAR-MAROC \nPROJET / PROJECT: UNITE DE STOCKAGE ET DISTRIBUTION D’AMMONIAC EN MODE : EPC \nPROJET N. / JOB :  PCAP-205J/206J/10 - 16084 \nCOMMANDE / P.O. :  JA255-INT-ME-C-002 \nITEM Nº: 255-V-100A/B/C/D \nÉTAT DU DOCUMENT / STATUS OF DOCUMENT \nST \nDATE \nSIGNATURE \nPOUR INFORMATION / FOR INFORMATION ONLY \nD \n \n \nPAS APROUVÉ \nNOT APPROVED \nAVEC DES COMMENTAIRES \nWITH COMMENTS \nC \n \n \nAPROUVE POUR \nCONSTRUCTION \n \nAPPROVED FOR \nCONSTRUCTION \nAVEC DES COMMENTAIRES \nWITH COMMENTS \nB \n \n \nPAS COMMENTAIRES \nWITHOUT COMMENTS \nA \n \n \nANNULÉ / CANCELLED \nZ \n \n \nNOTE: L’APPROBATION DE CE PLAN FAIR RÉFÉRENCE SEULEMENT AUX CONDITIONS GÉNÉRALES DU \nPROJET. CETTE APPROBATION N’EXEMPTE PAS À L’ENTREPRENEUR OU LE FOURNISSEUR DE SA \nRESPONSABILITÉ EN CE QUI CONCERNE LES DÉTAILS DU PROJET. DIMENSIONS, CONSTRUCTION ET LE \nRESTE DE DEVOIRS SPÉCIFIÉS DANS LES DOCUMENTS CONTRACTUELS \nNOTE: THE APPROVAL OF THIS DRAWING REFERS ONLY TO THE GENERAL CONDITIONS OF THE PROJECT. \nTHIS APPROVAL DOES NOT RELIEVE THE CONTRACTOR OF SUPPLIER OF HIS RESPONSIBILITY IN THE \nPROJECT DETAILS DIMENSIONS CONSTRUCTION AND OTHER OBLIGATIONS AS SPECIFIED IN THE \nCONTRACTUAL DOCUMENTS. \n \n \n \n \n \n \n05 \n07-Mar-2013 \nRevised as per comments \nP.P. \nC.V. \nM.H \n04 \n24-Jan-2013 \nRevised as per comments \nP.P. \nC.V. \nM.H \n03 \n11-Jul-2012 \nRevised as per comments \nP.P. \nV.A. \nM.H \n02 \n05-Jun-2012 \nRevised as per comments \nP.P. \nV.A. \nM.H \n01 \n11-Jan-2012 \nFirst issue \nP.S. \nV.A. \nM.H \nREV. \nDATE \nDESCRIPTION \nISSUER \nCHECKER \nAPPROVER \n \n",
+      "page": 43,
+      "method": "native_text",
+      "quality": {
+        "characters": 1743,
+        "alnum_ratio": 0.7882960413080895,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 43,
+      "method": "table",
+      "success": true,
+      "tables": [
+        "  0                                                  1\n0    AUSTCOLD REFRIGERATION Pty. Ltd.\\n(A member of...",
+        "                                                       \\\n0                                                 NaN   \n1                   CLIENTE / CLIENT: MAROC PHOSPHORE   \n2   PROJET / PROJECT: UNITE DE STOCKAGE ET DISTRIB...   \n3         PROJET N. / JOB : PCAP-205J/206J/10 - 16084   \n4                COMMANDE / P.O. : JA255-INT-ME-C-002   \n5               ÉTAT DU DOCUMENT / STATUS OF DOCUMENT   \n6             POUR INFORMATION / FOR INFORMATION ONLY   \n7                           PAS APROUVÉ\\nNOT APPROVED   \n8   APROUVE POUR\\nCONSTRUCTION\\nAPPROVED FOR\\nCONS...   \n9                                                 NaN   \n10                                 ANNULÉ / CANCELLED   \n11  NOTE: L’APPROBATION DE CE PLAN FAIR RÉFÉRENCE ...   \n12  NOTE: THE APPROVAL OF THIS DRAWING REFERS ONLY...   \n\n                                     NaN  \\\n0                                    NaN   \n1                                    NaN   \n2                                    NaN   \n3                                    NaN   \n4                                    NaN   \n5                                    NaN   \n6                                    NaN   \n7   AVEC DES COMMENTAIRES\\nWITH COMMENTS   \n8   AVEC DES COMMENTAIRES\\nWITH COMMENTS   \n9     PAS COMMENTAIRES\\nWITHOUT COMMENTS   \n10                                   NaN   \n11                                   NaN   \n12                                   NaN   \n\n   DOCUMENT No.\\nV-JA255-INT-ME-C-002-087  \\\n0                         ÉDITION / ISSUE   \n1                                     NaN   \n2                                     NaN   \n3                                     NaN   \n4                                     NaN   \n5                                     NaN   \n6                                     NaN   \n7                                     NaN   \n8                                     NaN   \n9                                     NaN   \n10                                    NaN   \n11                                    NaN   \n12                                    NaN   \n\n                                         NaN  \\\n0                                         05   \n1   PLANTA/PLANT: COMPLEXE JORF LASFAR-MAROC   \n2                                        NaN   \n3                                        NaN   \n4                  ITEM Nº: 255-V-100A/B/C/D   \n5                                         ST   \n6                                          D   \n7                                          C   \n8                                          B   \n9                                          A   \n10                                         Z   \n11                                       NaN   \n12                                       NaN   \n\n   DESCRIPTION:\\nCAUSE & EFFECT DIAGRAM\\nA5114-TDS-30        NaN  \n0                                                 NaN        NaN  \n1                                                 NaN        NaN  \n2                                                 NaN        NaN  \n3                                                 NaN        NaN  \n4                                                 NaN        NaN  \n5                                                DATE  SIGNATURE  \n6                                                                 \n7                                                                 \n8                                                                 \n9                                                                 \n10                                                                \n11                                                NaN        NaN  \n12                                                NaN        NaN  ",
+        "     05  07-Mar-2013  Revised as per comments    P.P.     C.V.       M.H\n0    04  24-Jan-2013  Revised as per comments    P.P.     C.V.       M.H\n1    03  11-Jul-2012  Revised as per comments    P.P.     V.A.       M.H\n2    02  05-Jun-2012  Revised as per comments    P.P.     V.A.       M.H\n3    01  11-Jan-2012              First issue    P.S.     V.A.       M.H\n4  REV.         DATE              DESCRIPTION  ISSUER  CHECKER  APPROVER"
+      ],
+      "message": "3 tableau(x) détecté(s)"
+    },
+    "ocr": "AUSTCOLD REFRIGERATION Pty. Ltd.\n\n(A member of the Howden group of companies)\n\nUnit 23, 38-46 South Street, Rydalmere, NSW 2116, Australia\nTel: +61-2-8844 9100\n\nFax: +61-2-8844 9101\n\nP77 DOCUMENT No. DESCRIPTION:\n@> 1 ntecsa V-JA255-INT-ME-C-002-087 CAUSE & EFFECT DIAGRAM\na industrial | EDITION / ISSUE A5114-TDS-30\nCLIENTE / CLIENT: MAROC PHOSPHORE PLANTA/PLANT: COMPLEXE JORF LASFAR-MAROC\nPROJET / PROJECT: UNITE DE STOCKAGE ET DISTRIBUTION D’AMMONIAC EN MODE : EPC\nPROJET N./ JOB: PCAP-205J/206J/10 - 16084\nCOMMANDE /P.0.: JA255-INT-ME-C-002 ITEM N2: 255-V-100A/B/C/D\nETAT DU DOCUMENT / STATUS OF DOCUMENT ST DATE SIGNATURE\nPOUR INFORMATION / FOR INFORMATION ONLY D\nPAS APROUVE AVEC DES COMMENTAIRES C\nNOT APPROVED WITH COMMENTS\nAPROUVE POUR AVEC DES COMMENTAIRES 3\nCONSTRUCTION WITH COMMENTS\nPAS COMMENTAIRES A\nAPPROVED FOR WITHOUT COMMENTS\nCONSTRUCTION\nANNULE / CANCELLED z\n\nNOTE: LAPPROBATION DE CE PLAN FAIR REFERENCE SEULEMENT AUX CONDITIONS GENERALES DU\nPROJET. CETTE APPROBATION N’EXEMPTE PAS A LENTREPRENEUR OU LE FOURNISSEUR DE SA\nRESPONSABILITE EN CE QUI CONCERNE LES DETAILS DU PROJET. DIMENSIONS, CONSTRUCTION ET LE\nRESTE DE DEVOIRS SPECIFIES DANS LES DOCUMENTS CONTRACTUELS\n\nNOTE: THE APPROVAL OF THIS DRAWING REFERS ONLY TO THE GENERAL CONDITIONS OF THE PROJECT.\nTHIS APPROVAL DOES NOT RELIEVE THE CONTRACTOR OF SUPPLIER OF HIS RESPONSIBILITY IN THE\nPROJECT DETAILS DIMENSIONS CONSTRUCTION AND OTHER OBLIGATIONS AS SPECIFIED IN THE\nCONTRACTUAL DOCUMENTS.\n\n05 07-Mar-2013 Revised as per comments PP. C.V. M.H\n\nREV. DATE DESCRIPTION ISSUER CHECKER APPROVER\n\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": "CAUSE & EFFECT DIAGRAM",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "reference": {
+          "value": "V-JA255-INT-ME-C-002-087",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "AUSTCOLD REFRIGERATION Pty. Ltd.",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "asset_diagram": {
+          "value": "A5114-TDS-30",
+          "confidence": 1.0,
+          "page": 1
+        }
+      }
+    }
+  },
+  "44": {
+    "page": 44,
+    "native_text": {
+      "text": "NOTE\n2\n2\n3\n3\n \nEFFECTS\nDESCRIPTION\nCOMPRESSOR A MOTOR\nOIL PUMP A\nOIL PUMP B\nLIQUID RECEIVER LEVEL CONTROL\nECONOMISER LEVEL CONTROL\nPURGER VENT VALVE\nLIQUID TO PURGER VALVE\nCOMPRESSOR BYPASS VALVE\nCONDENSER FAN A\nCONDENSER FAN B\nCAUSES\nTAG NO.\n255-V-100A-M-01\n255-V-100A-P-01A-M-01\n255-V-100A-P-01B-M-01\n255-LCV-232A\n255-LCV-234A\n255-XSV-805A\n255-XSV-806A\n255-XSV-807A\n255-V-100A-E11\n255-V-100A-E12\nTAG NO.\nDESCRIPTION\nCAUSE\nNOTE\nNo.\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\nCOMPRESSOR SKID  A (Note 5)\n1\n255-PALL-012A\nCOMPRESSOR SUCTION PRESSURE\nLL\n1\n2\nX\nX\nX\nX\nX\nX\nX\nX\n255-PAHH-014A\nCOMPRESSOR DISCHARGE PRESSURE\nHH\n1\n3\nX\nX\nX\nX\nX\nX\nX\nX\n255-PDALL-018A\nCOMPRESSOR DIFFERENTIAL OIL PRESSURE\nLL\n1\n4\nX\nX\nX\nX\nX\nX\nX\nX\n255-TAHH-112A\nLUBRICATION OIL DELIVERY TEMPERATURE\nHH\n1\n5\nX\nX\nX\nX\nX\nX\nX\nX\n255-TAHH-115A\nCOMPRESSOR DISCHARGE TEMPERATURE\nHH\n1\n6\nX\nX\nX\nX\nX\nX\nX\nX\n255-LAHH-233A\nLIQUID RECEIVER LEVEL\nHH\n1\n7\nX\nX\nX\nX\nX\nX\nX\nX\n255-LAHH-235A\nECONOMISER LEVEL\nHH\n1\n8\nX\nX\nX\nX\nX\nX\nX\nX\n255-VAHH-701A\nCOMPRESSOR VIBRATION TRANSMITTER\nHH\n1\n9\nX\nX\nX\nX\nX\nX\nX\nX\n255-VAHH-702A\nCOMPRESSOR VIBRATION TRANSMITTER\nHH\n1\n10\nX\nX\nX\nX\nX\nX\nX\nX\n255-VAHH-705A\nCOMPRESSOR MOTOR VIBRATION TRANSMITTER\nHH\n1\n11\nX\nX\nX\nX\nX\nX\nX\nX\n255-VAHH-706A\nCOMPRESSOR MOTOR VIBRATION TRANSMITTER\nHH\n1\n12\nX\nX\nX\nX\nX\nX\nX\nX\n255-TAHH-130/134A\nCOMPRESSOR MOTOR BEARING RTD\nHH\n1\n13\nX\nX\nX\nX\nX\nX\nX\nX\n255-VSHH-703A\nCONDENSER FAN VIBRATION SWITCH\nHH\n4\n14\nX\n255-VSHH-704A\nCONDENSER FAN VIBRATION SWITCH\nHH\n4\n15\nX\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\nHolds:\nActions:\n1. It is an operator decision( via the HMI  ) as to whether or \nStart\nStop\nTrip\nEnergise\nOpen\nClose\nDe-energise\n05\n04\n03\n02\n01\nNo\n05\nDRAWN:\nPS\nDRAWING No:\nREVISION\n:\nREVISIONS\nNTS\nDATE:\n10-Jan-12\nA5114-TDS-30\nDATE\nDESCRIPTION\nCHECK\nAPPV'D\nSCALE:\n10-Jan-12\nOriginal Issue\nVA\nMH\nCAUSE & EFFECT CHART\nREFRIGERATION UNIT\n05-Jun-12\nRevised as per comments\nVA\nMH\nINTECSA, SPAIN\nRevised as per comments\nCV\nMH\n11-Jul-12\nRevised as per comments\nVA\nMH\nAustcold Refrigeration Pty. Ltd.\n(A member of the Howden group of companies)\nUnit 23, 38-46 South St, Rydalmere, NSW, 2116, Australia\nPhone: (+61 2) 8844 9100   Fax: (+61 2) 8844 9101\n4. Operator will need to investigate the cause of vibration before re-starting the fan.\n07-Mar-13\nRevised as per comments\nCV\nMH\n5. This Cause & Effect Chart is also applicable for Refrigeration Packages B, C & D. \n24-Jan-13\n2. Only 1 pump (duty) is required to be running. The package trips if both duty &  \n       standby  pumps fail.\n3. Valves are fail close and are not provided with solenoid for forced close down.\n    Shown for info.\nDE-ENERGISE\nDE-ENERGISE\nTRIP\n   not the package is restarted after the problem is corrected.\nINTERLOCK No.\nNotes:\n255-IS-101A\n255-IS-100A\nTRIP\nACTION\nTRIP\nTRIP\nTRIP\nCLOSE\nCLOSE\nDE-ENERGISE\nCAUSE & EFFECT CHART \n \nREFRIGERATION PACKAGE \n \n \n \n \n",
+      "page": 44,
+      "method": "native_text",
+      "quality": {
+        "characters": 2807,
+        "alnum_ratio": 0.7630922693266833,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 44,
+      "method": "table",
+      "success": true,
+      "tables": [
+        "          CAUSE & EFFECT CHART\\nREFRIGERATION PACKAGE  \\\n0                                                 NaN   \n1                                                 NaN   \n2                                              CAUSES   \n3                                             TAG NO.   \n4                                                       \n5                                       255-PALL-012A   \n6                                       255-PAHH-014A   \n7                                      255-PDALL-018A   \n8                                       255-TAHH-112A   \n9                                       255-TAHH-115A   \n10                                      255-LAHH-233A   \n11                                      255-LAHH-235A   \n12                                      255-VAHH-701A   \n13                                      255-VAHH-702A   \n14                                      255-VAHH-705A   \n15                                      255-VAHH-706A   \n16                                  255-TAHH-130/134A   \n17                                      255-VSHH-703A   \n18                                      255-VSHH-704A   \n19                                                      \n20                                                      \n21                                                      \n22                                                      \n23                                                      \n24                                                      \n25                                                      \n26                                                      \n27                                                      \n28                                                      \n29                                                      \n30                                                      \n31  Notes: Holds: Actions:\\n1. It is an operator d...   \n32                                                NaN   \n33                                                NaN   \n34                                                NaN   \n35                                                NaN   \n36                                                NaN   \n37                                                NaN   \n38                                                NaN   \n39                                                NaN   \n\n                                       NaN    NaN            NaN  NaN  \\\n0                                      NaN    NaN            NaN  NaN   \n1                                      NaN    NaN            NaN  NaN   \n2                                      NaN    NaN            NaN  NaN   \n3                              DESCRIPTION  CAUSE  INTERLOCK No.  NaN   \n4               COMPRESSOR SKID A (Note 5)                        NaN   \n5              COMPRESSOR SUCTION PRESSURE     LL    255-IS-100A  NaN   \n6            COMPRESSOR DISCHARGE PRESSURE     HH            NaN  NaN   \n7     COMPRESSOR DIFFERENTIAL OIL PRESSURE     LL            NaN  NaN   \n8     LUBRICATION OIL DELIVERY TEMPERATURE     HH            NaN  NaN   \n9         COMPRESSOR DISCHARGE TEMPERATURE     HH            NaN  NaN   \n10                   LIQUID RECEIVER LEVEL     HH            NaN  NaN   \n11                        ECONOMISER LEVEL     HH            NaN  NaN   \n12        COMPRESSOR VIBRATION TRANSMITTER     HH            NaN  NaN   \n13        COMPRESSOR VIBRATION TRANSMITTER     HH            NaN  NaN   \n14  COMPRESSOR MOTOR VIBRATION TRANSMITTER     HH            NaN  NaN   \n15  COMPRESSOR MOTOR VIBRATION TRANSMITTER     HH            NaN  NaN   \n16            COMPRESSOR MOTOR BEARING RTD     HH            NaN  NaN   \n17          CONDENSER FAN VIBRATION SWITCH     HH    255-IS-101A  NaN   \n18          CONDENSER FAN VIBRATION SWITCH     HH            NaN  NaN   \n19                                                                NaN   \n20                                                                NaN   \n21                                                                NaN   \n22                                                                NaN   \n23                                                                NaN   \n24                                                                NaN   \n25                                                                NaN   \n26                                                                NaN   \n27                                                                NaN   \n28                                                                NaN   \n29                                                                NaN   \n30                                                                NaN   \n31                                     NaN    NaN            NaN  NaN   \n32                                     NaN    NaN            NaN        \n33                                     NaN    NaN            NaN   05   \n34                                     NaN    NaN            NaN   04   \n35                                     NaN    NaN            NaN   03   \n36                                     NaN    NaN            NaN   02   \n37                                     NaN    NaN            NaN   01   \n38                                     NaN    NaN            NaN   No   \n39                                     NaN    NaN            NaN        \n\n          NaN S\\nT\\nC\\nE\\nF\\nF\\nE                      NaN  \\\n0         NaN                 NaN                      NaN   \n1         NaN                 NaN                      NaN   \n2         NaN                 NaN                      NaN   \n3                            NOTE                            \n4                                                            \n5                               1                            \n6                               1                            \n7                               1                            \n8                               1                            \n9                               1                            \n10                              1                            \n11                              1                            \n12                              1                            \n13                              1                            \n14                              1                            \n15                              1                            \n16                              1                            \n17                              4                            \n18                              4                            \n19                                                           \n20                                                           \n21                                                           \n22                                                           \n23                                                           \n24                                                           \n25                                                           \n26                                                           \n27                                                           \n28                                                           \n29                                                           \n30                                                           \n31        NaN                 NaN                      NaN   \n32                            NaN                            \n33  07-Mar-13                 NaN  Revised as per comments   \n34  24-Jan-13                 NaN  Revised as per comments   \n35  11-Jul-12                 NaN  Revised as per comments   \n36  05-Jun-12                 NaN  Revised as per comments   \n37  10-Jan-12                 NaN           Original Issue   \n38       DATE                 NaN              DESCRIPTION   \n39                            NaN                REVISIONS   \n\n                     E\\nT\\nO\\nN  \\\n0                N\\nO\\nIT\\nC\\nA   \n1   N\\nO\\nIT\\nP\\nIR\\nC\\nS\\nE\\nD   \n2                .O\\nN\\nG\\nA\\nT   \n3                           No.   \n4                             1   \n5                             2   \n6                             3   \n7                             4   \n8                             5   \n9                             6   \n10                            7   \n11                            8   \n12                            9   \n13                           10   \n14                           11   \n15                           12   \n16                           13   \n17                           14   \n18                           15   \n19                           16   \n20                           17   \n21                           18   \n22                           19   \n23                           20   \n24                           21   \n25                           22   \n26                           23   \n27                           24   \n28                           25   \n29                           26   \n30                           27   \n31                          NaN   \n32                          NaN   \n33                          NaN   \n34                          NaN   \n35                          NaN   \n36                          NaN   \n37                          NaN   \n38                          NaN   \n39                          NaN   \n\n                                                    ...                    \\\n0                                         P\\nIR\\nT  ...                     \n1   R\\nO\\nT\\nO\\nM\\nA\\nR\\nO\\nS\\nS\\nE\\nR\\nP\\nM\\nO\\nC  ...                     \n2              1\\n0\\n-M\\n-A\\n0\\n0\\n1\\n-V\\n-5\\n5\\n2  ...                     \n3                                                1  ...  1\\n2  2\\n2  3\\n2   \n4                                                   ...                     \n5                                                X  ...                     \n6                                                X  ...                     \n7                                                X  ...                     \n8                                                X  ...                     \n9                                                X  ...                     \n10                                               X  ...                     \n11                                               X  ...                     \n12                                               X  ...                     \n13                                               X  ...                     \n14                                               X  ...                     \n15                                               X  ...                     \n16                                               X  ...                     \n17                                                  ...                     \n18                                                  ...                     \n19                                                  ...                     \n20                                                  ...                     \n21                                                  ...                     \n22                                                  ...                     \n23                                                  ...                     \n24                                                  ...                     \n25                                                  ...                     \n26                                                  ...                     \n27                                                  ...                     \n28                                                  ...                     \n29                                                  ...                     \n30                                                  ...                     \n31                                             NaN  ...   NaN   NaN   NaN   \n32                                             NaN  ...   NaN   NaN   NaN   \n33                                             NaN  ...   NaN   NaN   NaN   \n34                                             NaN  ...   NaN   NaN   NaN   \n35                                             NaN  ...   NaN   NaN   NaN   \n36                                             NaN  ...   NaN   NaN   NaN   \n37                                             NaN  ...   NaN   NaN   NaN   \n38                                             NaN  ...   NaN   NaN   NaN   \n39                                             NaN  ...   NaN   NaN   NaN   \n\n                                                  \n0                                                 \n1                                                 \n2                                                 \n3   4\\n2  5\\n2  6\\n2  7\\n2  8\\n2      9\\n2  0\\n3  \n4                                                 \n5                                                 \n6                                                 \n7                                                 \n8                                                 \n9                                                 \n10                                                \n11                                                \n12                                                \n13                                                \n14                                                \n15                                                \n16                                                \n17                                                \n18                                                \n19                                                \n20                                                \n21                                                \n22                                                \n23                                                \n24                                                \n25                                                \n26                                                \n27                                                \n28                                                \n29                                                \n30                                                \n31   NaN   NaN   NaN   NaN   NaN       NaN   NaN  \n32   NaN   NaN   NaN         NaN       NaN   NaN  \n33   NaN   NaN   NaN   NaN   NaN       NaN   NaN  \n34   NaN   NaN   NaN   NaN   NaN       NaN   NaN  \n35   NaN   NaN   NaN   NaN   NaN       NaN   NaN  \n36   NaN   NaN   NaN   NaN   NaN       NaN   NaN  \n37   NaN   NaN   NaN   NaN   NaN       NaN   NaN  \n38   NaN   NaN   NaN   NaN   NaN  REVISION   NaN  \n39   NaN   NaN   NaN   NaN   NaN     :\\n05   NaN  \n\n[40 rows x 39 columns]",
+        "                                               Notes: Holds:\n0   1. It is an operator decision( via the HMI ) a...       \n1   not the package is restarted after the problem...       \n2   2. Only 1 pump (duty) is required to be runnin...       \n3                                 standby pumps fail.       \n4   3. Valves are fail close and are not provided ...       \n5                                     Shown for info.       \n6   4. Operator will need to investigate the cause...       \n7   5. This Cause & Effect Chart is also applicabl...       \n8                                                           \n9                                                           \n10                                                          \n11                                                          "
+      ],
+      "message": "2 tableau(x) détecté(s)"
+    },
+    "ocr": "DE-ENERGISE\nDE-ENERGISE\n\nCAUSE & EFFECT CHART\n\nREFRIGERATION PACKAGE\n\nCOMPRESSOR A MOTOR\nOIL PUMP A\nOIL PUMP B\nLIQUID RECEIVER LEVEL CONTRO\nECONOMISER LEVEL CONTROL\nPURGER VENT VALVE\nLIQUID TO PURGER VALVE\nCOMPRESSOR BYPASS VALVE |DE-ENERGISE\nCONDENSER FAN A\nCONDENSER FAN B\n\nCAUSES\n\n255-V-100A-M-01\n255-LCV-232A\n255-LCV-234A\n255-XSV-805A\n255-XSV-806A\n255-XSV-807A\n255-V-100A-E11\n255-V-100A-E12\n\n2 | 255-V-100A-P-01A-M-01\n3 | 255-V-100A-P-01B-M-01\n\nTAG NO. DESCRIPTION CAUSE INTERLOCK No. | NOTE\n\nCOMPRESSOR SKID A (Note 5)\n255-PALL-012A COMPRESSOR SUCTION PRESSURE\n255-PAHH-014A COMPRESSOR DISCHARGE PRESSURE\n255-PDALL-018A COMPRESSOR DIFFERENTIAL OIL PRESSURE\n255-TAHH-112A LUBRICATION OIL DELIVERY TEMPERATURE\n255-TAHH-115A COMPRESSOR DISCHARGE TEMPERATURE\n255-LAHH-233A LIQUID RECEIVER LEVEL 255-IS-100A\n255-LAHH-235A ECONOMISER LEVEL\n255-VAHH-701A COMPRESSOR VIBRATION TRANSMITTER\n\n|\n|\n5 |\n\nPK | DK | OS] >< | ><) >< | OK | OK | OS | >< | ><) >< [6 |\n\n|\n\nPK | DK | OS] >< | ><) >< | OK | OK | OS | >< | ><) >< a |\n\n255-VAHH-702A COMPRESSOR VIBRATION TRANSMITTER\n255-VAHH-705A COMPRESSOR MOTOR VIBRATION TRANSMITTER\n255-VAHH-706A COMPRESSOR MOTOR VIBRATION TRANSMITTER\n255-TAHH-130/134A COMPRESSOR MOTOR BEARING RTD\n255-VSHH-703A CONDENSER FAN VIBRATION SWITCH\n255-VSHH-704A CONDENSER FAN VIBRATION SWITCH\n\nDK] >< | DK | DK | DK) DK | OK | >< | ><) O< | >< | ><\nDK] >< | DK | DK | DK) >< | DK | DK | ><) OK | OK | ><\nDK] >< | DK | DK | DK) DK | OK | >< | ><) O< | >< | ><\nDK] >< | DK | DK | DK) >< | DK | DK | ><) OK | OK | ><\nDK] >< | DK | DK | DK) DK | OK | >< | ><) O< | >< | ><\nDK] >< | DK | DK | DK) DK | OK | >< | ><) O< | >< | ><\n\n255-IS-101A\n\nAlA/ofoa}|oa)]oa) oa} oa}afoa| a] oa) a}\n\nNy\n\nss fele[sls|3]s]a]a[s[s[alz[sis/2[e]-]=[-ofe[+[[s|-[s] tae no. DESCRIPTION AcTiON _|noTe\n\nNotes: Actions:\n\n1. It is an operator decision( via the HMI ) as to whether or Start Stop\n\nnot the package is restarted after the problem is corrected. Trip Energise\n2. Only 1 pump (duty) is required to be running. The package trips if both duty & Open Close\nstandby pumps fail. De-energise\n\n3. Valves are fail close and are not provided with solenoid for forced close down.\n\n: F : : : - : 7 (A member of the Howden group of companies)\n5. This Cause & Effect Chart is also applicable for Refrigeration Packages B, C & D. 24-Jan-13 Phone: (+61 2) 8844 9100 Fax: (+61 2) 8844 9101\n10-Jan-12 Original Issue aR CAUSE & EFFECT CHART\nDATE DESCRIPTION CHECK | APPV'D] SCALE: [ DRAWN: DRAWING No: REVISION\na REVISIONS DATE: | 10-Jan-12 A5114-TDS-30\n\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": "REFRIGERATION PACKAGE",
+          "confidence": 0.9,
+          "page": null
+        },
+        "reference": {
+          "value": "A5114-TDS-30",
+          "confidence": 0.8,
+          "page": null
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "Austcold Refrigeration Pty. Ltd. (A member of the Howden group of companies)",
+          "confidence": 0.9,
+          "page": null
+        },
+        "asset_diagram": {
+          "value": "CAUSE & EFFECT CHART",
+          "confidence": 0.8,
+          "page": null
+        }
+      }
+    }
+  },
+  "51": {
+    "page": 51,
+    "native_text": {
+      "text": " \nPage 4 of 17 \n \n \n2.0 \nGENERAL \n \nThe design of the refrigeration system, based on the use of Ammonia as the refrigerant and 4 off \nRefrigeration Units, is shown on the P&ID (V-JA255-INT-ME-C-002-001,002,003,004).  \n \nThe system consists of the following 4 off Compressor Skids and 4 off Air Cooled \nCondenser Units:  \n \n255-V-100A \n \n- \nCompressor Skid “A” \n255-V-100B \n \n- \nCompressor Skid “B” \n255-V-100C \n \n- \nCompressor Skid “C” \n255-V-100D \n \n- \nCompressor Skid “D” \n255-V-100A-E-01 \n- \nAir Cooled Condenser Unit “A” \n255-V-100B-E-01 \n- \nAir Cooled Condenser Unit “B” \n255-V-100C-E-01 \n- \nAir Cooled Condenser Unit “C” \n255-V-100D-E-01 \n- \nAir Cooled Condenser Unit “D” \n \n \n \n2.1 \nThe salient items included within Austcold’s scope of supply are listed as follows: \n \n 255-V-100A - Refrigeration Unit “A” \n \n1 x  Oil injected screw compressor 255-V-100A-C-01                                        \n1 x  Electric drive motor 255-V-100A-M-01                                        \n1 x  Combined ammonia vapour / oil separator and oil reservoir 255-V-100A-R-01                     \n1 x  Set duplexed lubricant pumps 255-V-100A-P-01A/B & motors 255-V-100A-M-\n01A/B \n1 x  Set of duplexed lubricant filters 255-V-100A-S-02A/B \n1 x  Oil cooler 255-V-100A-E-03 \n1 x  Liquid Receiver 255-V-100A-R-02 \n1 x  Economiser 255-V-100A-E-04 \n1 x  Set instrumentation and controls \n3 x  Local junction boxes \n1 x  Lube oil heater 255-V-100A-H-01 \n1 x  Air Cooled Condenser 255-V-100A-E-01 & motors 255-V-100A-E01A/B-M01 \n1 x  Local panel 255-LP-V100A \n1 x  Purger 255-V-100A-E-02 \n \n \n 255-V-100B - Refrigeration Unit “B” \n \n1 x  Oil injected screw compressor 255-V-100B-C-01                                        \n1 x  Electric drive motor 255-V-100B-M-01                                        \n1 x  Combined ammonia vapour / oil separator and oil reservoir 255-V-100B-R-01                     \n1 x  Set duplexed lubricant pumps 255-V-100B-P-01A/B & motors 255-V-100B-M-\n01A/B \n1 x  Set of duplexed lubricant filters 255-V-100B-S-02A/B \n1 x  Oil cooler 255-V-100B-E-03 \n1 x  Liquid Receiver 255-V-100B-R-02 \n1 x  Economiser 255-V-100B-E-04 \n1 x  Set instrumentation and controls \n3 x  Local junction boxes \n",
+      "page": 51,
+      "method": "native_text",
+      "quality": {
+        "characters": 1883,
+        "alnum_ratio": 0.7546468401486989,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 51,
+      "method": "table",
+      "success": false,
+      "tables": [],
+      "message": "0 tableau(x) détecté(s)"
+    },
+    "ocr": "2.0\n\nGENERAL\n\nThe design of the refrigeration system, based on the use of Ammonia as the refrigerant and 4 off\n\n2.1\n\nRefrigeration Units, is shown on the P&ID (V-JA255-INT-ME-C-002-001,002,003,004).\n\nThe system consists of the following 4 off Compressor Skids and 4 off Air Cooled\nCondenser Units:\n\n255-V-100A - Compressor Skid “A”\n255-V-100B - Compressor Skid “B”\n255-V-100C - Compressor Skid “C”\n255-V-100D - Compressor Skid “D”\n255-V-100A-E-01 - Air Cooled Condenser Unit “A”\n255-V-100B-E-01 - Air Cooled Condenser Unit “B”\n255-V-100C-E-01 - Air Cooled Condenser Unit “C”\n255-V-100D-E-01 - Air Cooled Condenser Unit ““D”\n\nThe salient items included within Austcold’s scope of supply are listed as follows:\n255-V-100A_ - Refrigeration Unit “A”\n\nx Oil injected screw compressor 255-V-100A-C-01\n\nx Electric drive motor 255-V-100A-M-01\n\nx Combined ammonia vapour / oil separator and oil reservoir 255-V-100A-R-01\nx Set duplexed lubricant pumps 255-V-100A-P-01A/B & motors 255-V-100A-M-\n01A/B\n\nx Set of duplexed lubricant filters 255-V-100A-S-02A/B\n\nOil cooler 255-V-100A-E-03\n\nLiquid Receiver 255-V-100A-R-02\n\nEconomiser 255-V-100A-E-04\n\nSet instrumentation and controls\n\nLocal junction boxes\n\nLube oil heater 255-V-100A-H-01\n\nAir Cooled Condenser 255-V-100A-E-01 & motors 255-V-100A-E01A/B-MO1\nLocal panel 255-LP-V100A\n\nPurger 255-V-100A-E-02\n\n= eS ee\n\nOD\na\n\n255-V-100B_ - Refrigeration Unit “B”\n\nx Oil injected screw compressor 255-V-100B-C-01\n\nx Electric drive motor 255-V-100B-M-01\n\nx Combined ammonia vapour / oil separator and oil reservoir 255-V-100B-R-01\nx Set duplexed lubricant pumps 255-V-100B-P-01A/B & motors 255-V-100B-M-\n01A/B\n\nx Set of duplexed lubricant filters 255-V-100B-S-02A/B\n\nOil cooler 255-V-100B-E-03\n\nLiquid Receiver 255-V-100B-R-02\n\nEconomiser 255-V-100B-E-04\n\nSet instrumentation and controls\n\nLocal junction boxes\n\n— epee\n\nWO ee ee\nx KKK MK\n\nPage 4 of 17\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": "Refrigeration Unit \"A\"",
+          "confidence": 0.9,
+          "page": 4
+        },
+        "reference": {
+          "value": "255-V-100A",
+          "confidence": 0.9,
+          "page": 4
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "Austcold",
+          "confidence": 0.9,
+          "page": 4
+        },
+        "asset_diagram": {
+          "value": "P&ID (V-JA255-INT-ME-C-002-001,002,003,004)",
+          "confidence": 0.9,
+          "page": 4
+        }
+      }
+    }
+  },
+  "192": {
+    "page": 192,
+    "native_text": {
+      "text": "WEG Indústrias S.A.\nNr.:  175132/2011\nDate:  05-DEC-2011\nDATA SHEET\nThree-phase Induction Motor - Squirrel Cage\nCustomer\n:  WEG AUSTRALIA PTY LTDA\nProduct code\n:  \nProduct line\n:  IE2 - HIGH EFFICIENCY - Non Sparking\nFrame\n:  200L\nOutput\n:  30 kW\nFrequency\n:  50 Hz\nPoles\n:  4\nRated speed\n:  1475 rpm\nSlip\n:  1.67 %\nRated voltage\n:  660V\nRated current\n:  32.9 A\nL. R. Amperes\n:  231 A\nIl/In\n:  7.0\nNo load current\n:  12.4 A\nRated torque\n:  194 Nm\nLocked rotor torque\n:  220 %\nBreakdown torque\n:  230 %\nDesign\n:  N\nInsulation class\n:  F\nTemperature rise\n:  72 K\nLocked rotor time\n:  18 s (hot)\nService factor\n:  1.00\nDuty cycle\n:  S1\nAmbient temperature\n:  -20°C to +48°C\nAltitude\n:  1000 m.a.s.l\nEnclosure\n:  IP55 (TEFC)\nMounting\n:  V6T\nRotation\n:  Both\nAprox. weight*\n:  245 kg\nMoment of inertia\n:  0.3310 kgm²\nSound Pressure Level\n:  69.0 dB(A) (global)\nLoad\nPower factor\nEfficiency (%)**\n100%\n0.85\n93.1\n75%\n0.81\n93.1\n50%\n0.71\n93.0\nBearing\nQuantity (lubricant)\nFront\n6312-C3\n21 g\nRear\n6212-C3\n13 g\nLubrication interval:  9182 h\nGrease - MOBIL POLYREX EM\nNotes: Enclosure material: Cast Iron, Finish Paint: RAL 5009 (blue)\nThe figures given herewith are regarded as estimated values based on calculation and applied to sinusoidal  power supplied motors, \nwithin permissible tolerances under IEC 60034-1.  Noise level with tolerance of +3 dB(A).   (*) Weight value can be changed without \nprevious notification.  (**) Efficiencies according to the indirect method of IEC 60034-2-1:2007 with stray load losses determined from\nmeasurement.\nPerformed\nafernandez\nChecked\nAUTOMATICO\nRevision\nNr.: 0\nDate: 05-DEC-2011\nApproved\n",
+      "page": 192,
+      "method": "native_text",
+      "quality": {
+        "characters": 1578,
+        "alnum_ratio": 0.7490494296577946,
+        "sufficient": true
+      },
+      "needs_ocr": false
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": "30.0 kW",
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 192,
+      "method": "table",
+      "success": true,
+      "tables": [
+        "                                                     WEG Indústrias S.A.  \\\n0                                                NaN                None   \n1  DATA SHEET\\nThree-phase Induction Motor - Squi...                None   \n2  Customer : WEG AUSTRALIA PTY LTDA\\nProduct cod...                None   \n3  Frame : 200L\\nOutput : 30 kW\\nFrequency : 50 H...                None   \n4                                                NaN                None   \n5                                                NaN                None   \n6  Notes: Enclosure material: Cast Iron, Finish P...                None   \n7  The figures given herewith are regarded as est...                None   \n8                              Performed\\nafernandez                None   \n\n                   NaN                                 NaN  \\\n0                  NaN                                 NaN   \n1                  NaN                                 NaN   \n2                  NaN                                 NaN   \n3                  NaN                                 NaN   \n4                  NaN                                 NaN   \n5                  NaN                                 NaN   \n6                  NaN                                 NaN   \n7                  NaN                                 NaN   \n8  Checked\\nAUTOMATICO  Revision\\nNr.: 0 Date: 05-DEC-2011   \n\n                                                 NaN   Nr.: 175132/2011  \n0                                                NaN  Date: 05-DEC-2011  \n1                                                NaN                NaN  \n2                                                NaN                NaN  \n3  Enclosure : IP55 (TEFC)\\nMounting : V6T\\nRotat...                NaN  \n4  Load Power factor Efficiency (%)**\\n100% 0.85 ...                NaN  \n5  Bearing Quantity (lubricant)\\nFront 6312-C3 21...                NaN  \n6                                                NaN                NaN  \n7                                                NaN                NaN  \n8                                                NaN           Approved  ",
+        "     NaN  NaN  NaN  NaN\n0                      \n1    NaN  NaN  NaN  NaN"
+      ],
+      "message": "2 tableau(x) détecté(s)"
+    },
+    "ocr": "Weq\n\nWEG Industrias S.A.\n\nNr.: 175132/2011\n\nDate: 05-DEC-2011\n\nDATA SHEET\n\nThree-phase Induction Motor - Squirrel Cage\n\nCustomer : WEG AUSTRALIA PTY LTDA\n\nProduct code :\n\nProduct line : IE2 - HIGH EFFICIENCY - Non Sparking\n\nFrame : 200L Enclosure : IP55 (TEFC)\nOutput : 30 kW Mounting : VOT\n\nFrequency : 50 Hz Rotation : Both\n\nPoles : 4 Aprox. weight* : 245 kg\n\nRated speed : 1475 rpm Moment of inertia : 0.3310 kgm?\n\nSlip : 1.67 % Sound Pressure Level : 69.0 dB(A) (global)\nRated voltage * 660V Load Power factor Efficiency (%)**\nRated current : 32.9A\n\nL. R. Amperes : 231A 100% 0.85 93.1\niW/In - 70 15% 0.81 93.1\nNo load current :12.4A 50% 0.71 93.0\nRated torque : 194 Nm Bearing Quantity (lubricant)\nLocked rotor torque : 220 % Front 6312-C3 21g\nBreakdown torque : 230 % Rear 6212-C3 13g\nDesign :N\n\nInsulation class L&-F Lubrication interval: 9182 h\n\nTemperature rise : 72K Grease - MOBIL POLYREX EM\n\nLocked rotor time : 18 s (hot)\n\nService factor : 1.00\n\nDuty cycle : S1\n\nAmbient temperature : -20°C to +48°C\n\nAltitude : 1000 m.a.s.l\n\nNotes: Enclosure material: Cast Iron, Finish Paint: RAL 5009 (blue)\n\nThe figures given herewith are regarded as estimated values based on calculation and applied to sinusoidal power supplied motors,\nwithin permissible tolerances under IEC 60034-1. Noise level with tolerance of +3 dB(A). (*) Weight value can be changed without\nprevious notification. (**) Efficiencies according to the indirect method of IEC 60034-2-1:2007 with stray load losses determined from\n\nmeasurement.\nPerformed Checked Revision Approved\nafernandez AUTOMATICO Date: 05-DEC-2011\n\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": "Three-phase Induction Motor - Squirrel Cage",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "reference": {
+          "value": "175132/2011",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "power": {
+          "value": "30 kW",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": "WEG Indústrias S.A.",
+          "confidence": 1.0,
+          "page": 1
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        }
+      }
+    }
+  },
+  "189": {
+    "page": 189,
+    "native_text": {
+      "text": "",
+      "page": 189,
+      "method": "native_text",
+      "quality": {
+        "characters": 0,
+        "alnum_ratio": 0.0,
+        "sufficient": false
+      },
+      "needs_ocr": true
+    },
+    "rules": {
+      "method": "rules",
+      "values": {
+        "family": null,
+        "asset_name": null,
+        "reference": null,
+        "power": null,
+        "outlier": null,
+        "manufacturer": null,
+        "asset_diagram": null
+      }
+    },
+    "tables": {
+      "page": 189,
+      "method": "table",
+      "success": false,
+      "tables": [],
+      "message": "0 tableau(x) détecté(s)"
+    },
+    "ocr": "4\n-\nZs\n0 3\n3S\nN\nke\nWw\n| 3S\n, ae EE\n4 SIE :\n= oS soon VW OGSODI¥ NI OMWANISIN 2 OLLI IND 4 7 _ .\nzs g “|---| -| regina 8. JdAL NH EE ree :\n; : 7 - —— NPE SdAL JavIE wa iver ta\n: | sn EB t zd\n3 8 : s fE/NPENWA za x_|_ononaae — BdAL NVI OOWNLIOD M03 133HS iG : : :\nonssinn Ou] GORGE NOWANoS30~\nS$ @ ? nc 0 again onuniad | ewo/'99 pa res elie Pate estar ia\nf : -_ ARKAX XX KKK ~ :\n: Surysng\n=A 7 © «\n8 2 & ow Ze_NIN Qe isos - . 5\nrv Ss Qa 06 XY i J . | :\n¥ + & | | i a IE \\ Te lo\nSSG n Oth - \\~ + wl ol elt ! / =\n=gi/8 Lt = =] de Se\n-o | | an c :\n3% 6 LS3NOIY NOd FSVIWAY NOWVSASINOD SMH YIHLNN4 al\nOO g\nze 2 i SASSI 38 OL ONIMVYG TWid1440\na: : : | Son ee SNe 4O4 AINO ONIMVSG\n2 —\nari : “d 40d “abpa Buipoay |\ng 3 Wid 8 dd 6d\na § o | L33HS QUSINILVYVHO FHL OL YB43a (x) NOUIITIG 3d 2 ieee\nOv = RS)\n208 IS} 16 [£8] SZ ig =—=_\nPe 3 gl [cot pyle 6 [89] ly\nce i 8 99 [9c [ar] dr [se [ee | ua i\n|Se 8 ° scepestleciievi[eit] oe Ee ; 7\n: 3 :\nZcs s2)0z,s1}.01] ¢ | 0 fie | \\ JM\n=x 2 |\n2282/5 G- “Za fo ZL\nSek 3 6 advo dik viowds at iy ne\ni 2 : , ot a a Uor}O}oN\" asimyO0/9\nen ain 8 VERO CE) Ln\nfay S aH wy 3018) ZZ\" Funionais/soviseo :\nees S 3 (S/wSr OL dM GNI GNY NOWOF30 WANIXYN IW 3 | |.\nBa & 3 Or< g wui9ddZ ; .\ngo 3| & g oot Q WWOSt dv WNWININ + : :\n' oO\nNos o DS :\nas | wm) op\na g 4 (a | ' 2\ne a | Ni) oo\naug © d\nees o «6S (US | ir\n: i “YWSIQ 0008. UO!PDSIIP MOT diy 4 g\n$93 aE ¥SIG 0098 ° g\n(e8/2 € &\n<2 s 7\n€$>/;s € € “li\n—— (Q) a3LaNVvId NY4 a 8\naa :\nG e a\nx o oo | 2\n= ray\n3% Zz a\noO € s |\n—£ 6G ma\nS82\n® a E\n=) fo cS)\nO55 +\n\n",
+    "llm": {
+      "method": "llm",
+      "called": true,
+      "result": {
+        "family": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_name": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "reference": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "power": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "outlier": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        },
+        "asset_diagram": {
+          "value": null,
+          "confidence": 0.0,
+          "page": null
+        }
+      }
+    }
+  }
+}

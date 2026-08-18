@@ -1,0 +1,40 @@
+page,field,ground_truth,prediction,correct,method,status,error_type
+,asset_name,Rotor,,False,rules,INCORRECT,MISSING
+,reference,C4362,,False,rules,INCORRECT,MISSING
+,manufacturer,CoFimco,,False,rules,INCORRECT,MISSING
+,asset_diagram,True,,False,rules,INCORRECT,MISSING
+,asset_name,Rotor,,False,ocr,INCORRECT,MISSING
+,reference,C4362,,False,ocr,INCORRECT,MISSING
+,manufacturer,CoFimco,,False,ocr,INCORRECT,MISSING
+,asset_diagram,True,,False,ocr,INCORRECT,MISSING
+,asset_name,Rotor,,False,table,INCORRECT,MISSING
+,reference,C4362,,False,table,INCORRECT,MISSING
+,manufacturer,CoFimco,,False,table,INCORRECT,MISSING
+,asset_diagram,True,,False,table,INCORRECT,MISSING
+,asset_name,Rotor,,False,llm,INCORRECT,MISSING
+,reference,C4362,,False,llm,INCORRECT,MISSING
+,manufacturer,CoFimco,,False,llm,INCORRECT,MISSING
+,asset_diagram,True,,False,llm,INCORRECT,MISSING
+,family,17,,False,rules,INCORRECT,MISSING
+,asset_name,Three-phase Induction Motor - Squirrel Cage,,False,rules,INCORRECT,MISSING
+,reference,175132/2011,,False,rules,INCORRECT,MISSING
+,manufacturer,WEG Indústrias S.A.,,False,rules,INCORRECT,MISSING
+,asset_diagram,False,,False,rules,INCORRECT,MISSING
+,family,17,,False,ocr,INCORRECT,MISSING
+,asset_name,Three-phase Induction Motor - Squirrel Cage,,False,ocr,INCORRECT,MISSING
+,reference,175132/2011,,False,ocr,INCORRECT,MISSING
+,power,30 kW,,False,ocr,INCORRECT,MISSING
+,manufacturer,WEG Indústrias S.A.,,False,ocr,INCORRECT,MISSING
+,asset_diagram,False,,False,ocr,INCORRECT,MISSING
+,family,17,,False,table,INCORRECT,MISSING
+,asset_name,Three-phase Induction Motor - Squirrel Cage,,False,table,INCORRECT,MISSING
+,reference,175132/2011,,False,table,INCORRECT,MISSING
+,power,30 kW,,False,table,INCORRECT,MISSING
+,manufacturer,WEG Indústrias S.A.,,False,table,INCORRECT,MISSING
+,asset_diagram,False,,False,table,INCORRECT,MISSING
+,family,17,,False,llm,INCORRECT,MISSING
+,asset_name,Three-phase Induction Motor - Squirrel Cage,,False,llm,INCORRECT,MISSING
+,reference,175132/2011,,False,llm,INCORRECT,MISSING
+,power,30 kW,,False,llm,INCORRECT,MISSING
+,manufacturer,WEG Indústrias S.A.,,False,llm,INCORRECT,MISSING
+,asset_diagram,False,,False,llm,INCORRECT,MISSING

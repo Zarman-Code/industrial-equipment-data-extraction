@@ -1,0 +1,3 @@
+page,field,value,status,reason
+189,*,,REVIEW,source page missing; required field missing: tag_reference; required field missing: equipment_name
+192,*,,REVIEW,source page missing; required field missing: tag_reference; required field missing: equipment_name
