@@ -13,6 +13,8 @@ STRICT RULES:
    - Group
    - Entity
 4. Extract values exactly as they appear in the sources whenever possible.
+   For the reference field, remove only the surrounding label/prefix and return the identifier itself.
+   
 5. You may normalize obvious formatting differences, but do not change the meaning.
 6. Use all provided sources:
    - native PDF text
@@ -37,6 +39,9 @@ FIELD DEFINITIONS:
 
 - reference:
   The explicit product reference, model reference, part number, or catalog reference.
+  Do NOT include labels, prefixes, or surrounding descriptive text such as:
+  "Nr.:", "No.:", "Reference:", "Ref:", "N°:", "Nº:", "Model:",
+  "Part No.:", or similar labels.
 
 - power:
   The explicitly stated power rating, including its unit when available.
