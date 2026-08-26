@@ -1,3 +1,5 @@
 .env
 
 data/raw/
+
+src/document_structure.py
