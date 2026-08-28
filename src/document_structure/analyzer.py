@@ -159,6 +159,21 @@ class DocumentSegmenter:
                 if not entry.printed_page_ref:
                     continue
 
+                # Document/drawing reference codes (e.g.
+                # "P1-REF-2012-123-030") are not page numbers. Feeding
+                # one into _resolve_printed_page would grab the first
+                # 1-4 digit run out of the code (e.g. "2012") and
+                # silently misuse it as a PDF page number.
+                if (
+                    getattr(
+                        entry,
+                        "reference_kind",
+                        None,
+                    )
+                    == "doc_code"
+                ):
+                    continue
+
                 pdf_page = self._resolve_printed_page(
                     entry.printed_page_ref
                 )

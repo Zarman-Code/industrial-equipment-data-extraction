@@ -66,6 +66,15 @@ class TOCEntry:
     section_number: str | None = None
     level: int = 1
     printed_page_ref: str | None = None
+    # What kind of trailing reference `printed_page_ref` actually is:
+    #   "page"     - a plain printed page number (safe to resolve to a
+    #                 PDF page via DocumentSegmenter._resolve_printed_page)
+    #   "doc_code" - a document/drawing reference code (e.g.
+    #                 "P1-REF-2012-123-030"), common in vendor
+    #                 documentation registers. NOT a page number and
+    #                 must never be fed into page-number resolution.
+    #   None       - unknown / not set.
+    reference_kind: str | None = None
     source_page: int | None = None
     confidence: float = 0.0
 
@@ -97,7 +106,7 @@ class TOCAnalysis:
         return d
 
 
-'''@dataclass
+@dataclass
 class TOCRegion:
     """Detected Table of Contents container representing a TOC page or range of pages."""
     pages: list[int]
@@ -119,7 +128,7 @@ class TOCRegion:
 
 
 # Alias for backwards compatibility
-TOC = TOCRegion'''
+TOC = TOCRegion
 
 
 '''@dataclass

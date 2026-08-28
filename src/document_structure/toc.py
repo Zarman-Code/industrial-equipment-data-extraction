@@ -10,6 +10,7 @@ from .models import (
     TableRepresentation,
     TOCAnalysis,
     TOCEntry,
+    TOCRegion,
 )
 
 
@@ -70,6 +71,48 @@ PAGE_REFERENCE_RE = re.compile(
     re.IGNORECASE,
 )
 
+# ---------------------------------------------------------------------------
+# Document / drawing reference codes
+# ---------------------------------------------------------------------------
+#
+# Many vendor documentation packages are "document registers", not
+# classic page-numbered TOCs: each entry's trailing reference is a
+# document/drawing number (e.g. "P1-REF-2012-123-030", "DWG-1234-A"),
+# not a page number.
+#
+# A page full of these is exactly as strong a TOC signal as a page full
+# of plain page numbers -- but the two must stay distinguishable,
+# because a document code must NEVER be fed into page-number resolution
+# (see DocumentSegmenter._resolve_printed_page): grabbing the first
+# 1-4 digit run out of "P1-REF-2012-123-030" would silently produce a
+# bogus PDF page number.
+
+DOC_CODE_RE = re.compile(
+    r"^[A-Za-z0-9]{1,12}(?:[-/][A-Za-z0-9]{1,12}){2,}$"
+)
+
+TRAILING_DOC_CODE_RE = re.compile(
+    r"^(.+?)\s+([A-Za-z0-9]{1,12}(?:[-/][A-Za-z0-9]{1,12}){2,})\s*$"
+)
+
+# Header terms that mark the right-hand column of a two-column table as
+# holding document/drawing reference numbers rather than page numbers.
+# Paired with a "description"-like left column (e.g. "Description" /
+# "Doc. No."), this is as strong a heading-equivalent signal that the
+# table is a document index as the word "Contents" would be.
+DOC_REGISTER_HEADER_TERMS: tuple[str, ...] = (
+    "doc. no",
+    "doc no",
+    "document no",
+    "document number",
+    "doc code",
+    "doc. code",
+    "drawing no",
+    "dwg no",
+    "drawing number",
+    "dwg number",
+)
+
 
 SECTION_PATTERNS: tuple[
     tuple[str, re.Pattern[str]]
@@ -123,6 +166,14 @@ SECTION_PATTERNS: tuple[
             re.IGNORECASE | re.DOTALL,
         ),
     ),
+)
+
+# A cell/line that is JUST a section number with no title alongside it
+# (e.g. "5.4", "6.", "7.10") -- used when a table splits the number and
+# title into separate columns, so none of SECTION_PATTERNS above (which
+# all require trailing title text in the same string) can match.
+BARE_SECTION_NUMBER_RE = re.compile(
+    r"^([A-Z]?\d+[A-Z]?(?:\.\d+){0,3}\.?)$"
 )
 
 
@@ -262,6 +313,98 @@ class TOCDetector:
             extraction_source=extraction_source,
         )
 
+    def detect_printed_tocs(
+        self,
+        pages: list[PageRepresentation],
+    ) -> list[TOCRegion]:
+        """
+        Run analyze_page() across a whole document and group the
+        result into TOCRegion objects.
+
+        Grouping is intentionally conservative: only STRICTLY
+        CONSECUTIVE PDF pages that both score is_toc=True are merged
+        into the same region. This handles the common case of a
+        multi-page TOC/document-register continuation (e.g. pages
+        6-7 of a vendor documentation package), but it does NOT try
+        to solve the harder, still-open problems of matching a TOC to
+        a non-adjacent continuation page, or telling a single global
+        TOC apart from multiple nested/local ones -- both remain
+        manual judgment calls for now (see the notebook's "Nested/
+        local TOCs" section).
+        """
+
+        toc_pages: list[
+            tuple[int, TOCAnalysis]
+        ] = []
+
+        for pdf_page, page in enumerate(
+            pages,
+            start=1,
+        ):
+
+            analysis = self.analyze_page(
+                page
+            )
+
+            if analysis.is_toc:
+                toc_pages.append(
+                    (pdf_page, analysis)
+                )
+
+        regions: list[TOCRegion] = []
+
+        for pdf_page, analysis in toc_pages:
+
+            previous_region = (
+                regions[-1]
+                if regions
+                else None
+            )
+
+            is_continuation = (
+                previous_region is not None
+                and pdf_page
+                == previous_region.pages[-1]
+                + 1
+            )
+
+            if is_continuation:
+
+                previous_region.pages.append(
+                    pdf_page
+                )
+
+                previous_region.entries.extend(
+                    analysis.entries
+                )
+
+                previous_region.confidence = max(
+                    previous_region.confidence,
+                    analysis.confidence,
+                )
+
+            else:
+
+                regions.append(
+                    TOCRegion(
+                        pages=[pdf_page],
+                        entries=list(
+                            analysis.entries
+                        ),
+                        confidence=analysis.confidence,
+                        toc_type="printed",
+                    )
+                )
+
+        for region in regions:
+
+            region.has_page_references = any(
+                entry.reference_kind == "page"
+                for entry in region.entries
+            )
+
+        return regions
+
     def explain_page(
         self,
         page: PageRepresentation,
@@ -359,6 +502,7 @@ class TOCDetector:
             if (
                 DOT_LEADER_RE.match(line)
                 or TRAILING_PAGE_RE.match(line)
+                or TRAILING_DOC_CODE_RE.match(line)
             )
         ]
 
@@ -387,6 +531,12 @@ class TOCDetector:
                 table
             )
         ]
+
+        document_register_header = (
+            self._page_has_document_register_header(
+                page.tables
+            )
+        )
 
         # ------------------------------------------------------------------
         # Index evidence
@@ -421,6 +571,10 @@ class TOCDetector:
         positive = {
             "strong_toc_keywords": (
                 strong_keywords
+            ),
+
+            "document_register_header": (
+                document_register_header
             ),
 
             "section_structure": {
@@ -533,7 +687,15 @@ class TOCDetector:
         # ------------------------------------------------------------------
 
         # Explicit TOC terminology is useful, but NOT decisive.
+        #
+        # A document-register header ("Description" / "Doc. No.") is
+        # treated as an equally strong, alternate heading signal --
+        # vendor document registers often carry no "Contents"-style
+        # title at all, especially on continuation pages, but the
+        # column headers themselves are just as reliable a tell.
         if positive["strong_toc_keywords"]:
+            score += 0.15
+        elif positive["document_register_header"]:
             score += 0.15
 
         if positive["toc_table_count"] > 0:
@@ -749,6 +911,7 @@ class TOCDetector:
             bool(
                 DOT_LEADER_RE.match(line)
                 or TRAILING_PAGE_RE.match(line)
+                or TRAILING_DOC_CODE_RE.match(line)
             )
             for line in lines
         )
@@ -819,7 +982,7 @@ class TOCDetector:
             return False
 
         section_rows = 0
-        page_rows = 0
+        reference_rows = 0
 
         for row in rows:
 
@@ -831,12 +994,12 @@ class TOCDetector:
                 section_rows += 1
 
             if any(
-                self._looks_like_page_reference(
+                self._classify_reference(
                     value
                 )
                 for value in row
             ):
-                page_rows += 1
+                reference_rows += 1
 
         row_count = len(rows)
 
@@ -844,13 +1007,22 @@ class TOCDetector:
             section_rows / row_count
         )
 
-        page_ratio = (
-            page_rows / row_count
+        reference_ratio = (
+            reference_rows / row_count
         )
 
-        return (
+        if (
             section_ratio >= 0.20
-            or page_ratio >= 0.30
+            or reference_ratio >= 0.30
+        ):
+            return True
+
+        # Fallback: a document-register header ("Description" /
+        # "Doc. No.") on its own is strong enough evidence, even when
+        # the entry rows didn't independently clear the ratios above
+        # -- e.g. a short continuation page with only a couple of rows.
+        return self._has_document_register_header(
+            rows
         )
 
     def _looks_like_data_table(
@@ -908,6 +1080,60 @@ class TOCDetector:
 
         return rows
 
+    def _has_document_register_header(
+        self,
+        rows: list[list[str]],
+    ) -> bool:
+        """
+        Detect a "Description" / "Doc. No." (or "Drawing No.", etc.)
+        style header pair, which marks the table as a document-register
+        index regardless of what the entries' reference values look
+        like.
+        """
+
+        for row in rows[:2]:
+
+            normalized_cells = [
+                self._normalize(cell)
+                for cell in row
+            ]
+
+            has_description = any(
+                "description" in cell
+                for cell in normalized_cells
+            )
+
+            has_doc_reference = any(
+                any(
+                    term in cell
+                    for term in DOC_REGISTER_HEADER_TERMS
+                )
+                for cell in normalized_cells
+            )
+
+            if has_description and has_doc_reference:
+                return True
+
+        return False
+
+    def _page_has_document_register_header(
+        self,
+        tables: list[TableRepresentation],
+    ) -> bool:
+
+        for table in tables:
+
+            rows = self._clean_table_rows(
+                table
+            )
+
+            if self._has_document_register_header(
+                rows
+            ):
+                return True
+
+        return False
+
     def _select_best_toc_table(
         self,
         tables: list[TableRepresentation],
@@ -942,7 +1168,7 @@ class TOCDetector:
             return 0.0
 
         section_count = 0
-        page_count = 0
+        reference_count = 0
 
         for row in rows:
 
@@ -952,18 +1178,18 @@ class TOCDetector:
                 section_count += 1
 
             if any(
-                self._looks_like_page_reference(
+                self._classify_reference(
                     value
                 )
                 for value in row
             ):
-                page_count += 1
+                reference_count += 1
 
         count = len(rows)
 
         return (
             0.5 * section_count / count
-            + 0.5 * page_count / count
+            + 0.5 * reference_count / count
         )
 
     def _describe_table(
@@ -1045,14 +1271,47 @@ class TOCDetector:
                 )
             )
 
-            if parsed is None:
-                continue
+            if parsed is not None:
 
-            section_number, title = parsed
+                section_number, title = parsed
 
-            level = self._infer_level(
-                section_number
+                level = self._infer_level(
+                    section_number
+                )
+
+                remaining = values[
+                    index + 1 :
+                ]
+
+                title_parts = [
+                    part
+                    for part in remaining
+                    if self._classify_reference(
+                        part
+                    ) is None
+                ]
+
+                if title_parts:
+                    title = " ".join(
+                        [title] + title_parts
+                    )
+
+                break
+
+            # A table often puts the section number and its title in
+            # separate cells (e.g. "5.4" | "MAIN MOTOR TERMINAL BOXES"
+            # | "P1-REF-..."), so no single cell ever matches the
+            # "number + title" patterns above on its own. Fall back to
+            # treating a cell that is JUST a bare section number as the
+            # number, and take the title from the next cell(s).
+            bare_number = (
+                self._parse_bare_section_number(
+                    value
+                )
             )
+
+            if bare_number is None:
+                continue
 
             remaining = values[
                 index + 1 :
@@ -1061,23 +1320,41 @@ class TOCDetector:
             title_parts = [
                 part
                 for part in remaining
-                if not self._looks_like_page_reference(
+                if self._classify_reference(
                     part
-                )
+                ) is None
             ]
 
-            if title_parts:
-                title = " ".join(
-                    [title] + title_parts
-                )
+            if not title_parts:
+                continue
+
+            section_number = bare_number
+
+            level = self._infer_level(
+                section_number
+            )
+
+            title = " ".join(title_parts)
 
             break
 
         if section_number is None:
             title = values[0]
 
-        page_ref = self._find_page_reference(
+        reference = self._find_reference(
             values
+        )
+
+        page_ref = (
+            reference[0]
+            if reference
+            else None
+        )
+
+        reference_kind = (
+            reference[1]
+            if reference
+            else None
         )
 
         if not title:
@@ -1094,6 +1371,7 @@ class TOCDetector:
             section_number=section_number,
             level=level,
             printed_page_ref=page_ref,
+            reference_kind=reference_kind,
             source_page=source_page,
             confidence=0.80,
         )
@@ -1141,8 +1419,8 @@ class TOCDetector:
 
             section_number, title = section
 
-            page_ref = (
-                self._extract_trailing_page(
+            page_ref, reference_kind = (
+                self._extract_trailing_reference(
                     title
                 )
             )
@@ -1163,6 +1441,7 @@ class TOCDetector:
                     section_number
                 ),
                 printed_page_ref=page_ref,
+                reference_kind=reference_kind,
                 source_page=source_page,
                 confidence=0.75,
             )
@@ -1176,6 +1455,21 @@ class TOCDetector:
             return TOCEntry(
                 text=match.group(1).strip(),
                 printed_page_ref=match.group(2),
+                reference_kind="page",
+                source_page=source_page,
+                confidence=0.70,
+            )
+
+        match = TRAILING_DOC_CODE_RE.match(
+            line
+        )
+
+        if match:
+
+            return TOCEntry(
+                text=match.group(1).strip(),
+                printed_page_ref=match.group(2),
+                reference_kind="doc_code",
                 source_page=source_page,
                 confidence=0.70,
             )
@@ -1219,6 +1513,29 @@ class TOCDetector:
         return None
 
     @staticmethod
+    def _parse_bare_section_number(
+        text: str,
+    ) -> str | None:
+        """
+        Match a cell that contains ONLY a section number, with no
+        title text alongside it (e.g. "5.4", "6.", "7.10") -- as
+        opposed to _parse_section_number, which requires the title to
+        be part of the same string. This covers tables where the
+        number and title live in separate columns.
+        """
+
+        stripped = text.strip()
+
+        match = BARE_SECTION_NUMBER_RE.match(
+            stripped
+        )
+
+        if not match:
+            return None
+
+        return match.group(1).rstrip(".")
+
+    @staticmethod
     def _infer_level(
         section_number: str,
     ) -> int:
@@ -1247,34 +1564,83 @@ class TOCDetector:
             )
         )
 
+    @staticmethod
+    def _looks_like_doc_code(
+        value: str,
+    ) -> bool:
+
+        return bool(
+            DOC_CODE_RE.fullmatch(
+                value.strip()
+            )
+        )
+
     @classmethod
-    def _find_page_reference(
+    def _classify_reference(
+        cls,
+        value: str,
+    ) -> str | None:
+        """
+        Classify a trailing table/line value as a reference.
+
+        Returns "page" for a plain printed page number, "doc_code" for
+        a document/drawing reference code (e.g. "P1-REF-2012-123-030"),
+        or None if it looks like neither.
+        """
+
+        stripped = value.strip()
+
+        if cls._looks_like_page_reference(
+            stripped
+        ):
+            return "page"
+
+        if cls._looks_like_doc_code(
+            stripped
+        ):
+            return "doc_code"
+
+        return None
+
+    @classmethod
+    def _find_reference(
         cls,
         values: list[str],
-    ) -> str | None:
+    ) -> tuple[str, str] | None:
 
         for value in reversed(values):
 
-            if cls._looks_like_page_reference(
+            kind = cls._classify_reference(
                 value
-            ):
-                return value
+            )
+
+            if kind is not None:
+                return value, kind
 
         return None
 
     @staticmethod
-    def _extract_trailing_page(
+    def _extract_trailing_reference(
         text: str,
-    ) -> str | None:
+    ) -> tuple[str | None, str | None]:
+
+        stripped = text.strip()
 
         match = TRAILING_PAGE_RE.match(
-            text.strip()
+            stripped
         )
 
-        if not match:
-            return None
+        if match:
+            return match.group(2), "page"
 
-        return match.group(2)
+        match = TRAILING_DOC_CODE_RE.match(
+            stripped
+        )
+
+        if match:
+            return match.group(2), "doc_code"
+
+        return None, None
 
     @staticmethod
     def _remove_page_reference(
