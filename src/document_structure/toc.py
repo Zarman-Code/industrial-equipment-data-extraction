@@ -496,10 +496,20 @@ class TOCDetector:
             ) is not None
         ]
 
+        # `_has_plausible_title_text` guards against the structural
+        # patterns below (DOT_LEADER_RE/TRAILING_PAGE_RE) matching a
+        # line purely because it happens to end in a small number --
+        # e.g. a spec/measurement line ("Diametre 25", "Poids 12") or a
+        # numbered legal/regulatory clause. Those patterns are
+        # deliberately language-agnostic (so they work on a TOC in any
+        # language), which is exactly why, without this guard, a page
+        # of ordinary prose IN ANY LANGUAGE that happens to have several
+        # short lines ending in digits can look like a TOC.
         page_reference_matches = [
             line
             for line in lines
-            if (
+            if self._has_plausible_title_text(line)
+            and (
                 DOT_LEADER_RE.match(line)
                 or TRAILING_PAGE_RE.match(line)
                 or TRAILING_DOC_CODE_RE.match(line)
@@ -511,6 +521,23 @@ class TOCDetector:
             for line in lines
             if DOT_LEADER_RE.match(line)
         ]
+
+        # A second, complementary guard, this one on the NUMBERS
+        # themselves rather than the surrounding text: real TOC entries
+        # are listed in reading order with page numbers that increase
+        # (or stay flat) down the page. Incidental numbers on an
+        # ordinary paragraph (measurements, clause numbers, percentages)
+        # have no such order. This is language-agnostic by construction
+        # -- it only looks at the numbers, never at vocabulary -- so it
+        # catches the foreign-language false-positive case just as well
+        # as an English one.
+        reference_numbers = [
+            number
+            for line in page_reference_matches
+            if (number := self._extract_trailing_number(line)) is not None
+        ]
+
+        reference_monotonicity = self._monotonicity_score(reference_numbers)
 
         # ------------------------------------------------------------------
         # Table evidence
@@ -564,7 +591,8 @@ class TOCDetector:
 
         consistency = (
             self._analyze_line_consistency(
-                lines
+                lines,
+                page_reference_matches,
             )
         )
 
@@ -594,6 +622,12 @@ class TOCDetector:
                 "ratio": self._ratio(
                     len(page_reference_matches),
                     len(lines),
+                ),
+                "monotonicity": (
+                    reference_monotonicity
+                ),
+                "monotonicity_sample_size": len(
+                    reference_numbers
                 ),
             },
 
@@ -718,6 +752,37 @@ class TOCDetector:
             score += 0.15
         elif page_ratio >= 0.20:
             score += 0.08
+
+        # Numbers that superficially look like page references but do
+        # not behave like a real TOC's page numbers (which are listed
+        # in reading order and increase, or stay flat, down the page)
+        # are a strong sign this is an ordinary paragraph with
+        # incidental numbers (measurements, clause numbers, percentages)
+        # rather than an actual table of contents -- see
+        # `_monotonicity_score` / `_has_plausible_title_text`. Gated on
+        # `monotonicity_sample_size` (not just `page_ratio`), since a
+        # page whose reference evidence is mostly doc-code matches
+        # (see TRAILING_DOC_CODE_RE, which _monotonicity_score cannot
+        # judge -- doc codes aren't page numbers) can have a high
+        # page_ratio with too few actual numbers to say anything about
+        # ordering; that must never be misread as "not monotonic".
+        monotonicity = positive[
+            "page_references"
+        ]["monotonicity"]
+
+        monotonicity_sample_size = positive[
+            "page_references"
+        ]["monotonicity_sample_size"]
+
+        if (
+            page_ratio >= 0.20
+            and monotonicity_sample_size >= 3
+        ):
+
+            if monotonicity >= 0.70:
+                score += 0.08
+            elif monotonicity <= 0.30:
+                score -= 0.20
 
         dot_ratio = positive[
             "dot_leaders"
@@ -899,7 +964,17 @@ class TOCDetector:
     def _analyze_line_consistency(
         self,
         lines: list[str],
+        page_reference_matches: list[str],
     ) -> dict[str, Any]:
+        """
+        `page_reference_matches` is passed in (rather than recomputed
+        here with the raw, unguarded regexes) so this reuses the same
+        `_has_plausible_title_text`-filtered matches used for scoring --
+        otherwise a page of prose with several digit-ending lines could
+        still be marked as having a "consistent entry structure" even
+        after the false-positive guard rejected those same lines
+        everywhere else.
+        """
 
         if len(lines) < 3:
             return {
@@ -907,17 +982,8 @@ class TOCDetector:
                 "page_reference_ratio": 0.0,
             }
 
-        page_reference_count = sum(
-            bool(
-                DOT_LEADER_RE.match(line)
-                or TRAILING_PAGE_RE.match(line)
-                or TRAILING_DOC_CODE_RE.match(line)
-            )
-            for line in lines
-        )
-
         ratio = self._ratio(
-            page_reference_count,
+            len(page_reference_matches),
             len(lines),
         )
 
@@ -983,6 +1049,7 @@ class TOCDetector:
 
         section_rows = 0
         reference_rows = 0
+        reference_numbers: list[int] = []
 
         for row in rows:
 
@@ -993,13 +1060,21 @@ class TOCDetector:
             ):
                 section_rows += 1
 
-            if any(
-                self._classify_reference(
-                    value
-                )
-                for value in row
-            ):
+            if self._row_has_single_trailing_reference(row):
+
                 reference_rows += 1
+
+                ref_index, ref_value, ref_kind = (
+                    self._find_reference_with_index(row)
+                )
+
+                if ref_kind == "page":
+                    try:
+                        reference_numbers.append(
+                            int(ref_value.strip())
+                        )
+                    except ValueError:
+                        pass
 
         row_count = len(rows)
 
@@ -1015,12 +1090,33 @@ class TOCDetector:
             section_ratio >= 0.20
             or reference_ratio >= 0.30
         ):
-            return True
+
+            # Same false-positive guard as the text-page path (see
+            # `_monotonicity_score`): a genuine TOC table's page-number
+            # column increases down the page. A foreign-language
+            # (or any-language) data/spec table whose rows happen to
+            # end in numbers -- measurements, IDs, tolerances -- clears
+            # the ratios above just as easily, but its numbers are not
+            # in page order. Only trust the ratios alone when there
+            # either isn't enough numeric evidence to judge ordering,
+            # or the ordering actually looks like page numbers.
+            monotonicity = self._monotonicity_score(
+                reference_numbers
+            )
+
+            looks_scrambled = (
+                len(reference_numbers) >= 3
+                and monotonicity <= 0.30
+            )
+
+            if not looks_scrambled:
+                return True
 
         # Fallback: a document-register header ("Description" /
         # "Doc. No.") on its own is strong enough evidence, even when
         # the entry rows didn't independently clear the ratios above
-        # -- e.g. a short continuation page with only a couple of rows.
+        # -- e.g. a short continuation page with only a couple of rows,
+        # or a table rejected just above for having scrambled numbers.
         return self._has_document_register_header(
             rows
         )
@@ -1619,6 +1715,76 @@ class TOCDetector:
 
         return None
 
+    @classmethod
+    def _find_reference_with_index(
+        cls,
+        row: list[str],
+    ) -> tuple[int | None, str | None, str | None]:
+        """
+        Same tail-anchored search as `_find_reference`, but also returns
+        the index of the matched cell -- needed by
+        `_row_has_single_trailing_reference` to know which cell to
+        exclude when checking the REST of the row for extra numbers.
+        """
+
+        for index in range(len(row) - 1, -1, -1):
+
+            kind = cls._classify_reference(
+                row[index]
+            )
+
+            if kind is not None:
+                return index, row[index], kind
+
+        return None, None, None
+
+    @classmethod
+    def _row_has_single_trailing_reference(
+        cls,
+        row: list[str],
+    ) -> bool:
+        """
+        FALSE-POSITIVE GUARD: a genuine TOC/document-register row carries
+        exactly ONE reference value (one page number, or one doc/drawing
+        code) next to its label -- e.g. ["3.2", "Technical Specifications",
+        "5"]. A spec/dimension table row (bolt torque by size, weight by
+        frame size, voltage by model...) is structurally identical --
+        label cell(s) followed by a trailing number that
+        `_classify_reference` happily matches -- but its OTHER cells are
+        also short numbers (they're the whole point of the table), not
+        incidental text. Rejecting any row where a second cell (besides
+        the label and the matched reference) also looks like a bare page
+        number is what tells the two apart, without relying on any
+        language-specific vocabulary.
+
+        Known limitation: a real TOC table with an extra all-numeric
+        column (e.g. a nesting "level" column) would also be rejected by
+        this guard -- not observed in the codebase's test corpus, and a
+        rarer format than the spec-table false positive this fixes.
+        """
+
+        if len(row) < 2:
+            return False
+
+        index, _, kind = cls._find_reference_with_index(row)
+
+        if kind is None:
+            return False
+
+        other_cells = [
+            cell
+            for position, cell in enumerate(row)
+            if position not in (0, index)
+        ]
+
+        extra_numeric_cells = sum(
+            1
+            for cell in other_cells
+            if cls._looks_like_page_reference(cell)
+        )
+
+        return extra_numeric_cells == 0
+
     @staticmethod
     def _extract_trailing_reference(
         text: str,
@@ -1658,6 +1824,99 @@ class TOCDetector:
             "",
             text,
         ).strip()
+
+    # ======================================================================
+    # FALSE-POSITIVE GUARDS (language-agnostic)
+    # ======================================================================
+    #
+    # Both guards below exist to fix the same class of false positive:
+    # DOT_LEADER_RE / TRAILING_PAGE_RE are deliberately loose (they just
+    # look for "some text, then a small number at the end of the line")
+    # so they work on a real TOC in ANY language. The price is that they
+    # are just as happy to match an ordinary paragraph's incidental
+    # numbers (measurements, clause numbers, percentages, article
+    # references) -- most noticeable on foreign-language technical or
+    # legal text, since that is often where short, numbered lines are
+    # most common outside of an actual TOC.
+
+    MIN_TITLE_WORD_LENGTH = 3
+
+    @classmethod
+    def _has_plausible_title_text(
+        cls,
+        text: str,
+    ) -> bool:
+        """
+        True if `text` contains at least one real word (alphabetic,
+        length >= MIN_TITLE_WORD_LENGTH). A genuine TOC entry always has
+        an actual title next to its page number; a line that "matches"
+        only because it ends in a number but has no real title text
+        (e.g. a bare measurement, a code, a lone digit sequence) should
+        not count as page-reference evidence.
+        """
+
+        words = re.findall(
+            r"[^\W\d_]+",
+            text,
+            flags=re.UNICODE,
+        )
+
+        return any(
+            len(word) >= cls.MIN_TITLE_WORD_LENGTH
+            for word in words
+        )
+
+    @staticmethod
+    def _extract_trailing_number(
+        line: str,
+    ) -> int | None:
+        """
+        Extract the trailing reference number from a line already known
+        to match DOT_LEADER_RE or TRAILING_PAGE_RE (returns None for a
+        TRAILING_DOC_CODE_RE-style match, which is not a plain integer).
+        """
+
+        match = (
+            DOT_LEADER_RE.match(line)
+            or TRAILING_PAGE_RE.match(line)
+        )
+
+        if not match:
+            return None
+
+        try:
+            return int(match.group(2))
+        except (IndexError, ValueError):
+            return None
+
+    @staticmethod
+    def _monotonicity_score(
+        numbers: list[int],
+    ) -> float:
+        """
+        Fraction of consecutive pairs that are non-decreasing.
+
+        A real TOC lists entries in reading order with page numbers
+        that increase (or occasionally repeat) down the page --
+        typically close to 1.0 here. Incidental numbers on an ordinary
+        paragraph (measurements, clause numbers...) have no such order
+        and typically score well below 0.5.
+
+        Returns 0.0 when there are fewer than 3 numbers -- not enough
+        data to judge either way, so this must never be read as
+        "evidence against".
+        """
+
+        if len(numbers) < 3:
+            return 0.0
+
+        increasing_steps = sum(
+            1
+            for previous, current in zip(numbers, numbers[1:])
+            if current >= previous
+        )
+
+        return increasing_steps / (len(numbers) - 1)
 
     # ======================================================================
     # GENERAL HELPERS
