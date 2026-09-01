@@ -337,9 +337,26 @@ class BookmarkProcessor:
 
         Retourne (clean_sections, clean_data).
         """
-        clean_data = self.build_clean_structure(raw_toc)
-        clean_sections = self.clean_structure_to_bookmark_sections(clean_data)
-        return clean_sections, clean_data
+        self.clean_data = self.build_clean_structure(raw_toc)
+        self.clean_sections = self.clean_structure_to_bookmark_sections(self.clean_data)
+        if self.debug:
+                    removed = len(raw_toc["sections"]) - len(self.clean_sections)
+                    print(f"Entrees avant nettoyage : {len(raw_toc['sections'])}")
+                    print(f"Entrees apres nettoyage : {len(self.clean_sections)}  (retirees : {removed})")
+        self.bookmark_entries = self.bookmark_sections_to_entries(self.clean_sections)
+        
+        self.organized_regions = [self.bookmark_entries]
+        
+        if self.debug:
+            print(f"{len(self.bookmark_entries)} entrees converties en TOCEntry")
+        payloads = []
+        for i, entries in enumerate(self.organized_regions, 1):
+                    payload = self.processor.region_entries_to_payload(i, entries)
+                    payloads.append(payload)
+
+        return payloads # pour le llm on appelle result = classify_sections(payload) pour tout les payloads(list) on utilise une boucle sur payloads pour appeler le llm puis on fais une list de resultats : 
+                        #reslut de llm represente le resultats par region puis on fait tout les resultas des regions dans une list de resultats results_by_region.append(result)  
+    
 
 
 
