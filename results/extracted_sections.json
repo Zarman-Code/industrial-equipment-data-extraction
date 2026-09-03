@@ -1,0 +1,107 @@
+[
+  {
+    "title":"3.02 Compressor Data Sheet",
+    "start_page":107,
+    "end_page":115,
+    "success":true,
+    "error":null
+  },
+  {
+    "title":"3.03 Compressor motor data sheet",
+    "start_page":116,
+    "end_page":154,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.04 Oil Pump Data Sheet",
+    "start_page":155,
+    "end_page":156,
+    "success":true,
+    "error":null
+  },
+  {
+    "title":"3.05 Oil Pump Motor Data Sheet",
+    "start_page":157,
+    "end_page":159,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.06 Oil Cooler Data Sheet",
+    "start_page":160,
+    "end_page":165,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.07 Oil separator data sheet",
+    "start_page":166,
+    "end_page":169,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.08 Receiver data sheet",
+    "start_page":170,
+    "end_page":170,
+    "success":true,
+    "error":null
+  },
+  {
+    "title":"3.09 Purger data sheet",
+    "start_page":171,
+    "end_page":173,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.10 Economiser Data Sheet",
+    "start_page":174,
+    "end_page":178,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.11 Air Cooled Condenser data sheet",
+    "start_page":179,
+    "end_page":182,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.12 Air Cooled Condenser Fan Data Sheet",
+    "start_page":183,
+    "end_page":189,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.13 Condenser Fan Motor Data Sheet",
+    "start_page":190,
+    "end_page":192,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.14 Air Cooled Condenser Vibration Switch Data Sheet",
+    "start_page":193,
+    "end_page":198,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.15 Final stage oil separator data sheet",
+    "start_page":199,
+    "end_page":202,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  },
+  {
+    "title":"3.16 Control valve data sheet - A",
+    "start_page":203,
+    "end_page":2870,
+    "success":false,
+    "error":"(Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\\paddle\\fluid\\framework\\new_executor\\instruction\\onednn\\onednn_instruction.cc:118)\n"
+  }
+]
