@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Assets Manager Monitoring — I-SENSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #010E5D;
+    --primary-10: rgba(1, 14, 93, 0.06);
+    --primary-20: rgba(1, 14, 93, 0.20);
+    --page-bg: #f4f5f9;
+    --card-bg: #ffffff;
+    --border: #eceef3;
+    --text-muted: #9aa0b4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 12px; }
+  body {
+    font-family: "Poppins", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    background: var(--page-bg);
+    color: #1c2340;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+  html { background: var(--page-bg); }
+
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  img { display: block; object-fit: contain; }
+
+  /* ===================== NAVBAR ===================== */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 54px;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    z-index: 1000;
+  }
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 38px;
+  }
+  .navbar__brand {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .navbar__logo { height: 19px; width: auto; display: block; }
+
+  .navbar__nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+  .navbar__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.95;
+    white-space: nowrap;
+  }
+  .navbar__nav-link:hover { opacity: 1; }
+  .navbar__nav-link svg { display: block; width: 16px; height: 16px; }
+  .navbar__nav-link .chevron { width: 12px; height: 12px; }
+  .chevron { opacity: 0.9; }
+
+  .navbar__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+  }
+  .navbar__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+  }
+  .navbar__icon-btn svg { width: 18px; height: 18px; }
+  .flag {
+    width: 19px; height: 19px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+  }
+  .flag svg { width: 100%; height: 100%; }
+
+  /* ===================== LEFT MINI SIDEBAR ===================== */
+  .mini-sidebar {
+    position: fixed;
+    top: 54px;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    background: #ffffff;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 22px 0 18px;
+    z-index: 900;
+  }
+  .mini-sidebar__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .mini-sidebar__bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+  }
+  .mini-sidebar svg path { transition: 0.15s; }
+  .mini-sidebar .ico { color: var(--primary); opacity: 0.85; cursor: pointer; display: flex; }
+  .mini-sidebar .ico svg { width: 18px; height: 18px; }
+  .mini-sidebar .ico:hover { opacity: 1; }
+
+  /* ===================== CONTENT ===================== */
+  .content {
+    padding: 5rem 1.5rem 1.5rem;
+    padding-left: calc(1.5rem + 64px);
+    min-height: 100vh;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 0;
+    border-radius: 1.25rem;
+    box-shadow: 0px 0px 25px 0px rgba(1, 14, 93, 0.08);
+    padding: 1.9rem 2.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--primary);
+    margin: 0 0 1rem;
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+
+  .search-wrap {
+    position: relative;
+    width: 250px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+    width: 14px; height: 14px;
+  }
+  .search-input {
+    width: 100%;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-10);
+    padding: 0 14px 0 36px;
+    font-size: 1rem;
+    color: var(--primary);
+    outline: none;
+  }
+  .search-input::placeholder { color: var(--primary); opacity: 0.55; }
+
+  .toolbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn {
+    height: 36px;
+    border-radius: 10px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .btn svg { width: 13px; height: 14px; }
+  .btn--ghost { color: var(--primary); background: transparent; }
+  .btn--ghost:hover { background: var(--primary-10); }
+  .btn--primary { color: #fff; background: var(--primary); }
+  .btn--primary:hover { background: #020a44; }
+  .btn--outline {
+    color: var(--primary);
+    background: transparent;
+    border: 1px solid var(--primary-20);
+  }
+  .btn--outline:hover { background: var(--primary-10); }
+
+  /* ===================== UPLOADED FILES ===================== */
+  .uploads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .uploads:empty { display: none; }
+  .upload-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    max-width: 260px;
+    padding: 5px 9px 5px 11px;
+    background: var(--primary-10);
+    border: 1px solid var(--primary-20);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--primary);
+  }
+  .upload-chip__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .upload-chip__size { opacity: 0.55; flex-shrink: 0; }
+  .upload-chip__remove {
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--primary);
+    background: rgba(1, 14, 93, 0.12);
+  }
+  .upload-chip__remove:hover { background: rgba(1, 14, 93, 0.22); }
+
+  /* ===================== TABLE ===================== */
+  .table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    text-align: left;
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-bottom: 1px solid var(--border);
+    color: #2a3050;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  .fw-500 { font-weight: 500; }
+
+  .class-badge {
+    display: inline-block;
+    color: #fff;
+    background: var(--primary);
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    min-width: 38px;
+    text-align: center;
+  }
+
+  .entity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .entity span.name {
+    font-weight: 500;
+    color: var(--primary);
+  }
+
+  .dots {
+    cursor: pointer;
+    display: inline-flex;
+    padding: 4px 16px;
+    color: var(--primary);
+  }
+
+  /* ===================== PAGINATION ===================== */
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 12px;
+    list-style: none;
+  }
+  .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 32px;
+    padding: 0 13px;
+    border-radius: 16px;
+    font-size: 0.82rem;
+    color: var(--primary);
+  }
+  .page-item.disabled .page-link { color: var(--text-muted); cursor: default; }
+  .page-item.active .page-link {
+    background: var(--primary);
+    color: #fff;
+    min-width: 32px;
+    padding: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .navbar__nav { display: none; }
+    .content { padding-left: 26px; }
+    .mini-sidebar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a class="navbar__brand" href="#" aria-label="I-SENSE home">
+      <svg class="navbar__logo" xmlns="http://www.w3.org/2000/svg" width="124" height="36" viewBox="0 0 124 36" fill="none">
+        <g clip-path="url(#isense_logo_clip)">
+          <path d="M25.7192 19.4458H16.28V26.1838H25.7192V19.4458Z" fill="white"/>
+          <path d="M44.2635 20.1062C43.3766 19.2181 42.2134 18.349 40.7738 17.4952L38.7656 16.326C37.7576 15.7196 37.0481 15.1446 36.6385 14.6031C36.2274 14.0617 36.0234 13.3721 36.0234 12.5335V11.8844C36.0234 11.5522 36.0874 11.2567 36.2175 10.9962C36.3462 10.7366 36.5297 10.5296 36.768 10.3792C37.0062 10.2272 37.2902 10.1593 37.6213 10.1722C37.9959 10.1722 38.2981 10.2524 38.528 10.4113C38.7595 10.5701 38.9346 10.7977 39.0587 11.094C39.1797 11.3903 39.2558 11.7477 39.2848 12.1662V14.1388H46.5215L46.4987 12.5572C46.4987 10.8382 46.1675 9.32455 45.506 8.01636C44.8444 6.7097 43.854 5.6772 42.5362 4.91886C41.2176 4.15976 39.5504 3.78174 37.5353 3.78174C35.6786 3.78174 34.0578 4.15747 32.6753 4.90817C31.2928 5.65887 30.2202 6.6845 29.4574 7.98428C28.6945 9.28407 28.3048 10.8084 28.2903 12.5565V13.0536C28.2903 15.1927 28.7768 16.9514 29.7489 18.3299C30.7203 19.7099 32.1074 20.9127 33.9071 21.9383L35.894 23.1946C37.1037 23.917 37.932 24.5669 38.3781 25.1442C38.8234 25.7231 39.0465 26.4379 39.0465 27.2902V27.9836C39.0465 28.3158 38.9856 28.6052 38.863 28.8504C38.7404 29.0955 38.5509 29.288 38.2913 29.4254C38.0317 29.5629 37.7142 29.6309 37.3404 29.6309C36.9666 29.6309 36.6241 29.5545 36.3569 29.4025C36.0912 29.2521 35.878 29.0276 35.7204 28.732C35.5621 28.4357 35.4761 28.0707 35.4616 27.6369V25.6643H28.1609L28.1822 27.3108C28.2111 29.0887 28.5781 30.6275 29.2845 31.9257C29.9895 33.2255 31.0256 34.2298 32.3951 34.9385C33.7632 35.6464 35.4684 36 37.514 36C39.4149 36 41.0631 35.6281 42.4601 34.8835C43.8555 34.1404 44.9327 33.111 45.6887 31.7967C46.4454 30.4816 46.8222 28.9443 46.8222 27.1817V26.6174C46.8222 25.2596 46.6174 24.0568 46.2071 23.0105C45.796 21.9635 45.1489 20.9959 44.2635 20.1062Z" fill="white"/>
+          <path d="M48.7224 35.5233H64.0166V29.0015H56.5202V22.8049H63.671V16.8452H56.5202V10.7777H64.0166V4.25586H48.7224V35.5233Z" fill="white"/>
+          <path d="M79.697 22.666L74.4053 4.25586H66.2839V35.5233H72.8721L72.786 16.9322H72.7937L78.2277 35.5233H86.2212V4.25586H79.6543L79.697 22.666Z" fill="white"/>
+          <path d="M104.246 20.1062C103.36 19.2181 102.197 18.349 100.756 17.4952L98.7478 16.326C97.7406 15.7196 97.0303 15.1446 96.6207 14.6031C96.2096 14.0617 96.0056 13.3721 96.0056 12.5335V11.8844C96.0056 11.5522 96.0696 11.2567 96.1998 10.9962C96.3284 10.7366 96.5134 10.5296 96.7502 10.3792C96.9884 10.2272 97.2724 10.1593 97.6036 10.1722C97.9781 10.1722 98.2803 10.2524 98.5118 10.4113C98.7417 10.5701 98.9183 10.7977 99.0409 11.094C99.1634 11.3903 99.2373 11.7477 99.267 12.1662V14.1388H106.504L106.482 12.5572C106.482 10.8382 106.15 9.32455 105.488 8.01636C104.826 6.7097 103.836 5.6772 102.518 4.91886C101.201 4.15976 99.5342 3.78174 97.5175 3.78174C95.6608 3.78174 94.04 4.15747 92.6575 4.90817C91.275 5.65887 90.2024 6.6845 89.4396 7.98428C88.6768 9.28407 88.287 10.8084 88.2725 12.5565V13.0536C88.2725 15.1927 88.759 16.9514 89.7304 18.3299C90.7018 19.7099 92.0888 20.9127 93.8885 21.9383L95.8754 23.1946C97.0851 23.917 97.9134 24.5669 98.3595 25.1442C98.8049 25.7231 99.0279 26.4379 99.0279 27.2902V27.9836C99.0279 28.3158 98.967 28.6052 98.8445 28.8504C98.7219 29.0955 98.5323 29.288 98.2727 29.4254C98.0139 29.5629 97.6957 29.6309 97.3226 29.6309C96.9496 29.6309 96.6063 29.5545 96.3406 29.4025C96.0734 29.2521 95.861 29.0276 95.7026 28.732C95.5443 28.4357 95.4583 28.0707 95.443 27.6369V25.6643H88.1423L88.1637 27.3108C88.1926 29.0887 88.5595 30.6275 89.266 31.9257C89.9717 33.2255 91.0086 34.2298 92.3766 34.9385C93.7446 35.6464 95.4514 36 97.4955 36C99.3964 36 101.045 35.6281 102.442 34.8835C103.838 34.1404 104.914 33.111 105.67 31.7967C106.427 30.4816 106.804 28.9443 106.804 27.1817V26.6174C106.804 25.2596 106.599 24.0568 106.189 23.0105C105.777 21.9635 105.13 20.9959 104.245 20.1062H104.246Z" fill="white"/>
+          <path d="M124 10.7777V4.25586H108.707V35.5233H124V29.0015H116.504V22.8049H123.655V16.8452H116.504V10.7777H124Z" fill="white"/>
+          <path d="M13.3208 5.1121C13.1533 5.03191 12.9805 4.9586 12.8039 4.8891C12.6136 4.81426 12.4172 4.74629 12.2154 4.68367C11.3316 4.41027 10.3503 4.2583 9.32028 4.2583C8.29027 4.2583 7.30745 4.41027 6.4236 4.68367C6.22262 4.74629 6.02621 4.81426 5.83513 4.8891C5.73007 4.93034 5.62654 4.97311 5.52376 5.01817C3.54062 5.88647 2.22437 7.41307 2.22437 9.15427C2.22437 10.8955 3.54062 12.4213 5.52376 13.2904V35.5235H13.3216V13.1987C15.189 12.3159 16.4139 10.8344 16.4139 9.1558C16.4139 7.47722 15.1898 5.99415 13.3216 5.11286L13.3208 5.1121Z" fill="white"/>
+          <path d="M18.844 6.50199C18.844 6.95639 18.7763 7.39779 18.6484 7.82698C18.0896 5.96589 16.3782 4.39423 14.051 3.48698C13.7982 3.38693 13.5364 3.29682 13.2684 3.2151C12.0945 2.85083 10.7927 2.64998 9.42316 2.64998C8.05361 2.64998 6.75182 2.85235 5.5764 3.2151C5.30995 3.29758 5.04959 3.3877 4.79532 3.48698C2.46808 4.39347 0.754431 5.9636 0.19565 7.82698C0.0677542 7.39932 0 6.95639 0 6.50199C0 4.07119 1.9329 1.9535 4.79532 0.836996C5.04959 0.736954 5.30995 0.646839 5.5764 0.565125C6.75105 0.202376 8.05285 0 9.4224 0C10.7919 0 12.0937 0.200849 13.2676 0.565125C13.5356 0.647603 13.7975 0.737718 14.0502 0.836996C16.9127 1.95274 18.8433 4.07196 18.8433 6.50199H18.844Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="isense_logo_clip"><rect width="124" height="36" fill="white"/></clipPath>
+        </defs>
+      </svg>
+    </a>
+
+    <ul class="navbar__nav">
+      <li>
+        <a class="navbar__nav-link" href="#">
+          <svg width="16" height="16" viewBox="0 0 15 15" fill="#fff"><path d="M7.5 0C11.64 0 15 3.36 15 7.5S11.64 15 7.5 15 0 11.64 0 7.5 3.36 0 7.5 0Zm3.45 4.05a.6.6 0 0 0-.58-.13C8.2 5.52 6.98 6.43 6.7 6.7a1.13 1.13 0 1 0 1.6 1.6c.16-.17 1.06-1.39 2.7-3.68a.45.45 0 0 0-.05-.57ZM11.6 6.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm-8.25 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm1.76-2.7a.75.75 0 1 0-1.06 1.06.75.75 0 0 0 1.06-1.06ZM7.5 2.63a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"/></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a class="navbar__nav-link" href="#">
+          <svg width="16" height="16" viewBox="0 0 15 15" fill="#fff"><path d="M12.75 0c.7 0 1.37.36 1.75.98.38.6.43 1.36.2 2l-.1.27-4.86 8.93A4.5 4.5 0 1 1 2.7 5.27l.2-.11L11.7.4c.27-.18.57-.3.9-.35L12.75 0ZM5.25 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm1.44-2.8a4.5 4.5 0 0 1 3.6 3.62l2.1-3.85c-.5-.08-.93-.3-1.27-.63a2.25 2.25 0 0 1-.6-1.23L6.69 4.7Z"/></svg>
+          Assets
+        </a>
+      </li>
+      <li>
+        <a class="navbar__nav-link" href="#">
+          <svg width="15" height="16" viewBox="0 0 14 15" fill="#fff"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.17 0C5.49 0 4.9.48 4.79 1.13l-.14.77c-.01.09-.08.19-.22.25-.26.12-.5.26-.74.42-.12.08-.25.09-.34.06L2.6 2.35a1.4 1.4 0 0 0-1.79.58L.19 4.09a1.4 1.4 0 0 0 .32 1.71l.63.5c.07.06.13.17.12.31a5.4 5.4 0 0 0 0 1.66c.01.15-.04.25-.11.31l-.63.5A1.4 1.4 0 0 0 .19 11l.62 1.15c.17.28.43.5.75.6.31.11.66.1.97 0l.76-.28c.09-.03.21-.02.34.06.23.16.48.3.74.42.14.06.21.16.22.25l.14.77c.05.32.22.6.47.81.26.2.58.32.91.31h1.38c.69 0 1.28-.47 1.39-1.13l.14-.77c.01-.09.08-.19.22-.25.26-.12.5-.26.74-.42.12-.08.25-.09.34-.06l.76.28c.31.11.65.11.96 0 .32-.11.58-.32.75-.6l.7-1.15a1.4 1.4 0 0 0-.33-1.71l-.63-.5c-.07-.06-.13-.17-.12-.31a5.4 5.4 0 0 0 0-1.66c-.01-.14.05-.25.12-.31l.63-.5a1.4 1.4 0 0 0 .32-1.71l-.69-1.15a1.4 1.4 0 0 0-1.71-.59l-.77.27c-.08.03-.21.02-.34-.06a5.6 5.6 0 0 0-.74-.41c-.14-.07-.21-.17-.22-.25l-.14-.78A1.4 1.4 0 0 0 7.56 0H6.17Zm.7 9.72a2.7 2.7 0 1 0 0-5.4 2.7 2.7 0 0 0 0 5.4Z"/></svg>
+          Asset Families
+        </a>
+      </li>
+      <li>
+        <a class="navbar__nav-link" href="#">
+          <svg width="17" height="17" viewBox="0 0 18 18" fill="#fff"><path d="M9.75 6.75h4.13L9.75 2.63v4.12ZM4.5 1.5h6L15 6v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 3 15V3c0-.83.67-1.5 1.5-1.5ZM5.25 15h1.5v-4.5h-1.5V15Zm3 0h1.5V9h-1.5v6Zm3 0h1.5v-3h-1.5v3Z"/></svg>
+          Reports
+          <svg class="chevron" width="13" height="13" viewBox="0 0 16 16" fill="#fff"><path fill-rule="evenodd" d="M1.65 4.65a.5.5 0 0 1 .7 0L8 10.3l5.65-5.65a.5.5 0 0 1 .7.71l-6 6a.5.5 0 0 1-.7 0l-6-6a.5.5 0 0 1 0-.71Z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="navbar__nav-link" href="#">
+          <svg width="17" height="17" viewBox="0 0 18 18" fill="#fff"><path d="M8.25 12V3.75a.75.75 0 0 1 1.5 0V12h.75a.75.75 0 0 1 0 1.5h-.75v.75a.75.75 0 0 1-1.5 0v-.75H7.5a.75.75 0 0 1 0-1.5h.75Zm5.25-7.5v-.75a.75.75 0 0 1 1.5 0v.75h.75a.75.75 0 0 1 0 1.5h-.75v8.25a.75.75 0 0 1-1.5 0V6h-.75a.75.75 0 0 1 0-1.5h.75Zm-9 2.25h.75a.75.75 0 0 1 0 1.5H4.5v6a.75.75 0 0 1-1.5 0v-6h-.75a.75.75 0 0 1 0-1.5H3v-3a.75.75 0 0 1 1.5 0v3Z"/></svg>
+          Admin Area
+          <svg class="chevron" width="13" height="13" viewBox="0 0 16 16" fill="#fff"><path fill-rule="evenodd" d="M1.65 4.65a.5.5 0 0 1 .7 0L8 10.3l5.65-5.65a.5.5 0 0 1 .7.71l-6 6a.5.5 0 0 1-.7 0l-6-6a.5.5 0 0 1 0-.71Z"/></svg>
+        </a>
+      </li>
+    </ul>
+
+    <div class="navbar__actions">
+      <span class="flag" title="English">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="256" cy="256" r="256" fill="#f0f0f0"/>
+          <path fill="#0052b4" d="M52 100a255 255 0 0 0-44 89h133zM504 189a255 255 0 0 0-44-89l-89 89zM8 322a255 255 0 0 0 44 90l89-90zM412 52a255 255 0 0 0-90-44v133zM100 460a255 255 0 0 0 89 44V371zM189 8a255 255 0 0 0-89 44l89 89zM322 504a255 255 0 0 0 90-44l-90-89zM371 322l89 90a255 255 0 0 0 44-90z"/>
+          <path fill="#d80027" d="M509 222H289V2a258 258 0 0 0-66 0v220H3a258 258 0 0 0 0 66h220v220a258 258 0 0 0 66 0V288h220a258 258 0 0 0 0-66z"/>
+          <path fill="#d80027" d="M322 322l114 114a256 256 0 0 0 15-16l-98-98zM189 322 75 436a256 256 0 0 0 16 15l98-98zM189 189 75 75a256 256 0 0 0-15 16l98 98zM322 189 436 75a256 256 0 0 0-16-15l-98 98z"/>
+        </svg>
+      </span>
+
+      <button class="navbar__icon-btn" title="Switch to dark mode">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="#fff" stroke="#fff" stroke-width="0.5"><path d="M10.17 17c-2 0-3.7-.7-5.09-2.1A7.07 7.07 0 0 1 2.98 9.8c0-1.48.42-2.84 1.27-4.07a7.06 7.06 0 0 1 3.6-2.67c.18-.06.34-.08.48-.05.14.03.25.09.34.18.09.09.15.2.17.34.03.14.01.28-.05.44-.12.28-.2.57-.26.87-.05.29-.08.6-.08.92 0 1.6.56 2.96 1.68 4.08a5.7 5.7 0 0 0 4.07 1.68c.42 0 .8-.04 1.15-.13.35-.09.64-.16.89-.22.13-.02.25-.02.35.01.11.03.2.08.26.16.07.07.12.16.14.27.02.11.01.24-.04.38A6.55 6.55 0 0 1 10.17 17Z"/></svg>
+      </button>
+
+      <button class="navbar__icon-btn" title="Enter fullscreen">
+        <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.33 7.5V5c0-.44.18-.87.49-1.18.31-.31.74-.49 1.18-.49H7.5M16.67 12.5V15c0 .44-.18.87-.49 1.18-.31.31-.74.49-1.18.49H12.5M12.5 3.33H15c.44 0 .87.18 1.18.49.31.31.49.74.49 1.18V7.5M7.5 16.67H5c-.44 0-.87-.18-1.18-.49A1.67 1.67 0 0 1 3.33 15V12.5"/></svg>
+      </button>
+
+      <button class="navbar__icon-btn" title="Notifications">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12.72 6.61V6.07a5.13 5.13 0 0 0-10.26 0v.54c0 .64-.18 1.26-.53 1.8l-.84 1.31a1.6 1.6 0 0 0 1.16 2.4 20.9 20.9 0 0 0 10.69 0 1.6 1.6 0 0 0 1.15-2.4l-.84-1.31a3.35 3.35 0 0 1-.53-1.8Z"/><path d="M4.17 13.67a3.6 3.6 0 0 0 6.84 0" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== LEFT MINI SIDEBAR ===================== -->
+<aside class="mini-sidebar">
+  <div class="mini-sidebar__top">
+    <span class="ico" title="Database">
+      <svg width="21" height="24" viewBox="0 0 19 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M.88 15.5c-.24 0-.46.09-.63.26-.16.16-.25.38-.25.61V19h.88c-.88 0-.88 0-.88.04v.04c.01.13.06.32.19.55.18.45.51 1.01 1.14 1.55 1.24 1.06 3.53 1.96 7.72 1.96s6.47-.9 7.72-1.96c.62-.54.96-1.1 1.14-1.55.09-.24.15-.5.18-.75v-.06l.01-.01v-.05s0-.04-.88-.04h.88v-2.62c0-.23-.09-.45-.25-.62a.9.9 0 0 0-.63-.25c-.54 0-1 .33-1.42.67l-.11.08c-.8.58-2.63 1.3-6.64 1.3s-5.83-.72-6.64-1.3a1.35 1.35 0 0 1-.09-.08c-.33-.35-.96-.67-1.44-.66ZM.88 8.5c-.24 0-.46.09-.63.26-.16.16-.25.38-.25.61V12h.88c-.88 0-.88 0-.88.04v.04c.01.13.06.32.19.55.18.45.51 1.01 1.14 1.55 1.24 1.06 3.53 1.96 7.72 1.96s6.47-.9 7.72-1.96c.62-.54.96-1.1 1.14-1.55.09-.24.15-.5.18-.75v-.06l.01-.01v-.05s0-.04-.88-.04h.88V9.38c0-.23-.09-.45-.25-.62a.9.9 0 0 0-.63-.25c-.54 0-1 .33-1.42.67l-.11.08c-.8.58-2.63 1.3-6.64 1.3s-5.83-.72-6.64-1.3a1.35 1.35 0 0 1-.09-.08c-.33-.35-.96-.67-1.44-.66ZM1.33 2.59C2.57 1.52 4.85.63 9.04.63s6.47.9 7.72 1.96c.62.54.96 1.1 1.14 1.55.09.24.15.5.18.75.01.14.01.27-.02.4-.03.2-.08.39-.15.57-.18.46-.52 1.02-1.14 1.56-1.24 1.06-3.53 1.96-7.72 1.96s-6.47-.9-7.72-1.96C.7 6.88.36 6.32.19 5.86A2.8 2.8 0 0 1 .03 5.3 1.6 1.6 0 0 1 0 5c0-.1.01-.2.03-.29.02-.15.07-.35.16-.58.18-.45.51-1.01 1.14-1.54Z"/></svg>
+    </span>
+    <span class="ico" title="Search">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="7"/><path d="m14.5 14.5 4 4" stroke-linecap="round"/></svg>
+    </span>
+    <span class="ico" title="Monitoring">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+    </span>
+  </div>
+
+  <div class="mini-sidebar__bottom">
+    <span class="ico" title="Profile">
+      <svg width="19" height="19" viewBox="0 0 19 19" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M.65 15.96c0-1.16.46-2.27 1.28-3.09a4.37 4.37 0 0 1 3.1-1.28h8.74a4.37 4.37 0 0 1 4.38 4.37 2.19 2.19 0 0 1-2.19 2.19H2.84a2.19 2.19 0 0 1-2.19-2.19Z" stroke-linejoin="round"/><path d="M9.4 7.21a3.28 3.28 0 1 0 0-6.56 3.28 3.28 0 0 0 0 6.56Z"/></svg>
+    </span>
+    <span class="ico" title="Logout">
+      <svg width="19" height="19" viewBox="0 0 19 19" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.31 2.93A8.5 8.5 0 1 0 14.69 2.93"/><path d="M9.5 1v9" stroke-linecap="round"/></svg>
+    </span>
+  </div>
+</aside>
+
+<!-- ===================== CONTENT ===================== -->
+<main class="content">
+  <div class="card">
+    <h4 class="card-title">Assets</h4>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 20 20"><path d="m14.39 14.39 4.09 4.09-4.09-4.09c-2.94 2.94-7.71 2.94-10.65 0-2.94-2.94-2.94-7.71 0-10.65 2.94-2.94 7.71-2.94 10.65 0 2.94 2.94 2.94 7.71 0 10.65z" stroke="currentColor" fill="none" stroke-width="1.6"/></svg>
+        <input class="search-input" type="text" placeholder="Search..." />
+      </div>
+
+      <div class="toolbar__actions">
+        <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple hidden />
+        <button class="btn btn--outline" id="uploadBtn">
+          <svg width="13" height="14" viewBox="0 0 24 24" fill="none" stroke="#010E5D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload files
+        </button>
+        <button class="btn btn--ghost">
+          <svg width="13" height="15" viewBox="0 0 17 20" fill="none"><path d="M9.53 7.76H8.04V2.84L5.58 5.3a.75.75 0 0 1-1.06-1.06L8.26.51a.75.75 0 0 1 1.06 0l3.73 3.73a.75.75 0 0 1-1.06 1.06L9.53 2.84v4.92Zm5.98 0H9.53v3.73a.75.75 0 0 1-1.5 0V7.76H2.06A1.49 1.49 0 0 0 .57 9.25v8.96a1.49 1.49 0 0 0 1.49 1.5H15.5a1.49 1.49 0 0 0 1.5-1.5V9.25a1.49 1.49 0 0 0-1.49-1.49Z" fill="#010E5D"/></svg>
+          Export data
+        </button>
+        <button class="btn btn--primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 22.5C6.21 22.5 1.5 17.79 1.5 12S6.21 1.5 12 1.5 22.5 6.21 22.5 12 17.79 22.5 12 22.5ZM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9Z" fill="#fff"/><path d="M12 17.25a.75.75 0 0 1-.75-.75v-9a.75.75 0 0 1 1.5 0v9a.75.75 0 0 1-.75.75Z" fill="#fff"/><path d="M16.5 12.75h-9a.75.75 0 0 1 0-1.5h9a.75.75 0 0 1 0 1.5Z" fill="#fff"/></svg>
+          Create a new asset
+        </button>
+      </div>
+    </div>
+
+    <div class="uploads" id="uploads"></div>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Asset Name</th>
+          <th>Ref</th>
+          <th>Class</th>
+          <th>Entity</th>
+          <th>Group</th>
+          <th>Family</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fw-500">moteur01</td>
+          <td>moteur 001</td>
+          <td><span class="class-badge">A</span></td>
+          <td><span class="entity"><svg width="14" height="16" viewBox="0 0 24 24" fill="#010E5D"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="name">Demo Interns</span></span></td>
+          <td>Groupe I F P3</td>
+          <td>Motopompe (new)</td>
+          <td><span class="dots">
+            <svg width="4" height="18" viewBox="0 0 4 18" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>
+          </span></td>
+        </tr>
+        <tr>
+          <td class="fw-500">pompe remplissage</td>
+          <td>pompe2025</td>
+          <td><span class="class-badge">AA</span></td>
+          <td><span class="entity"><svg width="14" height="16" viewBox="0 0 24 24" fill="#010E5D"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="name">Demo Interns</span></span></td>
+          <td>Groupe I R P3</td>
+          <td>Motopompe (new)</td>
+          <td><span class="dots">
+            <svg width="4" height="18" viewBox="0 0 4 18" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>
+          </span></td>
+        </tr>
+        <tr>
+          <td class="fw-500">POMPE EAU DE MER K</td>
+          <td>101UKP15</td>
+          <td><span class="class-badge">AA</span></td>
+          <td><span class="entity"><svg width="14" height="16" viewBox="0 0 24 24" fill="#010E5D"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="name">Demo Interns</span></span></td>
+          <td>Groupe III R P3</td>
+          <td>Motopompe (new)</td>
+          <td><span class="dots">
+            <svg width="4" height="18" viewBox="0 0 4 18" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>
+          </span></td>
+        </tr>
+        <tr>
+          <td class="fw-500">POMPE EAU DE MER</td>
+          <td>101UAP15</td>
+          <td><span class="class-badge">AA</span></td>
+          <td><span class="entity"><svg width="14" height="16" viewBox="0 0 24 24" fill="#010E5D"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="name">Demo Interns</span></span></td>
+          <td>Groupe III R P3</td>
+          <td>Motopompe (new)</td>
+          <td><span class="dots">
+            <svg width="4" height="18" viewBox="0 0 4 18" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>
+          </span></td>
+        </tr>
+        <tr>
+          <td class="fw-500">Motopompe - Intern</td>
+          <td>Motopompe - Intern</td>
+          <td><span class="class-badge">AA</span></td>
+          <td><span class="entity"><svg width="14" height="16" viewBox="0 0 24 24" fill="#010E5D"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="name">Demo Interns</span></span></td>
+          <td>Groupe II F P2</td>
+          <td>Motopompe (new)</td>
+          <td><span class="dots">
+            <svg width="4" height="18" viewBox="0 0 4 18" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>
+          </span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <ul class="pagination">
+      <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </div>
+</main>
+
+<script>
+  (function () {
+    var input = document.getElementById('fileInput');
+    var btn = document.getElementById('uploadBtn');
+    var list = document.getElementById('uploads');
+    var files = [];
+
+    btn.addEventListener('click', function () { input.click(); });
+
+    input.addEventListener('change', function () {
+      var rejected = 0;
+      Array.prototype.forEach.call(input.files, function (f) {
+        var isPdf = f.type === 'application/pdf' || /\.pdf$/i.test(f.name);
+        if (!isPdf) { rejected++; return; }
+        if (!files.some(function (x) { return x.name === f.name && x.size === f.size; })) {
+          files.push(f);
+        }
+      });
+      input.value = '';
+      render();
+      if (rejected) {
+        alert(rejected + (rejected > 1 ? ' files were' : ' file was') + ' skipped — only PDF files are allowed.');
+      }
+    });
+
+    function fmtSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    function render() {
+      list.innerHTML = '';
+      files.forEach(function (f, i) {
+        var chip = document.createElement('span');
+        chip.className = 'upload-chip';
+
+        var name = document.createElement('span');
+        name.className = 'upload-chip__name';
+        name.textContent = f.name;
+
+        var size = document.createElement('span');
+        size.className = 'upload-chip__size';
+        size.textContent = fmtSize(f.size);
+
+        var rm = document.createElement('button');
+        rm.type = 'button';
+        rm.className = 'upload-chip__remove';
+        rm.setAttribute('aria-label', 'Remove ' + f.name);
+        rm.textContent = '×';
+        rm.addEventListener('click', function () {
+          files.splice(i, 1);
+          render();
+        });
+
+        chip.appendChild(name);
+        chip.appendChild(size);
+        chip.appendChild(rm);
+        list.appendChild(chip);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
