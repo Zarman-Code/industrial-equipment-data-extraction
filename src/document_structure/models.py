@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, dataclass, field
-from typing import Any
+from typing import Any, Sequence
 
 
 @dataclass
@@ -61,19 +61,22 @@ class PageRepresentation:
 
 @dataclass
 class TOCEntry:
-    """One entry extracted from a table of contents."""
+    """
+    One entry extracted from a table of contents.
+
+    What kind of trailing reference `printed_page_ref` actually is:
+       "page"     - a plain printed page number (safe to resolve to a
+                     PDF page via DocumentSegmenter._resolve_printed_page)
+       "doc_code" - a document/drawing reference code (e.g.
+                     "P1-REF-2012-123-030"), common in vendor
+                     documentation registers. NOT a page number and
+                     must never be fed into page-number resolution.
+       None       - unknown / not set
+    """
     text: str
     section_number: str | None = None
     level: int = 1
     printed_page_ref: str | None = None
-    # What kind of trailing reference `printed_page_ref` actually is:
-    #   "page"     - a plain printed page number (safe to resolve to a
-    #                 PDF page via DocumentSegmenter._resolve_printed_page)
-    #   "doc_code" - a document/drawing reference code (e.g.
-    #                 "P1-REF-2012-123-030"), common in vendor
-    #                 documentation registers. NOT a page number and
-    #                 must never be fed into page-number resolution.
-    #   None       - unknown / not set.
     reference_kind: str | None = None
     source_page: int | None = None
     confidence: float = 0.0
@@ -130,7 +133,48 @@ class TOCRegion:
 # Alias for backwards compatibility
 TOC = TOCRegion
 
+@dataclass(frozen=True)
+class PageReference:
+    """
+    One reference extracted from a TOC row.
+    """
 
+    page_ref: str
+    section_number: str | int | float | None = None
+    text: str | None = None
+    region_index: int | None = None
+    region_pages: Sequence[int] | None = None
+    level: int | None = None
+    reference_kind: str | None = None
+    source_page: int | None = None
+    confidence: float | None = None
+
+
+@dataclass
+class PageReferenceMatch:
+    """
+    Resolution result for one TOC reference.
+    """
+
+    page_ref: str
+    pdf_page: int | None
+    source: str
+    matched_text: str | None = None
+
+    # Original TOC metadata, preserved when available.
+    section_number: str | int | float | None = None
+    text: str | None = None
+    region_index: int | None = None
+    region_pages: Sequence[int] | None = None
+    level: int | None = None
+    reference_kind: str | None = None
+    source_page: int | None = None
+    confidence: float | None = None
+
+    @property
+    def resolved(self) -> bool:
+        return self.pdf_page is not None
+    
 '''@dataclass
 class TitleCandidate:
     """Candidate heading identified on a page with multi-signal evidence."""
@@ -183,4 +227,5 @@ class DocumentStructure:
 
     def to_json(self, indent: int = 2) -> str:
         return json.dumps(self.to_dict(), ensure_ascii=False, indent=indent)'''
+
 

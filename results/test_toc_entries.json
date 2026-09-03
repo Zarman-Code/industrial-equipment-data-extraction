@@ -1,0 +1,1694 @@
+[
+  {
+    "section_number": "1.1",
+    "title": "DOCUMENTS & DRAWINGS LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "1.2",
+    "title": "SUBVENDOR LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "1.3",
+    "title": "NOISE DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "1.4",
+    "title": "LUBRICANT LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "1.5",
+    "title": "PAINTING SPECIFICATIONS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2",
+    "title": "PACKAGE DRAWINGS",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "2.1",
+    "title": "PROCESS FLOW DIAGRAM",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.2",
+    "title": "P&ID REFRIGERATION UNIT",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.3",
+    "title": "GENERAL ARRANGEMENT DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.4",
+    "title": "FOUNDATION LAY OUT",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3",
+    "title": "P.V. & H.E.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "3.1",
+    "title": "AIR COOLER CONDENSER DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.2",
+    "title": "AIR COOLER CONDENSER GENERAL ARRANGEMENT",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.3",
+    "title": "AIR COOLER CONDENSER TUBE BUNDLE DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.4",
+    "title": "AIR COOLER CONDENSER STRUCTURAL PART LIST & ASSEMBLY",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.5",
+    "title": "AIR COOLER CONDENSER TUBE BUNDLE FRAME DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.6",
+    "title": "AIR CONDENSER TESTING PROCEDURE",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.7",
+    "title": "ECONOMIZER DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.8",
+    "title": "ECONOMIZER ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.9",
+    "title": "KO DRUM DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.10",
+    "title": "KO DRUM ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.11",
+    "title": "OIL COOLER DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.12",
+    "title": "OIL COOLER ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.13",
+    "title": "RECEIVER DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.14",
+    "title": "RECEIVER ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.15",
+    "title": "OIL SEPARATOR DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.16",
+    "title": "OIL SEPARATOR ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.17",
+    "title": "SUCTION FILTER DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.18",
+    "title": "SUCTION FILTER ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.19",
+    "title": "OIL FILTER DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.20",
+    "title": "OIL FILTER ASSEMBLY DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.21",
+    "title": "P.V. & H.E. TESTING PROCEDURES",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4",
+    "title": "COMPRESSOR & PUMPS",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "4.1",
+    "title": "COMPRESSOR DRAWINGS (OUTLINE & SECTIONAL)",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.2",
+    "title": "COMPRESSOR MECHANICAL SEAL DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.3",
+    "title": "COMPRESSOR TESTING PROCEDURE",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4",
+    "title": "COMPRESSOR PERFORMANCE CURVE",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.5",
+    "title": "COMPRESSOR STARTING TORQUE CURVE",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.6",
+    "title": "TRAIN TORSIONAL ANALYSIS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.7",
+    "title": "COMPRESSOR DATA SHEETS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.8",
+    "title": "COMPRESSOR COUPLING DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.9",
+    "title": "OIL PUMP DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.10",
+    "title": "OIL PUMP DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5",
+    "title": "ELECTRICAL",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "5.1",
+    "title": "ELECTRICAL & UTILITIES CONSUMPTION LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.2",
+    "title": "MAIN MOTOR DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.3",
+    "title": "MAIN MOTOR DATA SHEETS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.4",
+    "title": "MAIN MOTOR TERMINAL BOXES",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.5",
+    "title": "MAIN MOTOR TESTING PROCEDURE",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.6",
+    "title": "FAN MOTORS DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.7",
+    "title": "FAN MOTORS DATA SHEET & CURVES",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.8",
+    "title": "PUMP MOTORS DRAWING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.9",
+    "title": "PUMP MOTORS DATA SHEET & CURVES",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6",
+    "title": "PIPING",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "6.1",
+    "title": "LINE LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6.2",
+    "title": "PIPING TESTING PROCEDURE",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6.3",
+    "title": "PIPING CLASS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7",
+    "title": "INSTRUMENTATION & CONTROL",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "7.1",
+    "title": "CONTROL SYSTEM BLOCK DIAGRAM",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.2",
+    "title": "INSTRUMENT LIST & SETTING",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.3",
+    "title": "INSTRUMENT DATA SHEETS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.4",
+    "title": "INSTRUMENT HOOK UP",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.5",
+    "title": "ELECTRICAL HOOK UP",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.6",
+    "title": "SAFETY VALVES CALCULATION SHEETS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.7",
+    "title": "CAUSE & EFFECTS CHART",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.8",
+    "title": "PACKAGE I/O LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.9",
+    "title": "CABLES LIST",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.10",
+    "title": "LOCAL GAUGE BOARD & JB LAY OUT",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7.11",
+    "title": "INSTRUMENTS AND CABLE TRAY LAY OUT",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "1 SAFETY INSTRUCTIONS",
+    "level": 1,
+    "page_number": 189
+  },
+  {
+    "section_number": null,
+    "title": "2 TRANSPORT & PACKING",
+    "level": 1,
+    "page_number": 196
+  },
+  {
+    "section_number": "2.1",
+    "title": "PACKING LIST",
+    "level": 2,
+    "page_number": 197
+  },
+  {
+    "section_number": "2.2",
+    "title": "PACKING DRAWING",
+    "level": 2,
+    "page_number": 206
+  },
+  {
+    "section_number": null,
+    "title": "3 INSTALLATION INSTRUCTIONS",
+    "level": 1,
+    "page_number": 209
+  },
+  {
+    "section_number": "3.1",
+    "title": "LIFTING DRAWINGS",
+    "level": 2,
+    "page_number": 210
+  },
+  {
+    "section_number": "3.2",
+    "title": "PRESERVATION AND STORAGE PROCEDURE will follow",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.3",
+    "title": "SKID POSITIONING AND LEVELLING PROCEDURE",
+    "level": 2,
+    "page_number": 211
+  },
+  {
+    "section_number": null,
+    "title": "4 COMMISSIONING & START UP",
+    "level": 1,
+    "page_number": 216
+  },
+  {
+    "section_number": "4.1",
+    "title": "COMMISSIONING & START UP PROCEDURE, including:",
+    "level": 2,
+    "page_number": 217
+  },
+  {
+    "section_number": "4.2",
+    "title": "COMPRESSOR MOTOR ALIGNEMENT PROCEDURE",
+    "level": 2,
+    "page_number": 240
+  },
+  {
+    "section_number": "4.3",
+    "title": "VACUUM TEST PROCEDURE will follow",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "5 OPERATION",
+    "level": 1,
+    "page_number": 246
+  },
+  {
+    "section_number": "5.1",
+    "title": "OPERATING INSTRUCTIONS will follow",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.2",
+    "title": "CONTROL PHILOSOPHY",
+    "level": 2,
+    "page_number": 247
+  },
+  {
+    "section_number": null,
+    "title": "6 MAINTENANCE MANUAL",
+    "level": 1,
+    "page_number": 278
+  },
+  {
+    "section_number": "6.1",
+    "title": "GENERAL MAINTENANCE INSTRUCTIONS will follow",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6.2",
+    "title": "PERIODIC INSPECTION AND ADJUSTEMENT will follow",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6.3",
+    "title": "MAINTENANCE SCHEDULE",
+    "level": 2,
+    "page_number": 279
+  },
+  {
+    "section_number": "6.4",
+    "title": "TROUBLE SHOOTING",
+    "level": 2,
+    "page_number": 281
+  },
+  {
+    "section_number": "6.5",
+    "title": "COMPRESSOR OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 286
+  },
+  {
+    "section_number": "6.6",
+    "title": "PUMP OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 479
+  },
+  {
+    "section_number": "6.7",
+    "title": "MAIN MOTOR OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 521
+  },
+  {
+    "section_number": "6.8",
+    "title": "PUMP MOTOR OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 572
+  },
+  {
+    "section_number": "6.9",
+    "title": "COMPRESSOR COUPLING OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 619
+  },
+  {
+    "section_number": "6.10",
+    "title": "AIR COOLER CONDENSER OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 634
+  },
+  {
+    "section_number": "6.11",
+    "title": "ECONOMIZER OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 820
+  },
+  {
+    "section_number": "6.12",
+    "title": "KO DRUM OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 829
+  },
+  {
+    "section_number": "6.13",
+    "title": "OIL COOLER OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 838
+  },
+  {
+    "section_number": "6.14",
+    "title": "RECEIVER OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 847
+  },
+  {
+    "section_number": "6.15",
+    "title": "OIL SEPARATOR OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 856
+  },
+  {
+    "section_number": "6.16",
+    "title": "SUCTION FILTER OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 865
+  },
+  {
+    "section_number": "6.17",
+    "title": "OIL FILTER OPERATING AND INSTRUCTION MANUAL",
+    "level": 2,
+    "page_number": 874
+  },
+  {
+    "section_number": "6.18",
+    "title": "SPECIAL TOOLS LIST",
+    "level": 2,
+    "page_number": 1060
+  },
+  {
+    "section_number": null,
+    "title": "7 SPARE PARTS LISTS",
+    "level": 1,
+    "page_number": 1064
+  },
+  {
+    "section_number": "7.1",
+    "title": "Spare part list (commissioning)",
+    "level": 2,
+    "page_number": 1065
+  },
+  {
+    "section_number": "1",
+    "title": "Compressor does not load a) Load solenoid valve coil burned out or not opening b) Unload solenoid valve not closing tight. c) Excessive motor current d) Motor absorption limitation not working. e) Malfunction of capacity control system f) Unloader piston stuck pistonu f) a1) Check and replace. b1) Check and replace. c1) Check compressor motor current and compare with motor nameplate rating. d1) After checking motor current, readjust load limit control to allow the motor to run at full nameplate amps. or replace it if found to be defective. e1) Check sensor and hydraulic valve. e2) Check unloader piston for eventual oil leaking by cap seal. f1) Check for stuck plunger and/or faulty diaphragm in valve.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "2",
+    "title": "Compressor does not unload: a) Unload solenoid valve coil burned out. b) Unload solenoid valve not opening. c) Load solenoid valve not closing tight. d) Unloaded piston stuck. a1) Check and replace b1) Check and replace c1) Check and replace d1) Check for stuck plunger and/or faulty diaphragm in valve.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "3",
+    "title": "Main Motor Overload. a) Load limit control improperly set (or) malfunctioning. b) Compressor motor overload relays improperly set (or) malfunctioning. a1) Check compressor motor current and compare with motor nameplate rating. b1) Verify the rating of the overload relays. Check the motor current on all phases at full load conditions. Adjust or replace relays or heaters as required.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "4",
+    "title": "High discharge pressure. a) Compressor Load too high. b) Reduced condenser capacity. a1) Reduce load. b1) Check water flow to condenser and tube fouling. b2) Check for non condensable -",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "c",
+    "title": "Closed stop valve in gas outlet piping d) Malfunction of instruments or wrong setting. purge through high side. b3) Check for refrigerant overcharge. c1) Open the valve. d1) Check instruments and relevant setting,",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "5",
+    "title": "High discharge temperature a) Insufficient oil cooling effect in compressor. b) Insufficient oil cooling . v c. . c) Excessive discharge superheat. d) High suction temperature. a1) Refer to Malfunction 5. b1) Check oil temperature leaving oil cooler. b2) Check oil temperature control valve and relevant loop. b3) Check cooling fluid flow. c1) Decrease suction temperature. d1) Decrease suction temperature.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "6",
+    "title": "Low lube oil differential pressure a) Dirty oil strainers or filters. . . b) PSV on oil pump or PDCV on oil circuit wrongly open. c) Oil pump capacity reduced due to: - Upstream clogging strainer; - Low oil level in the Oil Separator (cavitation); - Liquid carry over. d) Compressor bearings damaged. e) Insufficient oil pump capacity. . I. Insufficient . . . a1) Check pressure drop and clean or substitute as necessary. b1) Check PSV set and PDCV operation. c1) Check dirty on suction strainer. c2) Check sufficient oil level in the Oil Separator. c3) Check operating condition and liquid level control system upstream the compressor; d1) Disassemble the compressor and replace the bearings. e1) Excessively high pressure drop across compressor. Check suction and discharge pressure. e2) Check if oil viscosity is sufficient and correct oil type;",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "7",
+    "title": "Low lube oil temperature a) Oil cooler oil regulating control valve malfunctioning. b) Excessive refrigerant in oil. . a1) Readjust or replace as required. . b1) Check oil sump heater operation. b2) Check the oil quality and type. c1) Check oil sump heater",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "c",
+    "title": "Excessive liquid carry over from compressor suction side. operation. c2) Check operating condition and liquid level control system upstream the compressor..",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "8",
+    "title": "Oil pump motor current overload protection a) Excessive absorbed current on oil pump motor. b) Failure to achieve oil pressure in due time. c) Oil filter clogged. a1) Low oil temperature; refer to Malfunction 8. b1) Low oil differential pressure; refer to Malfunction 7. c1) Check and replace element.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "9",
+    "title": "High lube oil temperature a) Insufficient oil cooling effect in compressor. b) Insufficient oil cooling. a1) Refer to Malfunction 5. b1) Refer to Malfunction 6.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "10",
+    "title": "Low suction pressure. a) Insufficient process gas supply. b) Suction strainer clogged or suction valve closed. a1) Check plant parameters and in case provide hot gas by-pass valve or check it if present. b1) Check, clean or substitute suction strainer. b2) Open suction valve.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "11",
+    "title": "Low oil level in the Oil Separator. a) Too many change load/unload. b) Drastic change of discharge pressure, which creates foaming of oil by dissolving gas. c) Oil has not returned from oil Separator. d) Wrong mounting or damaged oil separator coalescer elements. a1) Keep stable operation. b1) Keep stable pressure. b2) Avoid sudden de- pressurization. c1) Check oil return valve and open it slightly.. d1) Check, replace element.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "12",
+    "title": "Excessive shaft seal leakage. a) Damage on mechanical seal by dirty particles or frictional heat. b) Alignment error and/or vibration due to disalignment. a1) Check shaft seal,replace necessary parts. b1) Check and readjust alignment.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "13",
+    "title": "Reverse turning of rotors when compressor stops. a) suction check valve leaking or malfunction. a1) Check, repair, replace necessary parts, or complete suction check valve.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "14",
+    "title": "Compressor is producing abnormal noise during operation. a) Foreign matters have entered in compressor. b) Thrust bearing damaged. c) Rotor and casing have mechanical contact due to bearings damage. d) Coupling key is loosen. e) Coupling elements produce noise due to misalignment. a1) Disassemble and repair the compressor; clean suction strainer. b1) Replace. c1) Disassemble, repair compressor. Replace necessary parts. d1) Replace key. Tighten set bolt. e1) Check alignment, and adjust. e2) Replace coupling elements.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "15",
+    "title": "Oil pump is producing abnormal noise. a) Cavitation. b) Coupling key is loosen. a1) Refer to symptom G. b1) Refer to symptom Q.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "16",
+    "title": "Abnormal vibration observed when compressor starts only. a) Oil compression. b) Any liquid incoming from suction piping when start. a1) Oil drain time must be increased. b1) Check operating condition and liquid level control system upstream the compressor.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "17",
+    "title": "Compressor is vibrating continuously. a) Anchor bolts loosen. b) Misalignment or incorrect coupling assembly. c) Unbalanced motor rotor. a1) Tighten. b1) Check alignment and adjust or re-assemble properly. c1) Check and adjust.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "19",
+    "title": "Piping is vibrating continuously. a) Resonance a1) Correctly place supports for piping or change position of them.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "1",
+    "title": "Introduction…………………...................................",
+    "level": 1,
+    "page_number": 1
+  },
+  {
+    "section_number": "2",
+    "title": "Description générale du compresseur à vis",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "2.1",
+    "title": "Mécanisme de compression du",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.1.1",
+    "title": "Phase d’aspiration…..................................",
+    "level": 3,
+    "page_number": 8
+  },
+  {
+    "section_number": "2.1.2",
+    "title": "Phase de compression…….......................",
+    "level": 3,
+    "page_number": 8
+  },
+  {
+    "section_number": "2.1.3",
+    "title": "Phase de refoulement……………..............",
+    "level": 3,
+    "page_number": 8
+  },
+  {
+    "section_number": "2.2",
+    "title": "Déﬁ nition du Vi (Rapport Volumétrique",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.3",
+    "title": "Raisons d’ajuster le Vi…………………...............",
+    "level": 2,
+    "page_number": 9
+  },
+  {
+    "section_number": "2.4",
+    "title": "Le mécanisme du Vi variable…..........................10",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.5",
+    "title": "Réglage externe du Vi............….....…................11",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.6",
+    "title": "Précautions lors d’un changement de Vi..…..….13",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.7",
+    "title": "Mécanismes d’autres composants……......….…15",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.8",
+    "title": "Débit d’huile……………......................................16",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3",
+    "title": "Vue en éclaté d’un compresseur à vis Série V.....17",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "3.1",
+    "title": "Liste des pièces..................................................19",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.2",
+    "title": "Vue longitudinale en coupe............….................31",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.3",
+    "title": "Dimensions extérieures………………….............32",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "3.4",
+    "title": "Table des dimensions…………………................35",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4",
+    "title": "Démontage de la série V......…...............................36",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "4.1",
+    "title": "Préparation avant le démontage………..............36",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.2",
+    "title": "Jeu d‘outillage………………………....….............36",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.3",
+    "title": "Dépose du compresseur………………...............36",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.3.1",
+    "title": "Récupération du réfrigérant……................36",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.3.2",
+    "title": "Demontage de l’équipement auxiliaire..….36",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.3.3",
+    "title": "Levage et dépose du compresseur........…36",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4",
+    "title": "Séquence de démontage….................…...........37",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.1",
+    "title": "Garniture mécanique d’étanchéité........….37",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.1.1",
+    "title": "Démontage................................37",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.1.2",
+    "title": "Inspection.......…...........………..38",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.2",
+    "title": "Indicateur de capacité……......…..………..39",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.2.1",
+    "title": "Depose de la sonde de",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "délestage",
+    "level": 1,
+    "page_number": 39
+  },
+  {
+    "section_number": "4.4.3",
+    "title": "Couvercle du mécanisme de délestage….39",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.3.1",
+    "title": "Démontage...................…......…39",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.3.2",
+    "title": "Inspection…....…….......………..40",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.4",
+    "title": "Piston et cylindre de délestage……..…….40",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.4.1",
+    "title": "Démontage.........…....…............40",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.4.2",
+    "title": "Inspection...........................…....41",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.5",
+    "title": "Couvercle du piston d’équilibrage..........…41",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.6",
+    "title": "Piston d’équilibrage et chemise.................41",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.6.1",
+    "title": "Démontage..........….......….……41",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.6.2",
+    "title": "Inspection…..............….............42",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.7",
+    "title": "Couvercle des roulements……....…..........42",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.7.1",
+    "title": "Démontage..…....…...................43",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.7.2",
+    "title": "Inspection...............................…43",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.8",
+    "title": "Roulement de buttée...……..……………...43",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.8.1",
+    "title": "Démontage................................43",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.8.2",
+    "title": "Inspection..................................44",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.9",
+    "title": "Couvercle d’aspiration et roulement",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.9.1",
+    "title": "Démontage................................45",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.9.2",
+    "title": "Inspection..................................45",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.10",
+    "title": "Rotor, carter et tiroir du Vi variabl............45",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.10.1",
+    "title": "Démontage..............................45",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.10.2",
+    "title": "Inspection…..….......................45",
+    "level": 4,
+    "page_number": null
+  },
+  {
+    "section_number": "4.4.11",
+    "title": "Logement de roulement et roulement",
+    "level": 3,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "principal………...............…",
+    "level": 1,
+    "page_number": 46
+  },
+  {
+    "section_number": "5",
+    "title": "Remontage….…………………………….…..............47",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": "5.1",
+    "title": "Logement de roulement et roulement principal..47",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.3",
+    "title": "Carter des rotors et rotors.….……………………49",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.4",
+    "title": "Couvercle d‘aspiration……….…………………...49",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.5",
+    "title": "Roulement de buttée..…....……………………....50",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.6",
+    "title": "Couvercle des roulements………………….........53",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.7",
+    "title": "Couvercle blindé, piston et chemise de",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.8",
+    "title": "Couvercle de délestage……..……………………54",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.9",
+    "title": "Garniture mécanique d’étanchéité………………55",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6",
+    "title": "Démontage et réglage de l’indicateur de capacité..",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": ".",
+    "level": 1,
+    "page_number": 56
+  },
+  {
+    "section_number": "6.1",
+    "title": "Démontage et réglage de l’indicateur de",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "capacité………………………..............……..……",
+    "level": 1,
+    "page_number": 56
+  },
+  {
+    "section_number": "6.2",
+    "title": "Inspection…………..............…………….…….…57",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "6.3",
+    "title": "Assemblage et réglage.….……………….………58",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "7",
+    "title": "Dimensions standards des composants..............59",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "Ecrous de blocage...................................……",
+    "level": 1,
+    "page_number": 59
+  },
+  {
+    "section_number": null,
+    "title": "Liste des joints toriques..……………………........…",
+    "level": 1,
+    "page_number": 61
+  },
+  {
+    "section_number": null,
+    "title": "Sélection",
+    "level": 1,
+    "page_number": 62
+  },
+  {
+    "section_number": null,
+    "title": "Changer de marque d’huile..............................…",
+    "level": 1,
+    "page_number": 62
+  },
+  {
+    "section_number": null,
+    "title": "Liste des joints des compresseurs Série V.......…",
+    "level": 1,
+    "page_number": 63
+  },
+  {
+    "section_number": "2.0",
+    "title": "“COFIMCO“ Manually Operated Fans",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.1",
+    "title": "FAN DATA SHEET",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "2.2",
+    "title": "INSTALLATION, OPERATION AND MAINTENANCE MANUAL OF “COFIMCO” FANS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.0",
+    "title": "TUBE BUNDLE & STRUCTURES DRAWINGS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.1",
+    "title": "DWG TITLE DWG NO. REV.",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.2",
+    "title": "Tube Bundle Drawing",
+    "level": 2,
+    "page_number": 1
+  },
+  {
+    "section_number": "5.3",
+    "title": "Namepalte Drawing",
+    "level": 2,
+    "page_number": 2
+  },
+  {
+    "section_number": "5.4",
+    "title": "General Arrangement Drawing",
+    "level": 2,
+    "page_number": 3
+  },
+  {
+    "section_number": "5.5",
+    "title": "Assembly for Erection",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.6",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.7",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.8",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.9",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.10",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.11",
+    "title": "Mechanical Parts List and Assembly",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.12",
+    "title": "Tube Bundle Frame Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.13",
+    "title": "Plenum Chamber & Fan Ring Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.14",
+    "title": "Plenum Chamber & Fan Ring Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.15",
+    "title": "Mechanical Part Support & Fan Guard",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.16",
+    "title": "Fan Shaft Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.17",
+    "title": "Shipping Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.0",
+    "title": "TUBE BUNDLE & STRUCTURES DRAWINGS",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.1",
+    "title": "DWG TITLE DWG NO. REV.",
+    "level": 2,
+    "page_number": null
+  },
+  {
+    "section_number": "5.2",
+    "title": "Tube Bundle Drawing",
+    "level": 2,
+    "page_number": 1
+  },
+  {
+    "section_number": "5.3",
+    "title": "Namepalte Drawing",
+    "level": 2,
+    "page_number": 2
+  },
+  {
+    "section_number": "5.4",
+    "title": "General Arrangement Drawing",
+    "level": 2,
+    "page_number": 3
+  },
+  {
+    "section_number": "5.5",
+    "title": "Assembly for Erection",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.6",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.7",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.8",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.9",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.10",
+    "title": "Structural Elements Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.11",
+    "title": "Mechanical Parts List and Assembly",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.12",
+    "title": "Tube Bundle Frame Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.13",
+    "title": "Plenum Chamber & Fan Ring Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.14",
+    "title": "Plenum Chamber & Fan Ring Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.15",
+    "title": "Mechanical Part Support & Fan Guard",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.16",
+    "title": "Fan Shaft Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "5.17",
+    "title": "Shipping Drawing",
+    "level": 2,
+    "page_number": 0
+  },
+  {
+    "section_number": "1",
+    "title": "INTRODUCTION ................................................................................................................................................",
+    "level": 1,
+    "page_number": 3
+  },
+  {
+    "section_number": "2",
+    "title": "INSTRUCTIONS GENERALES POUR L’INSTALLATION ET LE FONCTIONNEMENT ....................",
+    "level": 1,
+    "page_number": 4
+  },
+  {
+    "section_number": "2.1",
+    "title": "INSTRUCTIONS POUR LE STOCKAGE ...................................................................................................................",
+    "level": 2,
+    "page_number": 4
+  },
+  {
+    "section_number": "2.1.1",
+    "title": "Caractéristiques nécessaires pour la zone de stockage ............................................................................",
+    "level": 3,
+    "page_number": 4
+  },
+  {
+    "section_number": "2.1.2",
+    "title": "Stockage des matériaux avant le montage .................................................................................................",
+    "level": 3,
+    "page_number": 4
+  },
+  {
+    "section_number": "2.1.3",
+    "title": "Inspection des matériels sur la zone de stockage avant le montage .........................................................",
+    "level": 3,
+    "page_number": 7
+  },
+  {
+    "section_number": "2.1.4",
+    "title": "Stockage des matériels à partir du Pre-commissioning jusqu’à la Mise en marche. ................................",
+    "level": 3,
+    "page_number": 7
+  },
+  {
+    "section_number": "2.1.5",
+    "title": "Stockage des matériels pendant les périodes d’arrêt de l’équipement (brèves ou longues) .....................",
+    "level": 3,
+    "page_number": 7
+  },
+  {
+    "section_number": "2.1.6",
+    "title": "Composants pour le remontage et la nouvelle mise en marche ................................................................",
+    "level": 3,
+    "page_number": 8
+  },
+  {
+    "section_number": "2.2",
+    "title": "INSTRUCTIONS POUR LE TRANSPORT ET LE SOULEVEMENT ................................................................................",
+    "level": 2,
+    "page_number": 8
+  },
+  {
+    "section_number": "2.3",
+    "title": "EQUIPEMENTS ET OUTILS SPECIAUX .................................................................................................................",
+    "level": 2,
+    "page_number": 14
+  },
+  {
+    "section_number": "2.4",
+    "title": "PROCEDURE DE MONTAGE ...............................................................................................................................",
+    "level": 2,
+    "page_number": 15
+  },
+  {
+    "section_number": "2.5",
+    "title": "CONNEXIONS ...................................................................................................................................................",
+    "level": 2,
+    "page_number": 17
+  },
+  {
+    "section_number": "2.6",
+    "title": "PROCEDURE DE PRE-COMMISSIONING .............................................................................................................",
+    "level": 2,
+    "page_number": 18
+  },
+  {
+    "section_number": "2.7",
+    "title": "PROCEDURE DE COMMISSIONING .....................................................................................................................",
+    "level": 2,
+    "page_number": 19
+  },
+  {
+    "section_number": "2.8",
+    "title": "MISE EN MARCHE ET ARRET DE L’INSTALLATION .............................................................................................",
+    "level": 2,
+    "page_number": 20
+  },
+  {
+    "section_number": "2.9",
+    "title": "CONTROLES PERIODIQUES ...............................................................................................................................",
+    "level": 2,
+    "page_number": 20
+  },
+  {
+    "section_number": "2.10",
+    "title": "CONTROLES DE FONCTIONNEMENT ET D’INTEGRITE ......................................................................................",
+    "level": 2,
+    "page_number": 21
+  },
+  {
+    "section_number": "2.11",
+    "title": "LUBRIFICATION .............................................................................................................................................",
+    "level": 2,
+    "page_number": 21
+  },
+  {
+    "section_number": "3",
+    "title": "INSTRUCTIONS D’ENTRETIEN ET RESOLUTION DES PROBLEMES ..............................................",
+    "level": 1,
+    "page_number": 23
+  },
+  {
+    "section_number": "3.1",
+    "title": "INSTRUCTIONS D’ENTRETIEN .................................................................................................................",
+    "level": 2,
+    "page_number": 23
+  },
+  {
+    "section_number": "3.1.1",
+    "title": "NETTOYAGE DE LA SURFACE EXTERNE DES TUBES A AILETTES .....................................................................",
+    "level": 3,
+    "page_number": 23
+  },
+  {
+    "section_number": "3.1.2",
+    "title": "INSPECTION INTERIEURE DES FAISCEAUX TUBULAIRES .................................................................................",
+    "level": 3,
+    "page_number": 23
+  },
+  {
+    "section_number": "3.1.2",
+    "title": "NETTOYAGE INTERIEUR DES TUBES ..............................................................................................................",
+    "level": 3,
+    "page_number": 24
+  },
+  {
+    "section_number": "3.2",
+    "title": "RESOLUTION DES PROBLEMES ...............................................................................................................",
+    "level": 2,
+    "page_number": 24
+  },
+  {
+    "section_number": "3.2.1",
+    "title": "FUITE DU JOINT DE BOUCHONS .....................................................................................................................",
+    "level": 3,
+    "page_number": 25
+  },
+  {
+    "section_number": "3.2.2",
+    "title": "FUITE DES FILETS DE LA PLAQUE BOUCHONS ................................................................................................",
+    "level": 3,
+    "page_number": 25
+  },
+  {
+    "section_number": "3.2.3",
+    "title": "FUITE VENANT DU COUVERCLE PLAT OU BOMBE ...........................................................................................",
+    "level": 3,
+    "page_number": 25
+  },
+  {
+    "section_number": "3.2.4",
+    "title": "FUITE DANS LA SOUDURE DES TUBES A LA PLAQUE TUBULAIRE ....................................................................",
+    "level": 3,
+    "page_number": 26
+  },
+  {
+    "section_number": "3.2.5",
+    "title": "BOUCHAGE DES TUBES ENDOMMAGES ..........................................................................................................",
+    "level": 3,
+    "page_number": 26
+  },
+  {
+    "section_number": "3.2.6",
+    "title": "ESSAI HYDRAULIQUE ....................................................................................................................................",
+    "level": 3,
+    "page_number": 27
+  },
+  {
+    "section_number": "X0659",
+    "title": "455A-IZ-018 Pos. 7 455A-IZ-018 Pos. 29 455A-IZ-018 Pos. 30 - 31 455A-IZ-018 Pos. 9 - 10 455A-IZ-020 Pos. 8 455A-IZ-020 Pos. 15 455A-IZ-020 Pos. 6 - 7 455A-IZ-020 Pos. 13-14 455A-IZ-017 Pos. 30 455A-IZ-017 Pos. 31 455A-IZ-017 Pos. 13-14 455A-IZ-017 Pos. 18-19 455A-IZ-017 Pos. 41 -42 455A-IZ-015 Pos. 13 455A-IZ-015 Pos. 30 455A-IZ-015 Pos. 31 455A-IZ-015 Pos. 11-12 455A-IZ-015 Pos. 41-42 455A-IZ-016 Pos. 39 455A-IZ-016 Pos. 31 455A-IZ-016 Pos. 33-34 455A-IZ-016 Pos. 29-30 455A-IZ-019 Pos. 29-30 455A-IZ-019 Pos. 21 455A-IZ-019 Pos. 30-31 455A-IZ-019 Pos. 19-20 7902-01-DWB-01 Pos. 450 7902-01-DWB-01 Pos. 700 7902-01-DCG-01 Pos. 10 OTHER DESCRIPTION / COMMENTS * These Commissioning Spare Parts are related to 455A plants. Identical parts will be supplied for areas: 555A - 655A - 755A. ** These Commissioning Spare Parts are related to all 455A-555A-655A-755A areas.",
+    "level": 1,
+    "page_number": null
+  },
+  {
+    "section_number": null,
+    "title": "455AAE02 / 455AKE02",
+    "level": 1,
+    "page_number": 8
+  },
+  {
+    "section_number": null,
+    "title": "455AKR02 / 455AAR02",
+    "level": 1,
+    "page_number": 5
+  },
+  {
+    "section_number": null,
+    "title": "455AAR04 / 455AKR04",
+    "level": 1,
+    "page_number": 3
+  },
+  {
+    "section_number": null,
+    "title": "455AAE04 / 455ABE04 / 455ACE04",
+    "level": 1,
+    "page_number": 8
+  },
+  {
+    "section_number": null,
+    "title": "455AAE01 / 455ABE01 / 455ACE01",
+    "level": 1,
+    "page_number": 8
+  },
+  {
+    "section_number": null,
+    "title": "455AAF01 / 455ABF01 / 455ACF01",
+    "level": 1,
+    "page_number": 4
+  },
+  {
+    "section_number": null,
+    "title": "455AAS01 / 455ABS01 / 455ACS01",
+    "level": 1,
+    "page_number": 4
+  },
+  {
+    "section_number": null,
+    "title": "Solenoid Valves",
+    "level": 1,
+    "page_number": 1
+  },
+  {
+    "section_number": null,
+    "title": "455AAF02 / 455ABF02 / 455ACF02",
+    "level": 1,
+    "page_number": 1
+  }
+]

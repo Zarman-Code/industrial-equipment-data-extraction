@@ -14,17 +14,6 @@ from .models import (
 )
 
 
-# ---------------------------------------------------------------------------
-# Semantic hints
-# ---------------------------------------------------------------------------
-#
-# IMPORTANT:
-# These are NOT all equivalent.
-#
-# Explicit TOC terminology is useful evidence.
-# "index" is intentionally kept separate because an index is not necessarily
-# useful for document segmentation.
-#
 
 STRONG_TOC_KEYWORDS: tuple[str, ...] = (
     "table of contents",
@@ -74,18 +63,6 @@ PAGE_REFERENCE_RE = re.compile(
 # ---------------------------------------------------------------------------
 # Document / drawing reference codes
 # ---------------------------------------------------------------------------
-#
-# Many vendor documentation packages are "document registers", not
-# classic page-numbered TOCs: each entry's trailing reference is a
-# document/drawing number (e.g. "P1-REF-2012-123-030", "DWG-1234-A"),
-# not a page number.
-#
-# A page full of these is exactly as strong a TOC signal as a page full
-# of plain page numbers -- but the two must stay distinguishable,
-# because a document code must NEVER be fed into page-number resolution
-# (see DocumentSegmenter._resolve_printed_page): grabbing the first
-# 1-4 digit run out of "P1-REF-2012-123-030" would silently produce a
-# bogus PDF page number.
 
 DOC_CODE_RE = re.compile(
     r"^[A-Za-z0-9]{1,12}(?:[-/][A-Za-z0-9]{1,12}){2,}$"
@@ -95,11 +72,7 @@ TRAILING_DOC_CODE_RE = re.compile(
     r"^(.+?)\s+([A-Za-z0-9]{1,12}(?:[-/][A-Za-z0-9]{1,12}){2,})\s*$"
 )
 
-# Header terms that mark the right-hand column of a two-column table as
-# holding document/drawing reference numbers rather than page numbers.
-# Paired with a "description"-like left column (e.g. "Description" /
-# "Doc. No."), this is as strong a heading-equivalent signal that the
-# table is a document index as the word "Contents" would be.
+# Header terms that mark the right-hand column of a two-column tabl
 DOC_REGISTER_HEADER_TERMS: tuple[str, ...] = (
     "doc. no",
     "doc no",
@@ -111,6 +84,11 @@ DOC_REGISTER_HEADER_TERMS: tuple[str, ...] = (
     "dwg no",
     "drawing number",
     "dwg number",
+)
+
+POSITION_CODE_RE = re.compile(
+    r"[\w./-]{2,40}\s+Pos\.\s*\d+(?:\s*-\s*\d+)?",
+    re.IGNORECASE,
 )
 
 
@@ -169,9 +147,6 @@ SECTION_PATTERNS: tuple[
 )
 
 # A cell/line that is JUST a section number with no title alongside it
-# (e.g. "5.4", "6.", "7.10") -- used when a table splits the number and
-# title into separate columns, so none of SECTION_PATTERNS above (which
-# all require trailing title text in the same string) can match.
 BARE_SECTION_NUMBER_RE = re.compile(
     r"^([A-Z]?\d+[A-Z]?(?:\.\d+){0,3}\.?)$"
 )
@@ -320,17 +295,6 @@ class TOCDetector:
         """
         Run analyze_page() across a whole document and group the
         result into TOCRegion objects.
-
-        Grouping is intentionally conservative: only STRICTLY
-        CONSECUTIVE PDF pages that both score is_toc=True are merged
-        into the same region. This handles the common case of a
-        multi-page TOC/document-register continuation (e.g. pages
-        6-7 of a vendor documentation package), but it does NOT try
-        to solve the harder, still-open problems of matching a TOC to
-        a non-adjacent continuation page, or telling a single global
-        TOC apart from multiple nested/local ones -- both remain
-        manual judgment calls for now (see the notebook's "Nested/
-        local TOCs" section).
         """
 
         toc_pages: list[
@@ -444,6 +408,44 @@ class TOCDetector:
                 analysis.entries
             ),
         }
+        
+
+    def _analyze_position_list_structure(
+        self,
+        lines: list[str],
+        tables: list[TableRepresentation] | None = None,
+    ) -> dict[str, Any]:
+        """
+        Detect a page dominated by "<code> Pos. N[-M]" position-list
+        entries (e.g. spare-parts / bill-of-materials listings) -- these
+        can superficially resemble a TOC/document-register (short,
+        code-like lines) but are a distinct, non-TOC structure.
+
+        Text is flattened into one blob (all lines, plus every non-empty
+        table cell) before matching, rather than matched per-line --
+        real extracted text often collapses logically separate position
+        entries into fewer, longer lines, so a per-line match would find
+        ~0 of them even on a page dominated by the pattern.
+        """
+
+        text = "\n".join(lines)
+
+        for table in tables or []:
+            for row in table.rows:
+                for value in row:
+                    if value:
+                        text += "\n" + str(value)
+
+        matches = POSITION_CODE_RE.findall(text)
+        match_count = len(matches)
+        ratio = self._ratio(match_count, len(lines))
+
+        return {
+            "match_count": match_count,
+            "ratio": ratio,
+            "is_position_list": ratio >= 0.20 or match_count >= 10,
+        }
+
 
     # ======================================================================
     # EVIDENCE COLLECTION
@@ -582,6 +584,17 @@ class TOCDetector:
         prose_evidence = (
             self._analyze_prose_structure(
                 lines
+            )
+        )
+
+        # ------------------------------------------------------------------
+        # Position-list evidence
+        # ------------------------------------------------------------------
+
+        position_list_evidence = (
+            self._analyze_position_list_structure(
+                lines,
+                tables=page.tables,
             )
         )
 
@@ -1313,6 +1326,42 @@ class TOCDetector:
             "sample_rows": table.rows[:5],
         }
 
+    @staticmethod
+    def _clean_text(
+        text: str,
+    ) -> str:
+        """
+        Normalize a TOC entry's display text before it goes into a
+        TOCEntry.
+
+        PyMuPDF table/text extraction on this document type inserts
+        raw control characters (observed: \\x02 STX, \\x03 ETX) where a
+        real space belongs -- e.g. "DOCUMENTS\\x02&\\x02DRAWINGS\\x02LIST"
+        instead of "DOCUMENTS & DRAWINGS LIST". They can also appear
+        doubled up ("\\x02\\x02") or trailing at the end of the string.
+
+        This does NOT fix the separate, unrelated problem of raw_text
+        extraction losing whitespace entirely between words with no
+        control character to replace (e.g. "AMMONIASTORAGE...") -- that
+        would need a different, dictionary/heuristic-based fix.
+        """
+
+        import re
+
+        cleaned = re.sub(
+            r"[\x02\x03]",
+            " ",
+            text,
+        )
+
+        cleaned = re.sub(
+            r"\s+",
+            " ",
+            cleaned,
+        )
+
+        return cleaned.strip()
+
     # ======================================================================
     # TABLE PARSING
     # ======================================================================
@@ -1463,7 +1512,7 @@ class TOCDetector:
             return None
 
         return TOCEntry(
-            text=title.strip(),
+            text=self._clean_text(title),
             section_number=section_number,
             level=level,
             printed_page_ref=page_ref,
@@ -1531,7 +1580,7 @@ class TOCDetector:
                 )
 
             return TOCEntry(
-                text=title.strip(),
+                text=self._clean_text(title),
                 section_number=section_number,
                 level=self._infer_level(
                     section_number
