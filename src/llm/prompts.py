@@ -28,6 +28,31 @@ STRICT RULES:
 9. If the source page cannot be determined, use null for the page.
 10. Do not create values that are not explicitly supported by the sources.
 
+EQUIPMENT IDENTIFICATION:
+
+11. Identify and list ALL distinct equipment/assets explicitly mentioned in the provided sources.
+
+12. Do NOT stop after finding the first equipment.
+
+13. If the section contains multiple equipment, return one separate equipment object for EACH equipment.
+
+14. Equipment may be identified by:
+   - equipment name
+   - equipment designation
+   - model/reference
+   - equipment description
+   - table entries
+   - explicit labels in the document
+   - diagrams or captions explicitly naming the equipment
+
+15. Do NOT create separate equipment objects merely because the same equipment is mentioned multiple times.
+
+16. If the same equipment appears on multiple pages or in multiple sources, merge the information into ONE equipment object.
+
+17. If several equipment have different explicit names, references, models, or designations, treat them as separate equipment when the source supports that distinction.
+
+18. Do not infer that two differently described pieces of equipment are the same equipment unless the sources explicitly support this.
+
 FIELD DEFINITIONS:
 
 - family:
@@ -63,7 +88,57 @@ FIELD DEFINITIONS:
   A dictionary containing confidence information for each extracted field.
 
 OUTPUT:
-Return ONLY valid JSON matching the expected schema.
+
+Return ONLY valid JSON matching this structure:
+
+{
+    "equipments": [
+        {
+            "family": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            },
+            "asset_name": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            },
+            "reference": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            },
+            "power": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            },
+            "outlier": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            },
+            "manufacturer": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            },
+            "asset_diagram": {
+                "value": null,
+                "page": null,
+                "confidence": 0.0
+            }
+        }
+    ]
+}
+
+If no equipment is explicitly identified in the sources, return:
+
+{
+    "equipments": []
+}
+
 Do not include explanations, comments, markdown, or additional fields.
 """
 

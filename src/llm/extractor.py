@@ -25,7 +25,7 @@ def get_text(result):
     return ""
 
 
-def extract_with_llm(native_result, ocr_result, table_result):
+def extract_with_llm(payload):
 
     if not ENABLE_LLM:
         return {
@@ -33,36 +33,6 @@ def extract_with_llm(native_result, ocr_result, table_result):
             "called": False,
             "message": "LLM disabled"
         }
-
-    # Extract text
-    native_text = get_text(native_result)
-    ocr_text = get_text(ocr_result)
-
-    # Extract tables
-    tables = []
-
-    if isinstance(table_result, dict):
-
-        for table in table_result.get("tables", []):
-
-            if hasattr(table, "fillna"):
-
-                tables.append(
-                    table
-                    .fillna("")
-                    .to_dict("records")
-                )
-
-            elif isinstance(table, dict):
-
-                tables.append(table)
-
-    # Build payload
-    payload = {
-        "native_text": native_text,
-        "ocr_text": ocr_text,
-        "tables": tables
-    }
 
     # Call OpenAI with structured output
     try:
