@@ -258,6 +258,98 @@
   }
   .upload-chip__remove:hover { background: rgba(1, 14, 93, 0.22); }
 
+  /* ===================== PROCESS / RESULTS ===================== */
+  [hidden] { display: none !important; }
+  .btn[disabled] { opacity: 0.5; pointer-events: none; }
+  .results { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .results:empty { display: none; }
+  .result-card {
+    border: 1px solid var(--primary-20);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.85rem;
+  }
+  .result-card__head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; margin-bottom: 8px;
+  }
+  .result-card__file { font-weight: 600; color: var(--primary); }
+  .result-card__status { font-size: 0.78rem; opacity: 0.7; }
+  .result-card__status--err { color: #c0392b; opacity: 1; }
+  .result-stages { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 4px; }
+  .result-stages b { color: var(--primary); }
+  .result-machine { border-top: 1px solid var(--border); padding-top: 8px; margin-top: 8px; }
+  .result-machine__name { font-weight: 600; margin-bottom: 4px; }
+  .result-fields { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 2px 0 4px; }
+  .result-fields dt { opacity: 0.6; }
+  .result-json { margin-top: 8px; }
+  .result-json pre {
+    background: var(--primary-10);
+    border-radius: 8px; padding: 10px;
+    overflow-x: auto; font-size: 0.75rem; max-height: 320px;
+  }
+  .spinner {
+    width: 12px; height: 12px; border: 2px solid var(--primary-20);
+    border-top-color: var(--primary); border-radius: 50%;
+    display: inline-block; animation: spin 0.7s linear infinite; vertical-align: -2px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .proc-status {
+    margin-top: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+    font-size: 0.82rem; color: var(--primary);
+  }
+  .proc-status:empty { display: none; }
+  .proc-status__err { color: #c0392b; }
+
+  /* ===================== ASSET MODAL ===================== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1100;
+    background: rgba(10, 16, 60, 0.45);
+    overflow-y: auto;
+    padding: 0 16px 24px;
+  }
+  .modal {
+    background: #fff; border-radius: 1rem;
+    width: 100%; max-width: 860px;
+    margin: 14px auto 0;
+    padding: 18px 26px 16px;
+    box-shadow: 0 24px 64px rgba(1, 14, 93, 0.30);
+  }
+  .modal__title { font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 22px; }
+  .field { display: flex; flex-direction: column; gap: 3px; }
+  .field > label { font-weight: 600; font-size: 0.8rem; color: #1c2340; }
+  .field .req { color: #e23b3b; margin-left: 2px; }
+  .field input, .field select {
+    height: 34px; border: 1px solid var(--primary-20); border-radius: 8px;
+    padding: 0 11px; font: inherit; font-size: 0.83rem; color: var(--primary);
+    background: #fff; outline: none;
+  }
+  .field input:focus, .field select:focus { border-color: var(--primary); }
+  .seg, .pic-tabs { display: inline-flex; gap: 8px; }
+  .seg button, .pic-tabs button {
+    padding: 6px 15px; border-radius: 16px; font-size: 0.78rem; font-weight: 600;
+    background: var(--primary-10); color: var(--primary); border: 1px solid transparent;
+  }
+  .pic-tabs button { background: #fff; border-color: var(--primary-20); padding: 5px 13px; }
+  .seg button.on, .pic-tabs button.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .modal__section { font-size: 1rem; font-weight: 800; color: var(--primary); margin: 14px 0 7px; }
+  .pic-tabs { margin-bottom: 8px; }
+  .dropzone {
+    border: 2px dashed var(--primary-20); border-radius: 10px;
+    background: var(--primary-10); min-height: 78px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; padding: 10px; text-align: center;
+    color: var(--text-muted); font-size: 0.8rem;
+  }
+  .dropzone img { max-height: 84px; border-radius: 6px; }
+  .modal-foot { display: flex; justify-content: center; gap: 14px; margin-top: 16px; }
+  .modal-foot .btn { min-width: 140px; justify-content: center; }
+  .btn--muted { background: #b9bdcc; color: #fff; }
+  .btn--muted:hover { background: #a7abbd; }
+  @media (max-width: 720px) { .form-grid { grid-template-columns: 1fr; } .modal { padding: 16px 16px; } }
+
   /* ===================== TABLE ===================== */
   .table-wrap { overflow-x: auto; margin-top: 0.5rem; }
   table {
@@ -312,6 +404,41 @@
     display: inline-flex;
     padding: 4px 16px;
     color: var(--primary);
+  }
+
+  /* ===================== ROW ACTION MENU ===================== */
+  .row-menu {
+    position: absolute;
+    z-index: 60;
+    min-width: 152px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 14px 36px rgba(1, 14, 93, 0.16);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .row-menu button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--primary);
+    background: none;
+    text-align: left;
+  }
+  .row-menu button:hover { background: var(--primary-10); }
+  .row-menu svg { width: 15px; height: 15px; flex-shrink: 0; }
+  tr.row-flash { animation: rowFlash 1.4s ease-out; }
+  @keyframes rowFlash {
+    0%, 30% { background: var(--primary-10); }
+    100% { background: transparent; }
   }
 
   /* ===================== PAGINATION ===================== */
@@ -472,11 +599,12 @@
           <svg width="13" height="14" viewBox="0 0 24 24" fill="none" stroke="#010E5D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           Upload files
         </button>
+        <button class="btn btn--primary" id="processBtn" hidden>Process</button>
         <button class="btn btn--ghost">
           <svg width="13" height="15" viewBox="0 0 17 20" fill="none"><path d="M9.53 7.76H8.04V2.84L5.58 5.3a.75.75 0 0 1-1.06-1.06L8.26.51a.75.75 0 0 1 1.06 0l3.73 3.73a.75.75 0 0 1-1.06 1.06L9.53 2.84v4.92Zm5.98 0H9.53v3.73a.75.75 0 0 1-1.5 0V7.76H2.06A1.49 1.49 0 0 0 .57 9.25v8.96a1.49 1.49 0 0 0 1.49 1.5H15.5a1.49 1.49 0 0 0 1.5-1.5V9.25a1.49 1.49 0 0 0-1.49-1.49Z" fill="#010E5D"/></svg>
           Export data
         </button>
-        <button class="btn btn--primary">
+        <button class="btn btn--primary" id="createBtn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 22.5C6.21 22.5 1.5 17.79 1.5 12S6.21 1.5 12 1.5 22.5 6.21 22.5 12 17.79 22.5 12 22.5ZM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9Z" fill="#fff"/><path d="M12 17.25a.75.75 0 0 1-.75-.75v-9a.75.75 0 0 1 1.5 0v9a.75.75 0 0 1-.75.75Z" fill="#fff"/><path d="M16.5 12.75h-9a.75.75 0 0 1 0-1.5h9a.75.75 0 0 1 0 1.5Z" fill="#fff"/></svg>
           Create a new asset
         </button>
@@ -484,6 +612,8 @@
     </div>
 
     <div class="uploads" id="uploads"></div>
+
+    <div class="proc-status" id="results"></div>
 
     <div class="table-wrap">
     <table>
@@ -558,7 +688,7 @@
     </table>
     </div>
 
-    <ul class="pagination">
+    <ul class="pagination" id="pagination">
       <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
       <li class="page-item active"><a class="page-link" href="#">1</a></li>
       <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
@@ -566,13 +696,171 @@
   </div>
 </main>
 
+<!-- ===================== ASSET MODAL ===================== -->
+<div class="modal-overlay" id="assetModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="assetModalTitle">
+    <h3 class="modal__title" id="assetModalTitle">Edit Asset</h3>
+
+    <div class="form-grid">
+      <div class="field"><label>Family<span class="req">*</span></label>
+        <select id="f_family"></select></div>
+      <div class="field"><label>Asset Name<span class="req">*</span></label>
+        <input id="f_name" type="text" /></div>
+
+      <div class="field"><label>Ref<span class="req">*</span></label>
+        <input id="f_ref" type="text" /></div>
+      <div class="field"><label>Entity<span class="req">*</span></label>
+        <select id="f_entity"></select></div>
+
+      <div class="field"><label>Class<span class="req">*</span></label>
+        <select id="f_class"></select></div>
+      <div class="field"><label>Structure<span class="req">*</span></label>
+        <select id="f_structure"></select></div>
+
+      <div class="field"><label>Group<span class="req">*</span></label>
+        <select id="f_group"></select></div>
+      <div class="field"><label>Power<span class="req">*</span></label>
+        <input id="f_power" type="text" /></div>
+
+      <div class="field"><label>Outlier<span class="req">*</span></label>
+        <input id="f_outlier" type="text" /></div>
+      <div class="field"><label>Measurement point type<span class="req">*</span></label>
+        <div class="seg" id="f_mpt">
+          <button type="button" data-v="Manual" class="on">Manual</button>
+          <button type="button" data-v="Online">Online</button>
+        </div></div>
+    </div>
+
+    <h4 class="modal__section">Asset Picture</h4>
+    <div class="pic-tabs" id="f_pictabs">
+      <button type="button" data-v="3D">3D</button>
+      <button type="button" data-v="picture" class="on">Asset Picture</button>
+    </div>
+    <label class="dropzone" id="f_dropzone">
+      <input type="file" accept="image/*" hidden id="f_picinput" />
+      <span id="f_droptext">Drop an image here or click to browse</span>
+    </label>
+
+    <div class="modal-foot">
+      <button type="button" class="btn btn--muted" id="f_cancel">Cancel</button>
+      <button type="button" class="btn btn--primary" id="f_next">Next</button>
+    </div>
+  </div>
+</div>
+
 <script>
   (function () {
+    var API_BASE = 'http://localhost:8000';
+    var PAGE_SIZE = 6;
+
     var input = document.getElementById('fileInput');
     var btn = document.getElementById('uploadBtn');
+    var processBtn = document.getElementById('processBtn');
     var list = document.getElementById('uploads');
-    var files = [];
+    var results = document.getElementById('results');
+    var tbody = document.querySelector('.table-wrap tbody');
+    var pager = document.getElementById('pagination');
 
+    var files = [];
+    var rows = [];   // every table row as an HTML string (demo rows + extracted)
+    var page = 1;
+
+    var PIN_SVG = '<svg width="14" height="16" viewBox="0 0 24 24" fill="#010E5D"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>';
+    var DOTS_SVG = '<svg width="4" height="18" viewBox="0 0 4 18" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>';
+
+    // keep the demo rows already in the table as the starting data
+    rows = Array.prototype.map.call(tbody.querySelectorAll('tr'), function (tr) { return tr.outerHTML; });
+
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+
+    function fieldVal(f, key) {
+      var v = f && f[key];
+      if (v == null) return '';
+      if (typeof v === 'object') return v.value != null ? String(v.value) : '';
+      return String(v);
+    }
+
+    // ---------- table + pagination ----------
+    function totalPages() {
+      return Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+    }
+
+    function renderPage(p) {
+      var tp = totalPages();
+      page = Math.min(Math.max(1, p), tp);
+      var start = (page - 1) * PAGE_SIZE;
+      tbody.innerHTML = rows.slice(start, start + PAGE_SIZE).join('');
+      renderPager(tp);
+    }
+
+    function pageItem(label, target, opts) {
+      opts = opts || {};
+      var li = document.createElement('li');
+      li.className = 'page-item' + (opts.active ? ' active' : '') + (opts.disabled ? ' disabled' : '');
+      var a = document.createElement('a');
+      a.className = 'page-link';
+      a.href = '#';
+      a.textContent = label;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!opts.disabled && !opts.active) renderPage(target);
+      });
+      li.appendChild(a);
+      return li;
+    }
+
+    function renderPager(tp) {
+      pager.innerHTML = '';
+      pager.appendChild(pageItem('Prev', page - 1, { disabled: page === 1 }));
+      for (var i = 1; i <= tp; i++) {
+        pager.appendChild(pageItem(String(i), i, { active: i === page }));
+      }
+      pager.appendChild(pageItem('Next', page + 1, { disabled: page === tp }));
+    }
+
+    var DEFAULT_GROUP = 'Groupe I F P3';
+
+    function machineRow(f) {
+      var name = fieldVal(f, 'asset_name') || '—';
+      var ref = fieldVal(f, 'reference') || '—';
+      var family = fieldVal(f, 'family') || '—';
+      return '<tr data-power="' + esc(fieldVal(f, 'power')) + '" data-outlier="' + esc(fieldVal(f, 'outlier')) + '" data-manufacturer="' + esc(fieldVal(f, 'manufacturer')) + '">' +
+        '<td class="fw-500">' + esc(name) + '</td>' +
+        '<td>' + esc(ref) + '</td>' +
+        '<td><span class="class-badge">A</span></td>' +
+        '<td><span class="entity">' + PIN_SVG + '<span class="name">Demo Interns</span></span></td>' +
+        '<td>' + esc(DEFAULT_GROUP) + '</td>' +
+        '<td>' + esc(family) + '</td>' +
+        '<td><span class="dots">' + DOTS_SVG + '</span></td>' +
+      '</tr>';
+    }
+
+    function addExtractedRows(result) {
+      var sections = (result && result.stage_3 && result.stage_3.results) || [];
+      var added = 0;
+      sections.forEach(function (item) {
+        if (item.error) return;
+        var lr = item.llm_result || {};
+        if (lr.called === false) return;
+        var res = lr.result || lr;                 // unwrap {method, called, result}
+        var machines = res.machines || [res];      // single- or multi-machine schema
+        machines.forEach(function (m) {
+          var f = m.fields || m;
+          if (!fieldVal(f, 'asset_name') && !fieldVal(f, 'reference') &&
+              !fieldVal(f, 'family') && !fieldVal(f, 'manufacturer') && !fieldVal(f, 'power')) return;
+          rows.push(machineRow(f));
+          added++;
+        });
+      });
+      if (added) renderPage(totalPages());         // show the newest rows
+      return added;
+    }
+
+    // ---------- upload / process ----------
     btn.addEventListener('click', function () { input.click(); });
 
     input.addEventListener('change', function () {
@@ -585,7 +873,7 @@
         }
       });
       input.value = '';
-      render();
+      renderChips();
       if (rejected) {
         alert(rejected + (rejected > 1 ? ' files were' : ' file was') + ' skipped — only PDF files are allowed.');
       }
@@ -597,7 +885,7 @@
       return (bytes / 1048576).toFixed(1) + ' MB';
     }
 
-    function render() {
+    function renderChips() {
       list.innerHTML = '';
       files.forEach(function (f, i) {
         var chip = document.createElement('span');
@@ -616,17 +904,261 @@
         rm.className = 'upload-chip__remove';
         rm.setAttribute('aria-label', 'Remove ' + f.name);
         rm.textContent = '×';
-        rm.addEventListener('click', function () {
-          files.splice(i, 1);
-          render();
-        });
+        rm.addEventListener('click', function () { files.splice(i, 1); renderChips(); });
 
         chip.appendChild(name);
         chip.appendChild(size);
         chip.appendChild(rm);
         list.appendChild(chip);
       });
+      processBtn.hidden = files.length === 0;
     }
+
+    processBtn.addEventListener('click', function () {
+      if (!files.length) return;
+      processBtn.disabled = true;
+      results.innerHTML = '';
+      Promise.all(files.slice().map(processOne)).then(function () {
+        processBtn.disabled = false;
+      });
+    });
+
+    function processOne(file) {
+      var line = document.createElement('div');
+      line.innerHTML = '<span class="spinner"></span> ' + esc(file.name) + ' — processing…';
+      results.appendChild(line);
+
+      var fd = new FormData();
+      fd.append('file', file);
+
+      return fetch(API_BASE + '/upload', { method: 'POST', body: fd })
+        .then(function (res) {
+          return res.json().then(function (data) { return { ok: res.ok, status: res.status, data: data }; });
+        })
+        .then(function (r) {
+          if (!r.ok) {
+            line.className = 'proc-status__err';
+            line.textContent = '✗ ' + file.name + ' — error ' + r.status + ': ' +
+              ((r.data && (r.data.detail || r.data.message)) || 'request failed');
+            return;
+          }
+          var n = addExtractedRows(r.data.result);
+          line.textContent = n
+            ? '✓ ' + file.name + ' — ' + n + (n === 1 ? ' asset added' : ' assets added')
+            : '✓ ' + file.name + ' — no assets extracted';
+        })
+        .catch(function (err) {
+          line.className = 'proc-status__err';
+          line.textContent = '✗ ' + file.name + ' — ' + err +
+            ' (is the API running on ' + API_BASE + '?)';
+        });
+    }
+
+    // ---------- row action menu (Duplicate / Edit / Locate) ----------
+    var rowMenu = document.createElement('div');
+    rowMenu.className = 'row-menu';
+    rowMenu.hidden = true;
+    rowMenu.innerHTML =
+      '<button type="button" data-act="duplicate">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Duplicate</button>' +
+      '<button type="button" data-act="edit">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Edit</button>' +
+      '<button type="button" data-act="locate">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Locate</button>';
+    document.body.appendChild(rowMenu);
+
+    var menuTr = null;
+
+    function closeMenu() { rowMenu.hidden = true; menuTr = null; }
+
+    function rowIndex(tr) {
+      var k = Array.prototype.indexOf.call(tbody.children, tr);
+      return k < 0 ? -1 : (page - 1) * PAGE_SIZE + k;
+    }
+
+    tbody.addEventListener('click', function (e) {
+      var dots = e.target.closest('.dots');
+      if (!dots) return;
+      e.stopPropagation();
+      var tr = dots.closest('tr');
+      if (!rowMenu.hidden && menuTr === tr) { closeMenu(); return; }
+      menuTr = tr;
+      rowMenu.hidden = false;
+      var rect = dots.getBoundingClientRect();
+      var top = window.scrollY + rect.bottom + 6;
+      var left = window.scrollX + rect.right - rowMenu.offsetWidth;
+      rowMenu.style.top = top + 'px';
+      rowMenu.style.left = Math.max(8, left) + 'px';
+    });
+
+    rowMenu.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn || !menuTr) return;
+      var act = btn.getAttribute('data-act');
+      var tr = menuTr;
+      var idx = rowIndex(tr);
+      closeMenu();
+
+      if (act === 'duplicate') {
+        if (idx >= 0) {
+          rows.splice(idx + 1, 0, rows[idx]);
+          renderPage(page);
+        }
+      } else if (act === 'edit') {
+        if (idx >= 0) openAssetModal(idx);
+      } else if (act === 'locate') {
+        tr.classList.remove('row-flash');
+        void tr.offsetWidth;
+        tr.classList.add('row-flash');
+      }
+    });
+
+    document.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('scroll', closeMenu, true);
+
+    // ---------- asset modal (Create / Edit) ----------
+    var FAMILIES = ['Motopompe (new)', 'Motopompe', 'Pump', 'Centrifugal Pump', 'Oil Pump',
+      'Compressor', 'Screw Compressor', 'Electric Motor', 'Gearbox', 'Fan', 'Blower',
+      'Heat Exchanger', 'Valve', 'Cooling Tower'];
+    var ENTITIES = ['Demo Interns'];
+    var CLASSES = ['A', 'AA', 'AAA', 'B', 'C'];
+    var STRUCTURES = ['Rigid', 'Flexible', 'Rotating'];
+    var GROUPS = ['Groupe I F P3', 'Groupe I R P3', 'Groupe II F P2', 'Groupe III R P3'];
+
+    var modal = document.getElementById('assetModal');
+    var mTitle = document.getElementById('assetModalTitle');
+    var F = {
+      family: document.getElementById('f_family'),
+      name: document.getElementById('f_name'),
+      ref: document.getElementById('f_ref'),
+      entity: document.getElementById('f_entity'),
+      cls: document.getElementById('f_class'),
+      structure: document.getElementById('f_structure'),
+      group: document.getElementById('f_group'),
+      power: document.getElementById('f_power'),
+      outlier: document.getElementById('f_outlier')
+    };
+
+    function fillSelect(sel, opts) {
+      sel.innerHTML = opts.map(function (o) { return '<option>' + esc(o) + '</option>'; }).join('');
+    }
+    fillSelect(F.family, FAMILIES);
+    fillSelect(F.entity, ENTITIES);
+    fillSelect(F.cls, CLASSES);
+    fillSelect(F.structure, STRUCTURES);
+    fillSelect(F.group, GROUPS);
+
+    function setSel(sel, val) {
+      val = (val || '').trim();
+      var matched = Array.prototype.some.call(sel.options, function (o) {
+        if (o.text === val) { sel.value = o.value; return true; }
+        return false;
+      });
+      if (!matched && val) sel.add(new Option(val, val, true, true));
+    }
+
+    var mpt = 'Manual';
+    document.getElementById('f_mpt').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      mpt = b.getAttribute('data-v');
+      Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle('on', x === b); });
+    });
+    document.getElementById('f_pictabs').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle('on', x === b); });
+    });
+
+    var picInput = document.getElementById('f_picinput');
+    var dropText = document.getElementById('f_droptext');
+    picInput.addEventListener('change', function () {
+      var file = picInput.files[0];
+      if (!file) return;
+      var fr = new FileReader();
+      fr.onload = function () {
+        dropText.innerHTML = '<img src="' + fr.result + '" alt="">';
+      };
+      fr.readAsDataURL(file);
+    });
+
+    var editIdx = -1;
+
+    function openAssetModal(idx) {
+      editIdx = typeof idx === 'number' ? idx : -1;
+
+      F.cls.selectedIndex = 0;
+      F.entity.selectedIndex = 0;
+      F.structure.selectedIndex = 0;
+      F.power.value = '';
+      F.outlier.value = '';
+      dropText.textContent = 'Drop an image here or click to browse';
+
+      if (editIdx >= 0) {
+        mTitle.textContent = 'Edit Asset';
+        var holder = document.createElement('tbody');
+        holder.innerHTML = rows[editIdx];
+        var tr = holder.querySelector('tr');
+        var c = tr.children;
+        F.name.value = c[0].textContent.trim();
+        F.ref.value = c[1].textContent.trim();
+        setSel(F.cls, c[2].textContent.trim());
+        setSel(F.entity, c[3].textContent.trim());
+        setSel(F.group, c[4].textContent.trim());
+        setSel(F.family, c[5].textContent.trim());
+        F.power.value = tr.getAttribute('data-power') || '';
+        F.outlier.value = tr.getAttribute('data-outlier') || '';
+      } else {
+        mTitle.textContent = 'Create a new asset';
+        F.name.value = '';
+        F.ref.value = '';
+        F.family.selectedIndex = 0;
+        setSel(F.group, 'Groupe I F P3');
+      }
+      modal.hidden = false;
+    }
+
+    function closeAssetModal() {
+      modal.hidden = true;
+      editIdx = -1;
+    }
+
+    function assetRowHtml() {
+      return '<tr data-power="' + esc(F.power.value.trim()) + '" data-outlier="' + esc(F.outlier.value.trim()) + '">' +
+        '<td class="fw-500">' + esc(F.name.value.trim() || '—') + '</td>' +
+        '<td>' + esc(F.ref.value.trim() || '—') + '</td>' +
+        '<td><span class="class-badge">' + esc(F.cls.value) + '</span></td>' +
+        '<td><span class="entity">' + PIN_SVG + '<span class="name">' + esc(F.entity.value) + '</span></span></td>' +
+        '<td>' + esc(F.group.value) + '</td>' +
+        '<td>' + esc(F.family.value) + '</td>' +
+        '<td><span class="dots">' + DOTS_SVG + '</span></td>' +
+      '</tr>';
+    }
+
+    document.getElementById('f_next').addEventListener('click', function () {
+      if (!F.name.value.trim() || !F.ref.value.trim()) {
+        alert('Asset Name and Ref are required.');
+        return;
+      }
+      if (editIdx >= 0) {
+        rows[editIdx] = assetRowHtml();
+        renderPage(page);
+      } else {
+        rows.push(assetRowHtml());
+        renderPage(totalPages());
+      }
+      closeAssetModal();
+    });
+    document.getElementById('f_cancel').addEventListener('click', closeAssetModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeAssetModal(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeAssetModal();
+    });
+
+    var createBtn = document.getElementById('createBtn');
+    if (createBtn) createBtn.addEventListener('click', function () { openAssetModal(-1); });
+
+    renderChips();
+    renderPage(1);
   })();
 </script>
 
