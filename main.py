@@ -1,177 +1,193 @@
-#!/usr/bin/env python
-"""
-Global entry point: raw PDF -> LLM extraction.
-
-This script does not change anything inside `src/`. It only *orchestrates*
-the building blocks that already exist there (document_structure, llm, ocr,
-information_extraction) into one end-to-end command, the way the notebooks
-under `notebook/` currently do by hand, one cell at a time.
-
-Pipeline
---------
-
-Stage 1 - Table of contents / segmentation (no LLM call)
-    raw PDF
-      -> src.document_structure.extract_raw_pdf_toc.extract_raw_toc()
-         (native PDF bookmarks, when present)
-      -> src.document_structure.bookmark_processor.BookmarkProcessor
-         (clean + flatten the bookmark hierarchy)
-         ... or, when the PDF has no native bookmarks ...
-      -> src.document_structure.page_analysis.PageAnalyzer      (per page)
-      -> src.document_structure.titles.TitleDetector            (titles)
-      -> src.document_structure.toc.TOCDetector                 (TOC pages)
-      -> src.document_structure.analyzer.DocumentSegmenter      (segments)
-    -> a list of candidate sections {title, start_page, end_page}
-
-Stage 1b - LLM #1: section relevance classification
-    candidate sections
-      -> src.llm.classifier.classify_sections()
-    -> only the sections the model marked relevant are kept
-
-Stage 2 - LLM #2: per-section content + equipment extraction
-    selected sections
-      -> src.information_extraction.process_sections_parallel()
-         (native text/tables, src.ocr PaddleOCR fallback,
-          src.llm.extractor.extract_with_llm)
-    -> results/<pdf_stem>/extracted_sections.json (+ CSV summaries)
-
-Usage
------
-
-    python main.py --pdf data/raw/AUSTCOLD.pdf
-    python main.py --pdf "data/raw/MYCOM Operating and Maintenance Manual Refrigeration Unit (1).pdf" \\
-        --max-workers 4 --dpi 300
-
-    # Inspect the detected sections without spending any LLM call:
-    python main.py --pdf data/raw/AUSTCOLD.pdf --dry-run
-
-    # Review LLM #1's picks before paying for LLM #2 on every section:
-    python main.py --pdf data/raw/AUSTCOLD.pdf --skip-extraction
-
-See pipeline/README.md for the full option list and output layout.
-"""
 from __future__ import annotations
 
-import argparse
 import logging
-import sys
+import shutil
+import tempfile
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 
-from pipeline.run_pipeline import run_pipeline  # noqa: E402
-
-
-def parse_args(argv=None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Run the raw-PDF -> LLM-extraction pipeline end to end.",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-    )
-
-    parser.add_argument(
-        "--pdf",
-        required=True,
-        help="Path to the source PDF (e.g. data/raw/AUSTCOLD.pdf).",
-    )
-    parser.add_argument(
-        "--output-dir",
-        default=None,
-        help="Where to write pipeline outputs. Defaults to results/<pdf_stem>/.",
-    )
-    parser.add_argument(
-        "--max-workers",
-        type=int,
-        default=4,
-        help="Parallel section workers for Stage 2 (default: 4).",
-    )
-    parser.add_argument(
-        "--dpi",
-        type=int,
-        default=300,
-        help="DPI used when the OCR fallback is triggered (default: 300).",
-    )
-    parser.add_argument(
-        "--min-text-length",
-        type=int,
-        default=50,
-        help="Minimum native text length considered sufficient before "
-        "falling back to OCR (default: 50).",
-    )
-    parser.add_argument(
-        "--relevance-threshold",
-        type=int,
-        default=50,
-        help="Extra client-side cutoff (0-100) applied on top of LLM #1's "
-        "own relevance_score >= 50 selection. Raising this above 50 only "
-        "tightens the selection further; it can never widen it "
-        "(default: 50, i.e. no extra filtering).",
-    )
-    parser.add_argument(
-        "--skip-classification",
-        action="store_true",
-        help="Send every detected section straight to Stage 2, skipping "
-        "the LLM #1 relevance filter.",
-    )
-    parser.add_argument(
-        "--skip-extraction",
-        action="store_true",
-        help="Stop after Stage 1b (LLM #1). Useful to review which "
-        "sections were selected before spending LLM #2 calls on them.",
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Stop after Stage 1. No LLM call is made and the (slow) "
-        "PaddleOCR models are never loaded. Only writes "
-        "sections_candidates.csv.",
-    )
-    parser.add_argument(
-        "--max-sections",
-        type=int,
-        default=None,
-        help="Debug/cost-control cap: only keep the first N candidate "
-        "sections before classification.",
-    )
-    parser.add_argument(
-        "--log-level",
-        default="INFO",
-        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
-        help="Logging verbosity (default: INFO).",
-    )
-
-    return parser.parse_args(argv)
+from backend.pipeline import run_pipeline
 
 
-def main(argv=None) -> int:
-    args = parse_args(argv)
+# LOGGING
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+)
 
-    logging.basicConfig(
-        level=getattr(logging, args.log_level),
-        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-        datefmt="%H:%M:%S",
+logger = logging.getLogger(__name__)
+
+
+# FASTAPI APP
+app = FastAPI(
+    title="PDF Information Extraction API",
+    description="Three-stage PDF processing pipeline.",
+    version="1.0.0",
+)
+
+
+# CORS
+# Allows the frontend to call the backend.
+# For production, replace "*" with the actual frontend URL.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# HEALTH CHECK
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok",
+        "service": "pdf-information-extraction",
+    }
+
+
+# PDF UPLOAD + PIPELINE
+@app.post("/upload")
+async def upload_pdf(
+    file: UploadFile = File(...),
+):
+    """
+    Upload a PDF and run the complete pipeline.
+
+    Flow:
+
+        Frontend
+            ↓
+        POST /upload
+            ↓
+        Save temporary PDF
+            ↓
+        Stage 1: document structure
+            ↓
+        Stage 2: LLM section classification
+            ↓
+        Stage 3: information extraction
+            ↓
+        JSON response
+    """
+
+    # Validate filename
+    if not file.filename:
+        raise HTTPException(
+            status_code=400,
+            detail="No filename provided.",
+        )
+
+    filename = Path(file.filename).name
+
+    # Validate PDF
+    if Path(filename).suffix.lower() != ".pdf":
+        raise HTTPException(
+            status_code=400,
+            detail="Only PDF files are supported.",
+        )
+
+    # Create temporary directory
+    temp_dir = Path(
+        tempfile.mkdtemp(
+            prefix="pdf_pipeline_"
+        )
     )
+
+    pdf_path = temp_dir / filename
 
     try:
-        run_pipeline(
-            pdf_path=args.pdf,
-            output_dir=args.output_dir,
-            max_workers=args.max_workers,
-            dpi=args.dpi,
-            min_text_length=args.min_text_length,
-            relevance_threshold=args.relevance_threshold,
-            skip_classification=args.skip_classification,
-            skip_extraction=args.skip_extraction,
-            dry_run=args.dry_run,
-            max_sections=args.max_sections,
+        # Save uploaded file
+        with pdf_path.open("wb") as buffer:
+            shutil.copyfileobj(
+                file.file,
+                buffer,
+            )
+
+        logger.info(
+            "Received PDF: %s",
+            filename,
         )
+
+        # Run complete pipeline
+        result = run_pipeline(
+            pdf_path=pdf_path,
+            max_workers=4,
+            dpi=300,
+            min_text_length=50,
+        )
+
+        logger.info(
+            "Pipeline completed successfully: %s",
+            filename,
+        )
+
+        return {
+            "success": True,
+            "filename": filename,
+            "result": result,
+        }
+
     except FileNotFoundError as exc:
-        logging.getLogger("main").error(str(exc))
-        return 1
 
-    return 0
+        logger.exception(
+            "PDF file not found.",
+        )
+
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+
+    except ValueError as exc:
+
+        logger.exception(
+            "Invalid PDF or pipeline input.",
+        )
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(exc),
+        ) from exc
+
+    except Exception as exc:
+
+        logger.exception(
+            "Pipeline failed.",
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail=f"PDF processing failed: {exc}",
+        ) from exc
+
+    finally:
+        # Close uploaded file
+        await file.close()
+
+        # Remove temporary files
+        try:
+            shutil.rmtree(
+                temp_dir,
+                ignore_errors=True,
+            )
+        except Exception:
+            logger.warning(
+                "Could not remove temporary directory: %s",
+                temp_dir,
+            )
 
 
+# RUN DIRECTLY
 if __name__ == "__main__":
-    raise SystemExit(main())
+    import uvicorn
+
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+    )

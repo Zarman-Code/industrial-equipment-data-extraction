@@ -12,8 +12,6 @@ RESULT_DIR = PROJECT_ROOT / "result_ppstructure"
 EXPORT_DIR = RESULT_DIR / "extracted"
 
 DATA_DIR.mkdir(parents=True, exist_ok=True)
-RESULT_DIR.mkdir(parents=True, exist_ok=True)
-EXPORT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # OCR configuration

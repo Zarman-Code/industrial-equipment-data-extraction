@@ -10,16 +10,66 @@ import pymupdf as fitz
 
 
 
-def extract_native_text(pdf_path, page_number):
+@dataclass
+class CandidateSection:
+    """
+    A document section identified during Stage 1.
+
+    This is only a candidate. It has NOT yet been classified as useful
+    or irrelevant for equipment information.
+
+    Attributes
+    ----------
+    section_id:
+        Unique identifier for the section.
+
+    title:
+        Section title.
+
+    section_number:
+        Optional section number such as "3.2" or "4".
+
+    level:
+        Hierarchical level of the section when available.
+
+    start_page:
+        First page of the section, using 1-based PDF page numbering.
+
+    end_page:
+        Last page of the section, using 1-based PDF page numbering.
+
+    source:
+        Method used to identify the section.
+        Examples:
+            "bookmark"
+            "structural:toc"
+            "structural:title"
+            "structural:..."
+
+    confidence:
+        Confidence score provided by the underlying structure detector.
+    """
+
+    section_id: str
+    title: str
+    section_number: str | None
+    level: int
+    start_page: int
+    end_page: int
+    source: str
+    confidence: float
+
+
+def extract_native_text(doc, page_number):
     """
     Extract native text from a single PDF page using PyMuPDF.
     """
-    doc = fitz.open(pdf_path)
+    
     text = doc[page_number - 1].get_text('text')
     return {'text': text, 'page': page_number, 'method': 'native_text'}
 
 
-def extract_tables(pdf_path, page_number):
+def extract_tables(doc, page_number):
     """
     Extract tables from a PDF page using pdfplumber.
     """
@@ -28,8 +78,7 @@ def extract_tables(pdf_path, page_number):
         result['message'] = 'pdfplumber indisponible ; extraction de tableaux ignorée.'
         return result
     try:
-        with pdfplumber.open(pdf_path) as pdf:
-            raw_tables = pdf.pages[page_number - 1].extract_tables()
+        raw_tables = doc[page_number - 1].extract_tables()
         result['tables'] = [pd.DataFrame(t[1:], columns=t[0]) if t and len(t) > 1 else pd.DataFrame(t) for t in raw_tables]
         result['success'] = bool(result['tables'])
         result['message'] = f"{len(result['tables'])} tableau(x) détecté(s)"
@@ -39,7 +88,7 @@ def extract_tables(pdf_path, page_number):
 
 
 def extract_page_content(
-    pdf_path,
+    doc,
     page_number,
     ocr_pipeline=None,
     min_text_length=50,
@@ -56,8 +105,8 @@ def extract_page_content(
 
     Parameters
     ----------
-    pdf_path : str or Path
-        Path to the PDF.
+    doc : fitz.Document
+        The PDF document.
 
     page_number : int
         1-based PDF page number.
@@ -85,7 +134,7 @@ def extract_page_content(
     # 1. Native text
 
     native_text_result = extract_native_text(
-        pdf_path,
+        doc,
         page_number
     )
 
@@ -94,7 +143,7 @@ def extract_page_content(
     # 2. Native tables
 
     native_tables_result = extract_tables(
-        pdf_path,
+        doc,
         page_number
     )
 
@@ -139,7 +188,7 @@ def extract_page_content(
 
     # OCRPipeline expects 0-based page numbers
     ocr_result = ocr_pipeline.process(
-        pdf_path,
+        doc,
         page_number=page_number - 1,
         dpi=dpi
     )
