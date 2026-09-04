@@ -1,10 +1,14 @@
 from pathlib import Path
 import json
+import logging
 
 from .pipeline import run_pipeline
 
 
-PDF_PATH = Path("data/raw/AUSTCOLD.pdf")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+
+
+PDF_PATH = Path("data/raw/AUSTCOLD_500.pdf")
 
 
 def main():
@@ -85,7 +89,9 @@ def main():
             )
 
     # Optional full JSON
-    output_path = Path("pipeline_result.json")
+    output_dir = Path("results")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "pipeline_result.json"
 
     output_path.write_text(
         json.dumps(

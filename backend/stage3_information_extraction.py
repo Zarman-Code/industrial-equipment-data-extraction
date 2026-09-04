@@ -41,26 +41,26 @@ import pymupdf as fitz
 from src.llm.extractor import extract_with_llm
 from src.ocr.ocr_pipeline import ocr_pipeline as default_ocr_pipeline
 
+try:
+    from backend.family_matcher import match_batch as _match_families
+except Exception:  # matcher is optional; Stage 3 still works without it
+    _match_families = None
+
 logger = logging.getLogger(__name__)
 
 
 # PAGE EXTRACTION
 def extract_native_text(
-    pdf_path: str | Path,
+    doc,
     page_number: int,
 ) -> dict[str, Any]:
     """
-    Extract native text from one PDF page using PyMuPDF.
+    Extract native text from one page of an already-open PyMuPDF document.
 
     Page numbers are 1-based.
     """
 
-    doc = fitz.open(str(pdf_path))
-
-    try:
-        text = doc[page_number - 1].get_text("text")
-    finally:
-        doc.close()
+    text = doc[page_number - 1].get_text("text")
 
     return {
         "text": text,
@@ -70,11 +70,11 @@ def extract_native_text(
 
 
 def extract_tables(
-    pdf_path: str | Path,
+    pdf,
     page_number: int,
 ) -> dict[str, Any]:
     """
-    Extract native tables from one PDF page using pdfplumber.
+    Extract native tables from one page of an already-open pdfplumber PDF.
 
     Page numbers are 1-based.
     """
@@ -88,11 +88,9 @@ def extract_tables(
     }
 
     try:
-        with pdfplumber.open(str(pdf_path)) as pdf:
-
-            raw_tables = pdf.pages[
-                page_number - 1
-            ].extract_tables()
+        raw_tables = pdf.pages[
+            page_number - 1
+        ].extract_tables()
 
         tables = []
 
@@ -128,8 +126,10 @@ def extract_tables(
 
 # PAGE CONTENT EXTRACTION
 def extract_page_content(
-    pdf_path: str | Path,
+    doc,
+    pdf,
     page_number: int,
+    pdf_path: str | Path,
     ocr_pipeline=None,
     min_text_length: int = 50,
     dpi: int = 300,
@@ -149,7 +149,7 @@ def extract_page_content(
 
     # 1. Native text
     native_text_result = extract_native_text(
-        pdf_path,
+        doc,
         page_number,
     )
 
@@ -161,7 +161,7 @@ def extract_page_content(
 
     # 2. Native tables
     native_tables_result = extract_tables(
-        pdf_path,
+        pdf,
         page_number,
     )
 
@@ -316,39 +316,48 @@ def process_section(
     all_tables = []
     extraction_methods = []
 
-    # Extract every page in the section
-    for page_number in range(
-        start_page,
-        end_page + 1,
-    ):
+    doc = fitz.open(str(pdf_path))
+    pdf = pdfplumber.open(str(pdf_path))
 
-        page_result = extract_page_content(
-            pdf_path=pdf_path,
-            page_number=page_number,
-            ocr_pipeline=ocr_pipeline,
-            min_text_length=min_text_length,
-            dpi=dpi,
-        )
+    try:
+        # Extract every page in the section
+        for page_number in range(
+            start_page,
+            end_page + 1,
+        ):
 
-        # Text
-        if page_result["text"]:
-
-            all_text.append(
-                f"--- PAGE {page_number} ---\n"
-                f"{page_result['text']}"
+            page_result = extract_page_content(
+                doc=doc,
+                pdf=pdf,
+                page_number=page_number,
+                pdf_path=pdf_path,
+                ocr_pipeline=ocr_pipeline,
+                min_text_length=min_text_length,
+                dpi=dpi,
             )
 
-        # Tables
-        all_tables.extend(
-            page_result.get(
-                "tables",
-                [],
-            )
-        )
+            # Text
+            if page_result["text"]:
 
-        extraction_methods.append(
-            page_result["method"]
-        )
+                all_text.append(
+                    f"--- PAGE {page_number} ---\n"
+                    f"{page_result['text']}"
+                )
+
+            # Tables
+            all_tables.extend(
+                page_result.get(
+                    "tables",
+                    [],
+                )
+            )
+
+            extraction_methods.append(
+                page_result["method"]
+            )
+    finally:
+        doc.close()
+        pdf.close()
 
     # Combine section text
     section_text = "\n\n".join(
@@ -559,6 +568,8 @@ def run_stage_3(
         min_text_length=min_text_length,
     )
 
+    _apply_family_matching(results)
+
     return {
         "stage": 3,
         "total_sections": len(
@@ -566,3 +577,98 @@ def run_stage_3(
         ),
         "results": results,
     }
+
+
+# FAMILY NORMALIZATION
+def _field_value(fields: dict[str, Any], key: str) -> Any:
+    v = fields.get(key)
+    if isinstance(v, dict):
+        return v.get("value")
+    return v
+
+
+def _apply_family_matching(results: list[dict[str, Any]]) -> None:
+    """
+    Fill / canonicalize the `family` field on every extracted machine by
+    mapping its raw family text (or asset name) onto the i-Sense family
+    catalog via backend.family_matcher.
+
+    - The original extractor value is preserved as `family_raw`.
+    - When the family was NOT explicitly stated, the filled value is
+      tagged `"inferred": true`.
+    - Runs one batched embeddings call for the whole document (only for
+      assets that offline matching could not resolve).
+    - No-op if the matcher is unavailable or nothing needs matching.
+    """
+
+    if _match_families is None or not results:
+        return
+
+    queries: list[dict[str, Any]] = []
+    targets: list[dict[str, Any]] = []
+
+    for item in results:
+        if not item or item.get("error"):
+            continue
+
+        lr = item.get("llm_result")
+        res = lr.get("result") if isinstance(lr, dict) else None
+        if not isinstance(res, dict):
+            continue
+
+        machines = res.get("machines")
+        machines = machines if isinstance(machines, list) else [res]
+
+        for machine in machines:
+            fields = machine.get("fields") if isinstance(machine, dict) else None
+            if not isinstance(fields, dict):
+                fields = machine if isinstance(machine, dict) else None
+            if not isinstance(fields, dict):
+                continue
+
+            name = _field_value(fields, "asset_name")
+            raw = _field_value(fields, "family")
+            if not name and not raw:
+                continue
+
+            queries.append({
+                "asset_name": name,
+                "reference": _field_value(fields, "reference"),
+                "family_raw": raw,
+                "section_title": item.get("title"),
+            })
+            targets.append(fields)
+
+    if not queries:
+        return
+
+    try:
+        matches = _match_families(queries)
+    except Exception as exc:
+        logger.warning("Family matching skipped: %s", exc)
+        return
+
+    filled = 0
+    for fields, query, match in zip(targets, queries, matches):
+        fields["family_raw"] = query["family_raw"]
+        if not match.get("family"):
+            continue
+
+        prev_page = None
+        if isinstance(fields.get("family"), dict):
+            prev_page = fields["family"].get("page")
+
+        fields["family"] = {
+            "value": match["family"],
+            "confidence": match.get("family_score", 0.0),
+            "page": prev_page,
+            "inferred": not query["family_raw"],
+            "match_source": match.get("family_source"),
+        }
+        filled += 1
+
+    logger.info(
+        "Family matching: %d/%d machines mapped to a catalog family.",
+        filled,
+        len(queries),
+    )
