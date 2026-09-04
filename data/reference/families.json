@@ -1,0 +1,25 @@
+{
+  "_comment": "Canonical i-Sense asset families. REPLACE the list below with the real catalog from the i-Sense 'Asset Families' page. family_matcher.py maps extracted asset names / references onto these names.",
+  "families": [
+    "Motopompe",
+    "Pump",
+    "Centrifugal Pump",
+    "Oil Pump",
+    "Vacuum Pump",
+    "Compressor",
+    "Screw Compressor",
+    "Reciprocating Compressor",
+    "Electric Motor",
+    "Gearbox",
+    "Fan",
+    "Blower",
+    "Heat Exchanger",
+    "Condenser",
+    "Evaporator",
+    "Cooling Tower",
+    "Valve",
+    "Pressure Vessel",
+    "Filter",
+    "Separator"
+  ]
+}
